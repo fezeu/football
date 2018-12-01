@@ -29,7 +29,10 @@ app.use(cookieParser())
 app.use(csrf({ cookie: true }))
 
 
-require('./models/musician');
+require('./models/carton');
+require('./models/equipe');
+require('./models/joueur');
+require('./models/terrain');
 require('./routes')(app);
 
 app.listen(3000);

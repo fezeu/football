@@ -1,19 +1,19 @@
 var mongoose = require('mongoose'),
-Musician = mongoose.model('Musician');
+Carton = mongoose.model('Carton');
 
 exports.findAll = function(req, res){
-  Musician.find({},function(err, results) {
+  Carton.find({},function(err, results) {
     return res.send(results);
   });
 };
 exports.findById = function(req, res){
   var id = req.params.id;
-  Musician.findOne({'_id':id},function(err, result) {
+  Carton.findOne({'_id':id},function(err, result) {
     return res.send(result);
   });
 };
 exports.add = function(req, res) {
-  Musician.create(req.body, function (err, musician) {
+  Carton.create(req.body, function (err, musician) {
     if (err) return console.log(err);
     return res.send(musician);
   });
@@ -22,7 +22,7 @@ exports.update = function(req, res) {
   var id = req.params.id;
   var updates = req.body;
 
-  Musician.update({"_id":id}, req.body,
+  Carton.update({"_id":id}, req.body,
     function (err, numberAffected) {
       if (err) return console.log(err);
       console.log('Updated %d musicians', numberAffected);
@@ -31,18 +31,15 @@ exports.update = function(req, res) {
 }
 exports.delete = function(req, res){
   var id = req.params.id;
-  Musician.remove({'_id':id},function(result) {
+  Carton.remove({'_id':id},function(result) {
     return res.send(result);
   });
 };
 
 exports.import = function(req, res){
-  Musician.create(
-    { "name": "Ben", "band": "DJ Code Red", "instrument": "Reason" },
-    { "name": "Mike D.","band": "Kingston Kats", "instrument": "drums" },
-    { "name": "Eric", "band": "Eric", "instrument": "piano" },
-    { "name": "Paul", "band": "The Eyeliner", "instrument": "guitar" }
-  , function (err) {
+  Carton.create(
+    { "nom": "rouge", "code": "ffffff", "valeur": 1 },
+   function (err) {
     if (err) return console.log(err);
     return res.send(202);
   });
