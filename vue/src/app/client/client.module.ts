@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from  '@angular/forms';
 
 import { ClientRoutingModule } from './client-routing.module';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 
 
 @NgModule({
   imports: [
     CommonModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    FormsModule
   ],
-  declarations: []
+  declarations: [ConnexionComponent, InscriptionComponent]
 })
 export class ClientModule { }
