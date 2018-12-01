@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
 Carton = mongoose.model('Carton');
 
-exports.findAll = function(req, res){
+exports.findAll = function(req, res, next){
   Carton.find({},function(err, results) {
     return res.send(results);
   });

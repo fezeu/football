@@ -21,10 +21,10 @@ module.exports = function(app){
     app.put('/terrain/:id', terrain.update);
     app.delete('/terrain/:id', terrain.delete);
 
-    var equipe = require('./controllers/equipe');
-    app.get('/equipe', equipe.findAll);
-    app.get('/equipe/:id', equipe.findById);
-    app.post('/equipe', equipe.add);
-    app.put('/equipe/:id', equipe.update);
-    app.delete('/equipe/:id', equipe.delete);
+    var joueur = require('./controllers/joueur');
+    app.get('/joueur', joueur.findAll);
+    app.get('/joueur/:id', joueur.findById);
+    app.post('/joueur', joueur.add);
+    app.put('/joueur/:id', joueur.update);
+    app.delete('/joueur/:id', joueur.delete);
 }
