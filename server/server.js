@@ -30,13 +30,22 @@ app.use('/api', api)
  app.use(session({secret: 'dsgghjh'}))
  app.use(cookieParser())
  app.use(csrf({ cookie: true }))
- 
 
+
+require('./models/match'); 
+require('./models/classement_joueur'); 
+require('./models/classement_equipe'); 
+require('./models/calendrier');
 require('./models/utilisateur');
 require('./models/carton');
 require('./models/equipe');
 require('./models/joueur');
 require('./models/terrain');
+require('./models/organisateur');
+require('./models/poule');
+require('./models/programme');
+require('./models/tournois');
+require('./models/statistiques_match');
 require('./routes')(app);
 
 app.listen(3000);

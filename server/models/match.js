@@ -1,0 +1,13 @@
+var mongoose = require('mongoose'),
+Schema = mongoose.Schema;
+
+var MatchSchema = new Schema({
+ terrain : {type: Schema.Types.ObjectId, required: true},
+ equipe: {type: Schema.Types.ObjectId, required: true, minlength:2, maxlength:2},
+ programmer:{type: Schema.Types.ObjectId, required: true},
+ resultat:String,
+ status:{type: String, enum:['jouer','pasjouer'],default:'pasjouer'},
+ statistiques: {type: Schema.Types.ObjectId}
+});
+
+mongoose.model('Match', MatchSchema);

@@ -77,7 +77,10 @@ exports.login = function (req,res){
       req.session.auth={
         '_id': result._id,
         'nom': result.nom,
-        'email': result.email
+        'email': result.email,
+        'terrains': result.terrains,
+        'arbitres': result.arbitres,
+        'calendrier': result.calendrier
       };
       return res.send({status: true})
     }
