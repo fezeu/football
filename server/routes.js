@@ -1,8 +1,16 @@
+
 module.exports = function(app){
+    var user = require('./controllers/utilisateur');
+    app.get('/user', user.findAll);
+    app.get('/user/:id', user.findById);
+    app.post('/user', user.add);
+    app.post('/login', user.login)
+    app.put('/user/:id', user.update);
+    app.delete('/user/:id', user.delete);
+
     var carton = require('./controllers/carton');
     app.get('/carton', carton.findAll);
     app.get('/carton/:id', carton.findById);
-    app.get('/import', carton.import);
     app.post('/carton', carton.add);
     app.put('/carton/:id', carton.update);
     app.delete('/carton/:id', carton.delete);
@@ -27,4 +35,12 @@ module.exports = function(app){
     app.post('/joueur', joueur.add);
     app.put('/joueur/:id', joueur.update);
     app.delete('/joueur/:id', joueur.delete);
+
+    app.get('/debut',function(req,res){
+        if(typeof(req.session.auth) == 'undefined'){
+          res.send({'status':'false'})
+        }else{
+          res.send({'status':true})
+        }
+      })
 }

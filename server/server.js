@@ -3,9 +3,10 @@ mongoose = require('mongoose'),
 fs = require('fs');
 var csrf = require('csurf') // Charge le middleware de sessions
 var bodyParser = require('body-parser'); // Charge le middleware de gestion des paramètres
+var session = require('cookie-session'); // Charge le middleware de sessions
 
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var Keygrip = require('keygrip')
 var cookieParser = require('cookie-parser')
 var mongoUri = 'mongodb://localhost/footappbase';
 mongoose.connect(mongoUri);
@@ -24,11 +25,14 @@ var api = createApiRouter()
 app.use('/api', api)
 
 // now add csrf and other middlewares, after the "/api" was mounted
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cookieParser())
-app.use(csrf({ cookie: true }))
+ 
+ app.use(bodyParser.urlencoded({ extended: false }))
+ app.use(session({secret: 'dsgghjh'}))
+ app.use(cookieParser())
+ app.use(csrf({ cookie: true }))
+ 
 
-
+require('./models/utilisateur');
 require('./models/carton');
 require('./models/equipe');
 require('./models/joueur');
