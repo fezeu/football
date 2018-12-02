@@ -1,11 +1,43 @@
-<p>
-  acceuil works!
-</p>
-<a routerLink='/connexion'>connexion</a><br/>
-<a routerLink="/inscription">inscription</a>
-<form action="/carton" method="POST">
- <input type="text" placeholder="nom" name="nom"><br/>
- <input type="text" placeholder="code" name="code"><br/>
- <input type="number" placeholder="valeur" name="valeur">
- <button type="submit">envoie</button>
-</form>
+
+<!DOCTYPE html>
+<html>
+   <head>
+   	<meta charset="utf-8">
+   	<title>Inscription dans filiere</title>
+   </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+         COMP <br> MANAGER</div>
+            <div class="connexion">
+            <a routerLink='/connexion' class="button"><span>connexion</span></a></div>
+        </div>
+        <div class="wellcome">
+            WELLCOME TO COMPETION MANAGER
+        </div>
+        <div class="im1">
+        <img src="../../assets/foot5.jpg" height="400" width="300"></div>
+        <div class="message">
+        <p>Notre application est une aide a la gestion de competion de 16 equipes, elle produit les poules, les rencontres des matchs. <br>
+        Pour creer un tournoi il faut les equipes de 11 joueurs minimum et au moins 4 stade et arbitre .<br>
+        Pour cree une competition, clique sur le lien suivant.
+            </p>
+        </div>
+        
+        <div class="creat-comp"><a routerLink="/inscription"  width="400px">Creat a competition </a>
+        </div>
+        <div class="footer">
+            <div class="foot1"><strong>Have a better experience of organising a competition </strong></div>
+            <div class="foot2">
+            <ul>
+                <li><a href="#contact">contact us</a></li>
+                <li><a href="#about">About us</a>
+                       </li>
+                </ul></div>
+            <div class="foot3">COMP MANAGER @copyright 2018 </div>
+        </div>
+    
+
+
+    </body>
+
