@@ -24,7 +24,7 @@ exports.add = function(req, res) {
   Carton.findOne({ "nom": req.body.nom, "code": req.body.code, "valeur": req.body.valeur },(err,result)=>{
     if( result || err){
       if(result){
-        return res.send({status:false,message:'DuplicateError'});
+        return res.send({status:false,message:'DuplicateValue'});
       }else{
         return res.send({status:null,message:err})
       }
