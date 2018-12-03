@@ -1,17 +1,36 @@
 
+body{
+    
+    background-color: #fafafa;
+    margin:0px;
+}
+
 .header{
-    height: 90px;
-    margin: 0px;
+    height: 150px;
+   margin:0px;
+
+  background-size: 100% 100%;
+    
+
 background-image: url('/assets/foot6.jpg')  ;
    
+
      
 }
 .connexion{
-    float:right;
+    
     margin:10px;
+    width: 100%;
+}
+.space{
+    margin: 4px;
+    height: 60px;
+}
+.button{
+    float: right;
 }
 .logo{
-    float: left;
+    
     padding: 20px;
     font-size:30px;
 }
@@ -40,7 +59,7 @@ background-image: url('/assets/foot6.jpg')  ;
 }
 .creat-comp{
     width: 300px;
-    margin-left: 30%;
+    margin-left: 45%;
     background-color: aqua;
     text-align: center;
     font-size: 30px;
