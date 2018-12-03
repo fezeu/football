@@ -1,16 +1,17 @@
 
-var mongoose = require('mongoose'),
+var mongoose = require('mongoose');
 User = mongoose.model('User');
+
 
 exports.findAll = function(req, res){
   User.find({},function(err, results) {
-    return res.send(results.map((value)=>{return {nom:value.nom,_id:value._id,email:value.email}}));
+    return res.send(results.map((value)=>{return {nom:value.nom,_id:value._id,email:value.email,arbitres:value.arbitres,calendrier:value.calendrier,terrains:value.terrains}}));
   });
 };
 exports.findById = function(req, res){
   var id = req.params.id;
   User.findOne({'_id':id},function(err, result) {
-    return res.send(result.map((value)=>{return {nom:value.nom,_id:value._id,email:value.email}}));
+    return res.send({nom:result.nom,_id:result._id,email:result.email,terrains:result.terrains,arbitres:result.arbitres,calendrier:result.calendrier});
   });
 };
 exports.add = function(req, res) {
@@ -28,6 +29,7 @@ exports.add = function(req, res) {
             console.log(err);
             return  res.send({status:null,message:err})
           }
+          console.log('compte creer/ 200ok')
           return res.send({status:true});
         });
       }
@@ -69,7 +71,7 @@ exports.delete = function(req, res){
 
 };
 exports.login = function (req,res){
-  user.findOne({'nom':req.body.nom,'password':req.body.password},function(err,result){
+  User.findOne({'nom':req.body.nom,'password':req.body.password},function(err,result){
     if(err){
       return res.send({status:null,message:err})
     }
@@ -82,7 +84,9 @@ exports.login = function (req,res){
         'arbitres': result.arbitres,
         'calendrier': result.calendrier
       };
-      return res.send({status: true})
+      console.log('user loger/ 200ok');
+      return res.send({status: true});
     }
   })
 }
+

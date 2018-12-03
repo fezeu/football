@@ -1,9 +1,4 @@
 
-body{
-    
-    background-color: #fafafa;
-    margin:0px;
-}
 
 .header{
     height: 400px;
@@ -30,21 +25,14 @@ background-image: url('/assets/image.jpg')  ;
     float: right;
     
 }
-.logo{
-    background-image: url("/assets/logo.jpg");
-    height: 100px;
-    width: 200px;
-    background-size: 200px 60px;
-    background-repeat: no-repeat;
-    
 
-    
-}
 .wellcome{
     font-family: cursiva, lemon, proxima;
     font-size: 40px;
     text-align: center;
     color: #def2d1;
+
+    margin-top: 150px;
 
 }
 .im1{
@@ -53,16 +41,20 @@ background-image: url('/assets/image.jpg')  ;
     margin-left: 40px;
 }
 
-
+.text{
+    font-size: 20px;
+}
 .message{
     
-    height:400px;
-    background-color: #fff;    
+    height:200px;    
     margin-top: 20px;
-    font-size: 25px;
-    width: 50%;
-        margin-left: 40%;
-   overflow: auto;
+   
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    text-align: center;
+    overflow: auto;
+    line-height: 1.5em;
 }
 .creat-comp{
     width: 300px;
