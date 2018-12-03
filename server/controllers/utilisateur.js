@@ -11,7 +11,7 @@ exports.findAll = function(req, res){
 exports.findById = function(req, res){
   var id = req.params.id;
   User.findOne({'_id':id},function(err, result) {
-    return res.send(result.map((value)=>{return {nom:value.nom,_id:value._id,email:value.email}}));
+    return res.send({nom:result.nom,_id:result._id,email:result.email,terrains:result.terrains,arbitres:result.arbitres,calendrier:result.calendrier});
   });
 };
 exports.add = function(req, res) {

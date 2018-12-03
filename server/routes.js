@@ -25,7 +25,6 @@ module.exports = function(app){
     var terrain = require('./controllers/terrain');
     app.get('/terrain', terrain.findAll);
     app.get('/terrain/:id', terrain.findById);
-    app.get('/import',terrain.import)
     app.post('/terrain', terrain.add);
     app.put('/terrain/:id', terrain.update);
     app.delete('/terrain/:id', terrain.delete);
