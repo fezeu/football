@@ -25,7 +25,7 @@ exports.add = function(req, res) {
     return res.send({status:null,message:'AuhtError'}) 
   }
   else{
-    Terrain.find({'nom':req.nom,'nombre_place':req.nombre_place,'situation':req.situation},function(err,result){
+    Terrain.find({'nom':req.body.nom,'nombre_place':req.body.nombre_place,'situation':req.body.situation},function(err,result){
       if(err){
         return res.send({status:false,message:err})
       }
@@ -40,13 +40,13 @@ exports.add = function(req, res) {
         }
        
       }else{
-        Terrain.create({'nom':req.nom,'nombre_place':req.nombre_place,'situation':req.situation},function(err,result1){
+        Terrain.create({'nom':req.body.nom,'nombre_place':req.body.nombre_place,'situation':req.body.situation},function(err,result1){
           if(err){
             return res.send({status: null, message:err})
           }
           if(result1){
             req.session.auth.terrains.push(result1._id)
-            User.updateOne({'_id':'5c0508262854981cbc606fcc'},{terrains:[result1._id]},function(err,resultup){
+            User.updateOne({'_id':req.session.auth._id},{terrains:req.session.auth.terrains},function(err,resultup){
               if(resultup){
                 console.log(resultup)
                 return res.send({status:true})
