@@ -29,6 +29,7 @@ exports.add = function(req, res) {
             console.log(err);
             return  res.send({status:null,message:err})
           }
+          console.log('compte creer/ 200ok')
           return res.send({status:true});
         });
       }
@@ -70,7 +71,7 @@ exports.delete = function(req, res){
 
 };
 exports.login = function (req,res){
-  user.findOne({'nom':req.body.nom,'password':req.body.password},function(err,result){
+  User.findOne({'nom':req.body.nom,'password':req.body.password},function(err,result){
     if(err){
       return res.send({status:null,message:err})
     }
@@ -83,28 +84,9 @@ exports.login = function (req,res){
         'arbitres': result.arbitres,
         'calendrier': result.calendrier
       };
-      console.log('user loger/ 200k');
+      console.log('user loger/ 200ok');
       return res.send({status: true});
     }
   })
 }
 
-exports.import = function(req, res){
-  User.findOne({'nom':'fezee','password':'salut'},function(err,result){
-    if(err){
-      return res.send({status:null,message:err})
-    }
-    if(result){
-      req.session.auth={
-        '_id': result._id,
-        'nom': result.nom,
-        'email': result.email,
-        'terrains': result.terrains,
-        'arbitres': result.arbitres,
-        'calendrier': result.calendrier
-      };
-      
-      return res.send({status: true})
-    }
-  });
-};

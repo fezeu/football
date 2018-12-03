@@ -1,6 +1,6 @@
 
 var mongoose = require('mongoose'),
-Terrain = mongoose.model('Terrain');
+Terrain = mongoose.model('Terrain'),
 User = mongoose.model('User');
 
 exports.findAll = function(req, res){
@@ -104,3 +104,23 @@ exports.delete = function(req, res){
 
 };
 
+exports.import = function(req, res){
+
+    Terrain.create({'nom':'arene','nombre_place':'80000','situation':'wie'},function(err,result){
+      if(result){
+        console.log(result)
+        req.session.auth.terrains.push(result._id)
+        User.update({'_id':req.session.auth._id},{terrains:req.session.auth.terrains},function(err,resultup){
+          if(resultup){
+            console.log(resultup)
+            return res.send({status:true})
+          }else{
+            return res.send({status:null,message:err})
+          }
+        })
+        
+      }
+    })
+
+  
+};

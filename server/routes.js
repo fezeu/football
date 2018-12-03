@@ -3,7 +3,6 @@ module.exports = function(app){
     var user = require('./controllers/utilisateur');
     app.get('/user', user.findAll);
     app.get('/user/:id', user.findById);
-    app.get('/import',user.import)
     app.post('/user', user.add);
     app.post('/login', user.login)
     app.put('/user/:id', user.update);
@@ -26,6 +25,7 @@ module.exports = function(app){
     var terrain = require('./controllers/terrain');
     app.get('/terrain', terrain.findAll);
     app.get('/terrain/:id', terrain.findById);
+    app.get('/import',terrain.import)
     app.post('/terrain', terrain.add);
     app.put('/terrain/:id', terrain.update);
     app.delete('/terrain/:id', terrain.delete);
