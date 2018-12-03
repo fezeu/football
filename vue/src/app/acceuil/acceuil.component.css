@@ -18,9 +18,12 @@ background-image: url('/assets/image.jpg')  ;
      
 }
 .connexion{
-    position: fixed;
+    
     margin:10px;
     width: 100%;
+}
+.space{
+    height: 70px;
 }
 
 .button{
@@ -36,8 +39,8 @@ background-image: url('/assets/image.jpg')  ;
     font-family: cursiva, lemon, proxima;
     font-size: 40px;
     text-align: center;
-    color: #626560;
-    height: 70px;
+    color: #def2d1;
+    
 
 }
 .im1{
@@ -54,8 +57,8 @@ background-image: url('/assets/image.jpg')  ;
     margin-top: 20px;
     font-size: 25px;
     width: 50%;
-        margin-left: 30%;
-   overflow: scroll;
+        margin-left: 40%;
+   overflow: auto;
 }
 .creat-comp{
     width: 300px;
@@ -64,6 +67,7 @@ background-image: url('/assets/image.jpg')  ;
     text-align: center;
     font-size: 30px;
    cursor: pointer;
+    margin-top: 20px;
     
 }
 a{
