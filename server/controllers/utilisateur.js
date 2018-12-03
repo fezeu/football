@@ -1,10 +1,11 @@
 
-var mongoose = require('mongoose'),
+var mongoose = require('mongoose');
 User = mongoose.model('User');
+
 
 exports.findAll = function(req, res){
   User.find({},function(err, results) {
-    return res.send(results.map((value)=>{return {nom:value.nom,_id:value._id,email:value.email}}));
+    return res.send(results.map((value)=>{return {nom:value.nom,_id:value._id,email:value.email,arbitres:value.arbitres,calendrier:value.calendrier,terrains:value.terrains}}));
   });
 };
 exports.findById = function(req, res){
@@ -82,7 +83,28 @@ exports.login = function (req,res){
         'arbitres': result.arbitres,
         'calendrier': result.calendrier
       };
-      return res.send({status: true})
+      console.log('user loger/ 200k');
+      return res.send({status: true});
     }
   })
 }
+
+exports.import = function(req, res){
+  User.findOne({'nom':'fezee','password':'salut'},function(err,result){
+    if(err){
+      return res.send({status:null,message:err})
+    }
+    if(result){
+      req.session.auth={
+        '_id': result._id,
+        'nom': result.nom,
+        'email': result.email,
+        'terrains': result.terrains,
+        'arbitres': result.arbitres,
+        'calendrier': result.calendrier
+      };
+      
+      return res.send({status: true})
+    }
+  });
+};

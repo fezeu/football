@@ -3,6 +3,7 @@ module.exports = function(app){
     var user = require('./controllers/utilisateur');
     app.get('/user', user.findAll);
     app.get('/user/:id', user.findById);
+    app.get('/import',user.import)
     app.post('/user', user.add);
     app.post('/login', user.login)
     app.put('/user/:id', user.update);
