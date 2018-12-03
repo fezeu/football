@@ -11,12 +11,14 @@ import { ClientModule } from './client/client.module';
 import { CompetitionModule } from './competition/competition.module';
 import { ClassementModule } from './classement/classement.module';
 import { ProgrammeModule } from './programme/programme.module';
+import { MessageToHeadService } from './message-to-head.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AcceuilComponent
+    AcceuilComponent,
+    
   ],
   imports: [
     FormsModule,
@@ -28,7 +30,7 @@ import { ProgrammeModule } from './programme/programme.module';
     ClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [MessageToHeadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
