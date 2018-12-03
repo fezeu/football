@@ -4,16 +4,37 @@ Joueur = mongoose.model('Joueur');
 
 exports.findAll = function(req, res){
   Joueur.find({},function(err, results) {
+    if(err){
+      res.send({status:null,message:err})
+    }
     return res.send(results);
   });
 };
 exports.findById = function(req, res){
   var id = req.params.id;
   Joueur.findOne({'_id':id},function(err, result) {
+    if(err){
+      res.send({status:null,message:err})
+    }
     return res.send(result);
   });
 };
 exports.add = function(req, res) {
+  if(typeof(req.session.auth) == 'undefined'){
+    return res.send({status:null,message:'AuhtError'}) 
+  }
+  autre = true
+  for(let elm of req.session.auth.tournois){
+    if(req.body.id == elm){
+      autre = false
+    }
+    if(autre){
+      return res.send({status:false,message:'NotFound'})
+    }
+    //on creer le jour
+    //on l'ajoute au tournois
+  }
+
   Joueur.create(req.body, function (err, musician) {
     if (err) return console.log(err);
     return res.send(musician);

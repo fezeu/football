@@ -1,7 +1,7 @@
 
 var mongoose = require('mongoose');
 User = mongoose.model('User');
-
+Tournois = mongoose.model('Tournois');
 
 exports.findAll = function(req, res){
   User.find({},function(err, results) {
@@ -17,22 +17,29 @@ exports.findById = function(req, res){
 exports.add = function(req, res) {
     User.findOne({'nom':req.body.nom,'email':req.body.email},function(err, results) {
       if(results){
-        
-        res.send({status:false,message:'CompteTaked'})
-      }else{
+        return res.send({status:false,message:'CompteTaked'})
+      }
         if(err){
           console.log(err);
           return res.send({status:null,message:err})
         }
-        User.create({'nom':req.body.nom,'password':req.body.password,'email':req.body.email}, function (err, user) {
+        Tournois.create({},function(err,ok){
           if (err) {
             console.log(err);
             return  res.send({status:null,message:err})
           }
-          console.log('compte creer/ 200ok')
-          return res.send({status:true});
-        });
-      }
+          User.create({'nom':req.body.nom,'password':req.body.password,'email':req.body.email, tournois:[ok._id]}, function (err, user) {
+            if (err) {
+              console.log(err);
+              return  res.send({status:null,message:err})
+            }
+            console.log('compte creer/ 200ok')
+            
+            return res.send({status:true});
+          });
+        })
+
+      
     });
   
 
@@ -40,19 +47,19 @@ exports.add = function(req, res) {
 exports.update = function(req, res) {
   if(typeof(req.session.auth) == 'undefined'){
     return res.send({status:null,message:'AuhtError'}) 
-  }else{
-      User.update({"_id":req.session._id}, {'nom':req.body.nom,'password':req.body.password,'email':req.body.email},
-      function (err, result) {
-        if (err) {
-          console.log(err);
-          return res.send({status:null,message:err})
-        }
-        console.log('Updated user', result);
-        res.send({status:true});
+  }
+  User.update({"_id":req.session._id}, {'nom':req.body.nom,'password':req.body.password,'email':req.body.email},
+    function (err, result) {
+      if (err) {
+        console.log(err);
+        return res.send({status:null,message:err})
+      }
+      console.log('Updated user', result);
+      res.send({status:true});
     });
  
 
-  }
+  
 
 }
 exports.delete = function(req, res){
@@ -82,10 +89,19 @@ exports.login = function (req,res){
         'email': result.email,
         'terrains': result.terrains,
         'arbitres': result.arbitres,
-        'calendrier': result.calendrier
+        'calendrier': result.calendrier,
+        'tournois': result.tournois
       };
       console.log('user loger/ 200ok');
-      return res.send({status: true});
+      return res.send({status: true, user:{
+        '_id': result._id,
+        'nom': result.nom,
+        'email': result.email,
+        'terrains': result.terrains,
+        'arbitres': result.arbitres,
+        'calendrier': result.calendrier,
+        'tournois': result.tournois
+      }});
     }
   })
 }

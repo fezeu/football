@@ -7,7 +7,8 @@ var UserSchema = new Schema({
   email: {type:String, required: true},
   terrains: {type: [ Schema.Types.ObjectId], default: []},
   arbitres: {type: [ Schema.Types.ObjectId ], default: []},
-  calendrier: {type: [ Schema.Types.ObjectId ], default: []}
+  calendrier: {type: [ Schema.Types.ObjectId ], default: []},
+  tournois:{type:[Schema.Types.ObjectId],default:[]}
 });
 
 mongoose.model('User', UserSchema);
