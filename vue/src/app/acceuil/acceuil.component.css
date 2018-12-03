@@ -25,17 +25,15 @@ background-image: url('/assets/image.jpg')  ;
     float: right;
     
 }
-.logo{
-    vertical-align: bottom;
-    padding: 20px;
-    font-size:30px;
-}
+
 .wellcome{
     font-family: cursiva, lemon, proxima;
     font-size: 40px;
     text-align: center;
     color: #def2d1;
-    margin-top: 279px;
+
+    margin-top: 150px;
+
 }
 .im1{
     float:left;
