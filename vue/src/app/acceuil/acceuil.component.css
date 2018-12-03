@@ -6,28 +6,26 @@ body{
 }
 
 .header{
-    height: 150px;
+    height: 400px;
    margin:0px;
 
   background-size: 100% 100%;
     
 
-background-image: url('/assets/foot6.jpg')  ;
+background-image: url('/assets/image.jpg')  ;
    
 
      
 }
 .connexion{
-    
+    position: fixed;
     margin:10px;
     width: 100%;
 }
-.space{
-    margin: 4px;
-    height: 60px;
-}
+
 .button{
     float: right;
+    
 }
 .logo{
     
@@ -38,7 +36,8 @@ background-image: url('/assets/foot6.jpg')  ;
     font-family: cursiva, lemon, proxima;
     font-size: 40px;
     text-align: center;
-    color: #4ef738
+    color: #626560;
+    height: 70px;
 
 }
 .im1{
@@ -47,12 +46,13 @@ background-image: url('/assets/foot6.jpg')  ;
     margin-left: 40px;
 }
 
+
 .message{
     
     height:400px;
     background-color: #fff;    
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 25px;
     width: 50%;
         margin-left: 30%;
    overflow: scroll;
