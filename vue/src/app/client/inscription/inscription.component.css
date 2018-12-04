@@ -48,6 +48,7 @@ input{
     height: 30px;
 font-size: 20px;
     border: 0px;
+    cursor: pointer;
 }
 .footer{
     background-color: #000;
