@@ -11,9 +11,15 @@ var cookieParser = require('cookie-parser')
 var mongoUri = 'mongodb://localhost/footappbase';
 mongoose.connect(mongoUri);
 var db = mongoose.connection;
+
 db.on('error', function () {
   throw new Error('unable to connect to database at ' + mongoUri);
 });
+/*// supprimer la db
+db.dropDatabase('footappbase',function(err){
+  console.log(err)
+})
+*/
 
 // create express app
 var app = express()
@@ -25,13 +31,14 @@ var api = createApiRouter()
 app.use('/api', api)
 
 // now add csrf and other middlewares, after the "/api" was mounted
- 
- app.use(bodyParser.urlencoded({ extended: false }))
+//pour lire le json 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
  app.use(session({secret: 'dsgghjh'}))
- app.use(cookieParser())
- app.use(csrf({ cookie: true }))
+ //app.use(cookieParser())
+ //app.use(csrf({ cookie: true }))
 
-
+require('./models/tournois')
 require('./models/match'); 
 require('./models/classement_joueur'); 
 require('./models/classement_equipe'); 
@@ -44,7 +51,6 @@ require('./models/terrain');
 require('./models/organisateur');
 require('./models/poule');
 require('./models/programme');
-require('./models/tournois');
 require('./models/statistiques_match');
 require('./routes')(app);
 

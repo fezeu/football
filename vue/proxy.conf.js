@@ -4,7 +4,9 @@ const PROXY_CONFIG = [
           "/equipe",
           "/carton",
           "/joueur",
-          "/terrain"
+          "/terrain",
+          "/user",
+          "/login"
       ],
       target: "http://localhost:3000",
       secure: false
