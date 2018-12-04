@@ -1,10 +1,14 @@
 
 module.exports = function(app){
+    var tournois = require('./controllers/tournois');
+    app.post('/basique_info',tournois.intit)
+
     var user = require('./controllers/utilisateur');
     app.get('/user', user.findAll);
     app.get('/user/:id', user.findById);
+    app.get('/logout', user.logout);
     app.post('/user', user.add);
-    app.post('/login', user.login)
+    app.post('/login', user.login);
     app.put('/user/:id', user.update);
     app.delete('/user/:id', user.delete);
 
