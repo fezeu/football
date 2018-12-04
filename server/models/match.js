@@ -8,6 +8,6 @@ var MatchSchema = new Schema({
  resultat:String,
  status:{type: String, enum:['jouer','pasjouer'],default:'pasjouer'},
  statistiques: {type: Schema.Types.ObjectId}
-});
+},{ sparse: true,unique: true, index:true });
 
 mongoose.model('Match', MatchSchema);
