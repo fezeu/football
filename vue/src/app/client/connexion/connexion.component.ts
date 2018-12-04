@@ -19,7 +19,7 @@ export class ConnexionComponent implements OnInit {
   connect(){
     this.compte.login(this.user).subscribe((e)=>{
       if(e['status']){
-        sessionStorage.setItem('user',e['user']);
+        sessionStorage.setItem('user',JSON.stringify( e['user']));
         alert('Bienvenue '+e['user'].nom);
         this.route.navigate(['/competition']);
       }else{

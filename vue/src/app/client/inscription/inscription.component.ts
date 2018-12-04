@@ -23,6 +23,7 @@ export class InscriptionComponent implements OnInit {
         alert('compte creer');
         this.compte.login({nom:this.user.nom,password:this.user.password}).subscribe((rep)=>{
           if(rep['status']){
+            sessionStorage.setItem('user',JSON.stringify( rep['user']));
             this.route.navigate(['/competition'])
           }else{
 

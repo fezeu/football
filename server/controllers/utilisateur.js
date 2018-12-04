@@ -122,3 +122,8 @@ exports.login = function (req,res){
   })
 }
 
+exports.logout = function (req,res){
+  req.session.auth = undefined;
+  console.log('user logout')
+  return res.send({status:true})
+}

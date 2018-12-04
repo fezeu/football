@@ -7,11 +7,14 @@ import { MessageToHeadService } from 'src/app/message-to-head.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
+  id
   constructor(
     private mes: MessageToHeadService
   ) {
-    this.mes.message.emit({object:'affiche'})
+    this.mes.message.emit({object:'affiche'});
+    if(sessionStorage.getItem('user'))
+    this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0]
+    console.log(this.id);
    }
 
   ngOnInit() {

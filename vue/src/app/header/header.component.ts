@@ -1,5 +1,7 @@
 import { Component, OnInit , Input, OnChanges, SimpleChanges} from '@angular/core';
 import { MessageToHeadService } from '../message-to-head.service';
+import { CompteService } from '../client/compte.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,7 +10,8 @@ import { MessageToHeadService } from '../message-to-head.service';
 export class HeaderComponent implements OnInit, OnChanges {
   @Input() style = [{}];
   constructor(
-    private mes : MessageToHeadService
+    private mes : MessageToHeadService,
+    private compte: CompteService
   ) {
     
    }
@@ -19,6 +22,9 @@ export class HeaderComponent implements OnInit, OnChanges {
     for (let elm in changes.style.currentValue){
       $('.monHead').css(elm['proprite'],elm['valeur'] )
     }
-  
+    
+  }
+  bye(){
+    this.compte.logout()
   }
 }
