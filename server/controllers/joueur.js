@@ -20,9 +20,11 @@ exports.findById = function(req, res){
   });
 };
 exports.add = function(req, res) {
+  //on verifie si le user est connecter
   if(typeof(req.session.auth) == 'undefined'){
     return res.send({status:null,message:'AuhtError'}) 
   }
+  //on verifie si le tournoi es sein
   autre = true
   for(let elm of req.session.auth.tournois){
     if(req.body.id == elm){
@@ -31,7 +33,14 @@ exports.add = function(req, res) {
     if(autre){
       return res.send({status:false,message:'NotFound'})
     }
+    //on verifie le nombre de joueur pour cette equipe
+    Joueur.find({equipe:req.body.equipe,tournois: req.body.id},function(err,bien){
+      if(err){}
+    })
     //on creer le jour
+    Joueur.create({nom:req.body.nom,prenom:req.body.prenom,age:req.body.age,photo:req.body.photo,taille:req.body.taille,poids:req.body.poids,poste:req.body.poste,dossard:req.body.dossard,equipe:req.body.equipe,tournois:req.body.id},function(err,good){
+
+    })
     //on l'ajoute au tournois
   }
 

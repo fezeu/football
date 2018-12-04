@@ -15,11 +15,11 @@ var db = mongoose.connection;
 db.on('error', function () {
   throw new Error('unable to connect to database at ' + mongoUri);
 });
-/*// supprimer la db
+// supprimer la db
 db.dropDatabase('footappbase',function(err){
   console.log(err)
 })
-*/
+
 
 // create express app
 var app = express()

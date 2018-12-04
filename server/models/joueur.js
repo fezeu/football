@@ -10,8 +10,8 @@ var JoueurSchema = new Schema({
   poids: Number,
   poste: String,
   dossard: {type:Number, required: true},
-  equipe: {type: Schema.Types.ObjectId},
-  equipe_id: String
+  equipe: String,
+  tournois: Schema.Types.ObjectId
 });
 
 mongoose.model('Joueur', JoueurSchema);
