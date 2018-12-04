@@ -9,6 +9,6 @@ var UserSchema = new Schema({
   arbitres: {type: [ Schema.Types.ObjectId ], default: [],unique:true,index:true,sparse: true},
   calendrier: {type: [ Schema.Types.ObjectId ], default: [],unique:true,index:true,sparse:true},
   tournois:{type:[Schema.Types.ObjectId],default:[],unique:true,index:true,sparse: true}
-});
+},{ sparse: true,unique: true, index:true });
 
 mongoose.model('User', UserSchema);

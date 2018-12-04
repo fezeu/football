@@ -12,6 +12,6 @@ var JoueurSchema = new Schema({
   dossard: {type:Number, required: true},
   equipe: String,
   tournois: Schema.Types.ObjectId
-});
+},{ sparse: true,unique: true, index:true });
 
 mongoose.model('Joueur', JoueurSchema);
