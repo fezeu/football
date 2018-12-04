@@ -45,20 +45,4 @@ font-size: 20px;
     border: 0px;
     cursor: pointer;
 }
-.footer{
-    background-color: #000;
-    color: #fff;
-    margin-top: 20px;
-    height: 100px;
-}
-.foot3{
-    float:right;
-    margin-right: 40%;
-    margin-top: 20px;
-}
-.foot2{
-    float: left;
-}
-.foot1{
-    text-align: center;
-}
+
