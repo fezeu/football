@@ -15,7 +15,7 @@ exports.findById = function(req, res){
   });
 };
 exports.add = function(req, res) {
- 
+    console.log({nom:req.body.nom,password:req.body.password,email:req.body.email})
     User.findOne({'nom':req.body.nom,'email':req.body.email},(err, results)=>{
       if(results){
         console.log(results)
