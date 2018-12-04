@@ -13,12 +13,15 @@ import { CompetitionModule } from './competition/competition.module';
 import { ClassementModule } from './classement/classement.module';
 import { ProgrammeModule } from './programme/programme.module';
 import { MessageToHeadService } from './message-to-head.service';
+import { FooterComponent } from './footer/footer.component';
+import { ResultatModule } from './resultat/resultat.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AcceuilComponent,
+    FooterComponent,
     
   ],
   imports: [
@@ -29,8 +32,9 @@ import { MessageToHeadService } from './message-to-head.service';
     ClassementModule,
     CompetitionModule,
     ClientModule,
+    ResultatModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [MessageToHeadService],
   bootstrap: [AppComponent]
