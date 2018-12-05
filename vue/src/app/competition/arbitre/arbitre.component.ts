@@ -14,5 +14,7 @@ export class ArbitreComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  save(){
+    
+  }
 }

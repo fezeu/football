@@ -12,6 +12,14 @@ module.exports = function(app){
     app.put('/user/:id', user.update);
     app.delete('/user/:id', user.delete);
 
+    var user = require('./controllers/arbitre');
+    app.get('/arbitre', arbitre.findAll);
+    app.get('/arbitre/:id', arbitre.findById);
+    app.get('/arbitre', arbitre.logout);
+    app.post('/arbitre', arbitre.add);
+    app.put('/arbitre/:id', arbitre.update);
+    app.delete('/arbitre/:id', arbitre.delete);
+
     var carton = require('./controllers/carton');
     app.get('/carton', carton.findAll);
     app.get('/carton/:id', carton.findById);
