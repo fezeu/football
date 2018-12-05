@@ -165,11 +165,3 @@ exports.delete = function(req, res){
   });
 };
 
-exports.import = function(req, res){
-  Joueur.create(
-    { "nom": "lion", "represente": "cameroun", "banniere": "lion" },
-   function (err) {
-    if (err) return console.log(err);
-    return res.sendStatus(202);
-  });
-};

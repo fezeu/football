@@ -102,7 +102,6 @@ exports.login = function (req,res){
         'nom': result.nom,
         'email': result.email,
         'terrains': result.terrains,
-        'arbitres': result.arbitres,
         'calendrier': result.calendrier,
         'tournois': result.tournois
       };
@@ -124,6 +123,6 @@ exports.login = function (req,res){
 
 exports.logout = function (req,res){
   req.session.auth = undefined;
-  console.log('user logout')
+  console.log('localhost:3000->user logout')
   return res.send({status:true})
 }

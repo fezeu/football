@@ -22,5 +22,19 @@ h2{
 .formgroup{
     display: block;
     width: 100%;
-    margin-top: 5px;
+    margin-top: 8px;
+    
+}
+.formulaire{
+    box-shadow: 0px 10px 25px 5px grey;
+    display: block;
+    width: 60%;
+    margin: auto; 
+    background: #fff;
+    height: 500px;
+}
+.joliemain{
+    display: block;
+    widows: 100%;
+    margin-top: 90px;
 }
