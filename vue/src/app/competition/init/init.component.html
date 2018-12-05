@@ -2,12 +2,41 @@
             <div id="text">
             Enter the Information about the Competition</div>
         <form     class="form" (submit)="send_init_info()">
-            <label for="name">NAME:</label>
-            <input type="text" id="name" [(ngModel)]="info_comp.nom"  name="name" required><br><br>
-             <label for="rules">Rules:</label>
-            <input type="text" id="rules" [(ngModel)]="info_comp.reglement"  name="rules" ><br><br>
-             <label for="sit">Situation:</label>
-            <input type="text" id="sit" [(ngModel)]="info_comp.situation" name="situation" ><br><br>
+                        <div class="formgroup">
+                <div class="jolielabel">
+                    <label for="name">NAME:</label>
+                </div>
+                <div class="jolieinput">
+                      <input type="text" id="name" [(ngModel)]="info_comp.nom"  name="name" required>  
+                </div>
+            
+            </div>
+                        <div class="formgroup">
+                <div class="jolielabel">
+                  
+                    <label for="rules">Rules:</label>
+
+                </div>
+                <div class="jolieinput">
+                    <input type="text" id="rules" [(ngModel)]="info_comp.reglement"  name="rules" >
+                </div>
+            
+            </div>
+            <div class="formgroup">
+                <div class="jolielabel">
+                    <label for="sit">Situation:</label>
+                </div>
+                <div class="jolieinput">
+                     <input type="text" id="sit" [(ngModel)]="info_comp.situation" name="situation" >
+                </div>
+            
+            </div>
+            
+             
+            
+
+             
+           
             <input type="submit" name="submit" value="Send" id="submit">
         </form> 
          

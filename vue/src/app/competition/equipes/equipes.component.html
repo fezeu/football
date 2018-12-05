@@ -1,21 +1,14 @@
-
-  <div id="registration">
-<h2>CREATION D'UNE EQUIPE</h2>
-<form id="RegisterUserForm" action="" method="post">
-<fieldset>
-<label for="name">Nom</label> <input class="text" id="name" type="text" name="name" value="" />
-<label for="tel">Prenom</label> <input class="text" id="tel" type="tel" name="tel" value="" />
-<label for="email">Poid</label> <input class="text" id="email" type="email" name="email" value="" />
-<label for="numba">Taille</label> <input class="text" id="numba" type="numba" name="numba" />
-<label for="numba">Numero mallo</label> <input class="numba" id="numba" type="numba" name="numba" />
-<input id="acceptTerms" type="checkbox" name="acceptTerms" />
- <label for="acceptTerms">J'accepte <a>les terms et condictions </a> d' <a>utilisation</a> </label>
+<div class="formulaire">
+    <div id="text">
+         Entrer les Information des Equipes</div>
+<form     class="form" >
+    <label for="name">NOM:</label>
+    <input type="text" id="name"  name="name" required><br><br>
+     <label for="age">Age:</label>
+    <input type="number" id="age"  name="age" ><br><br>
+    <label for="name">Nombres de joueur:</label>
+    <input type="number" id="nomnbre de joueur"  name="nomnbre de joueur" required><br><br>
+    <input type="submit" name="submit" value="SAUVEGARDE" id="submit">
+    </form> 
  
-<button id="registerNew" type="submit">sauvegarde</button></fieldset>
-</form></div>
-
-
-
-
-<app-joueur>equipe ici</app-joueur>
-
+</div>
