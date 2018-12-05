@@ -40,3 +40,17 @@ h2{
     margin-top: 170px;
     z-index: 3001;
 }
+label {
+    width: 400px;
+    margin-right: 20px;
+    padding-right:40px;
+}
+input{
+    border: none;
+    border-bottom: 1px solid #191515;
+    width: 250px;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 20px;
+    
+}
