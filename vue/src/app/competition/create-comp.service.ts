@@ -19,4 +19,7 @@ export class CreateCompService {
   initialisation(basique_info:{id, nom,situation,reglement:any}){
     return this.http.post('/basique_info',basique_info,httpOptions)
   }
+  set_arbitre(arbitre){
+    return this.http.post('/')
+  }
 }
