@@ -1,10 +1,10 @@
 .tete{
-    height: 95px;
+    height: 102px;
     position: fixed;
     top: 0;
     width: 100%;
     display: flex;
-    box-shadow: 0px 13px 14px -3px grey;
+    box-shadow: 0px 8px 14px -3px grey;
     z-index: 3000;
     opacity: 1;
     background-color: #fff;
@@ -15,7 +15,7 @@
     border-bottom: 2px solid #2d5bf2; 
 }
 .navbar{
-    display: flex;
+    display: block;
     width: 80%;
     margin-left: 20%;
     height: 70px;

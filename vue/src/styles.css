@@ -36,5 +36,6 @@ h2{
 .joliemain{
     display: block;
     widows: 100%;
-    margin-top: 90px;
+    margin-top: 170px;
+    z-index: 3001;
 }
