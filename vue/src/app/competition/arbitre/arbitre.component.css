@@ -3,8 +3,8 @@
     margin-top: 90px;
     background: #fff;
     width: 550px;
-    height: 500px
-    
+    height: 500px;
+    box-shadow: 0px 10px 25px 5px grey;
 }
 .form{
    margin-left: 70px;

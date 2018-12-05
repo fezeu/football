@@ -1,9 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    margin: 15px;
-    background-color: #f0f3f5;
+    margin: 0px;
+    background-color: #fff;
 }
 h2{
     text-align: center;
     font-size: 30px;
+}
+.active{
+    background-color: #d2dfed;
+    border-bottom: 2px solid #2d5bf2; 
+}
+.jolielabel{
+    display: inline-block;
+    width: 40%;
+}
+.jolieinput{
+    display: inline-block;
+    width: 60%;
+}
+.formgroup{
+    display: block;
+    width: 100%;
+    margin-top: 5px;
 }
