@@ -21,46 +21,68 @@ exports.findById = function(req, res){
   });
 };
 exports.add = function(req, res) {
+  //on verifie si le user est connecter
   if(typeof(req.session.auth) == 'undefined'){
+    console.log('localhost:3000->authentification fallure')
     return res.send({status:null,message:'AuhtError'}) 
   }
-  else{
-    Terrain.find({'nom':req.body.nom,'nombre_place':req.body.nombre_place,'situation':req.body.situation},function(err,result){
-      if(err){
-        return res.send({status:false,message:err})
-      }
-      if(result){
-        for( let id of req.session.auth.terrains){
-          for(let id1 of result){
-            if(id==id1._id){
-              return res.send({status: false, message:'DuplicateValue'});
-            }
-          }
-
-        }
-       
-      }else{
-        Terrain.create({'nom':req.body.nom,'nombre_place':req.body.nombre_place,'situation':req.body.situation},function(err,result1){
-          if(err){
-            return res.send({status: null, message:err})
-          }
-          if(result1){
-            req.session.auth.terrains.push(result1._id)
-            User.updateOne({'_id':req.session.auth._id},{terrains:req.session.auth.terrains},function(err,resultup){
-              if(resultup){
-                console.log(resultup)
-                return res.send({status:true})
-              }else{
-                return res.send({status:null,message:err})
-              }
-            })
-            
-          }
-        })
-      }
-    })
-  
+  //on verifie si le tournoi est sein
+  let autre = true
+  for(let elm of req.session.auth.tournois){
+    if(req.body.id == elm){
+      autre = false
+    }
   }
+    if(autre){
+      console.log('localhost:3000->ressource Tournois not found')
+      return res.send({status:false,message:'NotFound'})
+    }
+    //on regarde le nombre d'equipe du tournois
+    Tournois.findOne({'_id':req.body.id},function(err,tour){
+      if(err){
+        console.log('localhost:3000->db error 504')
+        return res.send({status:null,message:err})
+      }
+      if(tour.equipes.length>=16){
+        console.log('localhost:3000->add team fallure team are complete')
+        return res.send({status:null,message:'TeamComplete'})
+      }
+      //on verifie si terrain a deja et creer
+      Terrain.findOne({nom:req.body.nom,tournois:req.body.id},function(err,trouver){
+        if(err){
+          console.log('localhost:3000->db error 504')
+          return res.send({status:null,message:err})
+        }
+        if(trouver){
+          console.log('localhost:3000->terrain are ready existe');
+          return res.send({status:false,message:'DuplicateValue'})
+        }
+        Terrain.create({nom:req.body.nom,nombre_place:req.body.nombre_place,situation:req.body.situation,tournois:req.body.id},(err,bien)=>{
+          if(err){
+            console.log('localhost:3000->db error 504')
+            return res.send({status:null,message:err})
+          }
+          //on ajoute le terrain au tournois
+          Tournois.findOne({'_id':req.body.id},(err,rep)=>{
+            if(err){
+              return console.log('localhost:3000->localhost:3000->db error 504 tournois add equipe')
+              
+            }
+            Tournois.update({'_id':req.body.id},{terrains:rep.terrains.push(bien._id)},function(err){
+              if(err){
+                return console.log('localhost:3000->localhost:3000->db error 504 tournois add equipe')
+                
+              }
+              return console.log('localhost:3000->equipe add to tournois 200ok')
+            })
+          })
+          console.log('localhost:3000->team add')
+          return res.send({status:true,equipe:bien})
+        })
+      })
+
+    });      
+               
 }
 exports.update = function(req, res) {
   if(typeof(req.session.auth) == 'undefined'){

@@ -59,20 +59,47 @@ exports.add = function(req, res) {
         }
         if(players){
           if(players.length>10 && players.length<24){
-            Equipe.create({nom:req.body.nom,represente:req.body.represente,banniere:req.body.banniere,coach:req.body.caoch,joueurs: players.map((player)=>{return player._id}),tournois:req.body.id},(err,bien)=>{
+            //on verifie si l'equipe a deja et creer
+            Equipe.findOne({nom:req.body.nom,tournois:req.body.id},function(err,trouver){
               if(err){
-                console.log('localhost:3000->localhost:3000->db error 504')
+                console.log('localhost:3000->db error 504')
                 return res.send({status:null,message:err})
               }
-              return res.send({status:true,equipe:bien})
+              if(trouver){
+                console.log('localhost:3000->team are ready existe');
+                return res.send({status:false,message:'DuplicateValue'})
+              }
+              Equipe.create({nom:req.body.nom,represente:req.body.represente,banniere:req.body.banniere,coach:req.body.caoch,joueurs: players.map((player)=>{return player._id}),tournois:req.body.id},(err,bien)=>{
+                if(err){
+                  console.log('localhost:3000->localhost:3000->db error 504')
+                  return res.send({status:null,message:err})
+                }
+                //on ajoute l'equipe au tournois
+                Tournois.findOne({'_id':req.body.id},(err,rep)=>{
+                  if(err){
+                    return console.log('localhost:3000->localhost:3000->db error 504 tournois add equipe')
+                    
+                  }
+                  Tournois.update({'_id':req.body.id},{equipes:rep.equipes.push(bien._id)},function(err){
+                    if(err){
+                      return console.log('localhost:3000->localhost:3000->db error 504 tournois add equipe')
+                      
+                    }
+                    return console.log('localhost:3000->equipe add to tournois 200ok')
+                  })
+                })
+                console.log('localhost:3000->team add')
+                return res.send({status:true,equipe:bien})
+              })
             })
+
           }
         }
         console.log('localhost:3000->too less players to create team')
         return res.status({status:false,message:'RequirePlayer'})
       })
     });      
-                //on creer le jour
+               
 }
 exports.update = function(req, res) {
     //on verifie si le user est connecter
@@ -136,11 +163,3 @@ exports.delete = function(req, res){
   });
 };
 
-exports.import = function(req, res){
-  Joueur.create(
-    { "nom": "lion", "represente": "cameroun", "banniere": "lion" },
-   function (err) {
-    if (err) return console.log(err);
-    return res.sendStatus(202);
-  });
-};
