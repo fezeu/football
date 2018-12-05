@@ -153,7 +153,7 @@ exports.delete = function(req, res){
     }
 
   var id = req.params.id;
-  Joueur.remove({'_id':id,tournois:req.body.id},function(result) {
+  Equipe.remove({'_id':id,tournois:req.body.id},function(result) {
     if (err){
       console.log('localhost:3000->db error 504')
       return res.send({status:null,message:err})
