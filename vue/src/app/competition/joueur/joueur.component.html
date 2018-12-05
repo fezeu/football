@@ -1,16 +1,58 @@
 
-  <div id="registration">
-    <h2>CREATION D'UNE EQUIPE</h2>
-    <form id="RegisterUserForm" action="" method="post">
-    <fieldset>
-    <label for="name">Nom</label> <input class="text" id="name" type="text" name="name" value="" />
-    <label for="tel">Prenom</label> <input class="text" id="tel" type="tel" name="tel" value="" />
-    <label for="email">Poid</label> <input class="text" id="email" type="email" name="email" value="" />
-    <label for="numba">Taille</label> <input class="text" id="numba" type="numba" name="numba" />
-    <label for="numba">Numero mallo</label> <input class="numba" id="numba" type="numba" name="numba" />
-    <input id="acceptTerms" type="checkbox" name="acceptTerms" />
-  
-    <button id="registerNew" type="submit">sauvegarde</button></fieldset>
+  <div class="formulaire">
+    <h2>Entrer les Informations d'un joueur</h2>
+    <form class="form" action="" method="post">
+        <div class="formgroup">
+            <div class="jolielabel">
+              <label for="name">NOM:</label>
+            </div>
+       
+           <div class="jolieinput">
+              <input type="text" id="name"  name="name" required>
+           </div>
+        </div>
+        <div class="formgroup">
+            <div class="jolielabel">
+                <label for="name">PRENOM:</label>
+            </div>
+            <div class="jolieinput">
+                 <input type="text" id="name"  name="name" required>
+            </div>
+        </div>
+        
+        <div class="formgroup">
+            <div class="jolielabel">
+              <label for="Taille">Taille:</label>
+            </div>
+            <div class="jolieinput">
+              <input type="number" id="Taille"  name="Taille" required>
+            </div>
+        </div>    
+        <div class="formgroup">
+            <div class="jolielabel">
+              <label for="POID">POID:</label>
+            </div>
+            <div class="jolieinput">
+              <input type="number" id="POID"  name="POID" required>
+            </div>
+        </div>
+        <div class="formgroup">
+            <div class="jolielabel">
+              <label for="age">Age:</label>
+            </div>
+            <div class="jolieinput">
+               <input type="number" id="age"  name="age" >
+            </div> 
+        </div>
+        <div class="formgroup">
+            <div class="jolielabel">
+              <label for="Dossard">Dossard:</label>
+            </div> 
+            <div class="jolieinput">
+              <input type="number" id="Dossart"  name="Dossard" required>
+            </div> 
+        </div>
+    <button class="submit" type="submit">sauvegarde</button>
     </form></div>
     
     

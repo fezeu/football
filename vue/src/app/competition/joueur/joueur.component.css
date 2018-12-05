@@ -1,40 +1,57 @@
-html, body, h1, form, fieldset, input
-{
-margin: 20; padding: 0; border: none;
-}
-body {
-font-family: Helvetica, Arial, sans-serif; font-size: 12px;
-background-color: #a8b15e;
-}
-#registration {
-	color: #fff;
-	background: #abb865b4;
-	background: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0, rgb(60,60,60)),
-		color-stop(0.74, rgb(43,43,43)),
-		color-stop(1, rgb(60,60,60))
-		);
-	 background: -moz-linear-gradient(
-		center bottom,
-		rgb(60,60,60) 0%,
-		rgb(43,43,43) 74%,
-		rgb(60,60,60) 100%
-		);
-	 -moz-border-radius: 10px;
-	 -webkit-border-radius: 10px;
-	 border-radius: 10px;
-	 margin: 10px;
-	 width: 430px;
-	 }
- 
- #registration a {
-	  color: #8c910b;
-	  text-shadow: 0px -1px 0px #000;
-	  }
- 
-#registration fieldset {
-	  padding: 120px;
-	  }
+
+.form{
+	margin-left: 70px;
+	 margin-top: 100px;
+ }
+ label {
+	 width: 400px;
+	 margin-right: 20px;
+	 padding-right:40px;
+ }
+ input{
+	 border: none;
+	 border-bottom: 1px solid #191515;
+	 background-color: #bcd1ca;
+	 width: 250px;
+	 border-radius: 5px;
+	 height: 30px;
+	 font-size: 20px;
+	 
+ }
+ #text{
+	 font-size: 25px;
+	 margin-top: 20px;
+	 text-align: center;
+ }
+ #text1{
+	 font-size: 25px;
+	 margin-top: 20px;
+	 text-align: center;
+ }
+ .submit{
+	 margin-left: 80px;
+	 width: 150px;
+	 background-color: #2fbaf8;
+	 margin-top:30px;
+	 height: 30px;
+ font-size: 20px;
+	 border: 0px;
+	 cursor: pointer;
+ }
+ .footer{
+	 background-color: #000;
+	 color: #fff;
+	 margin-top: 20px;
+	 height: 100px;
+ }
+ .foot3{
+	 float:right;
+	 margin-right: 40%;
+	 margin-top: 20px;
+ }
+ .foot2{
+	 float: left;
+ }
+ .foot1{
+	 text-align: center;
+ }
