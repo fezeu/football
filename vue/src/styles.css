@@ -46,7 +46,7 @@ label {
     margin-right: 20px;
     padding-right:40px;
 }
-input{
+#input{
     border: none;
     border-bottom: 1px solid #191515;
     width: 250px;
@@ -54,4 +54,16 @@ input{
     height: 30px;
     font-size: 20px;
     
+}
+.scoreinput{
+     border: none;
+    border-bottom: 1px solid #191515;
+border-radius: 5px;
+    height: 20px;
+    width: 80px;
+    margin-top: 80px;
+}
+.vs{
+    margin-top: 60px;
+    font-size: 20px;
 }
