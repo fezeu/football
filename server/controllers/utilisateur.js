@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 User = mongoose.model('User');
 Tournois = mongoose.model('Tournois');
+Programme = mongoose.model('Programme');
 
 exports.findAll = function(req, res){
   User.find({},function(err, results) {
@@ -39,6 +40,16 @@ exports.add = function(req, res) {
             console.log('localhost:3000->db error 504')
             return  res.send({status:null,message:err})
           }
+          Programme.create({tournois:ok._id},function(err,pro){
+            if (err) {
+             return console.log('localhost:3000->db error 504')
+            }
+            Tournois.update({programme:pro._id},function(err,go){
+              if (err) {
+                return console.log('localhost:3000->db error 504')
+               }
+            })
+          })
           User.create({nom:req.body.nom,password:req.body.password,email:req.body.email, tournois:[ok._id]}, function (err, user) {
             if (err) {
               console.log('localhost:3000->db error 504')

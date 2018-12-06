@@ -38,6 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
  //app.use(cookieParser())
  //app.use(csrf({ cookie: true }))
 
+require('./models/arbitre')
 require('./models/tournois')
 require('./models/match'); 
 require('./models/classement_joueur'); 
