@@ -7,7 +7,7 @@ import { CreateCompService } from '../create-comp.service';
 })
 export class ArbitreComponent implements OnInit {
   @Input('_id') _id;
-  @Output('initialiser')event:EventEmitter <any> = new EventEmitter();
+  @Output('arbitre')event:EventEmitter <any> = new EventEmitter();
   constructor(
     private comp : CreateCompService
   ) { }
