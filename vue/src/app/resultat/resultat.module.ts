@@ -10,6 +10,6 @@ import { MatchComponent } from './match/match.component';
     CommonModule,
     ResultatRoutingModule
   ],
-  declarations: [MainComponent, MatchComponent]
+  declarations: [MainComponent,MatchComponent]
 })
 export class ResultatModule { }
