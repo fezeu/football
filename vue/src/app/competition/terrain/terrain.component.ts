@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
+import { CreateCompService } from '../create-comp.service';
 
 @Component({
   selector: 'app-terrain',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./terrain.component.css']
 })
 export class TerrainComponent implements OnInit {
-
+  @Input('_id') _id;
+  @Output('terrain')event:EventEmitter <any> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
