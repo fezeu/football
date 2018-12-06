@@ -1,7 +1,7 @@
 
   <div >
     <h2>Entrer les Informations d'un joueur</h2>
-    <form class="form" action="" method="post">
+    <form class="form" (submit)="add()">
         <div class="formgroup">
             <div class="jolielabel">
               <label for="name">NOM:</label>
@@ -25,7 +25,7 @@
               <label for="Taille">Taille:</label>
             </div>
             <div class="jolieinput">
-              <input type="number" id="Taille" [(ngModel)]="joueur.taile"  name="Taille" required>
+              <input type="number" id="Taille" [(ngModel)]="joueur.taille"  name="Taille" required>
             </div>
         </div>    
         <div class="formgroup">

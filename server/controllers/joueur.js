@@ -41,7 +41,7 @@ exports.add = function(req, res) {
       return res.send({status:false,message:'NotFound'})
     }
     //on verifie le nombre de joueur pour cette equipe
-    Joueur.find({equipe:req.body.equipe,tournois: req.body.id},function(err,bien){
+    Joueur.find({equipe:req.body.equipe,tournois: req.body.id},(err,bien)=>{
       if(err){
         console.log('localhost:3000->db error 504')
         return res.send({status:null,message:err})
@@ -53,21 +53,24 @@ exports.add = function(req, res) {
       }
 
         //on cherche le tournoi
-        let idj = good._id
+
         Tournois.findOne({'_id':req.body.id},function(err,tourn){
           if(err){
-            console.log('localhost:3000->db error 504')
+            console.log('localhost:3000->db error 504 find')
             res.send({status:null,message:err})
           }
                 //on creer le joueur
           Joueur.create({nom:req.body.nom,prenom:req.body.prenom,age:req.body.age,photo:req.body.photo,taille:req.body.taille,poids:req.body.poids,poste:req.body.poste,dossard:req.body.dossard,equipe:req.body.equipe,tournois:req.body.id},function(err,good){
             if(err){
-             console.log('localhost:3000->db error 504')
+             console.log('localhost:3000->db error 504 create')
              return res.send({status:null,message:err})
             }
-            Tournois.update({'_id':req.body.id},{joueurs:tourn.joueurs.push(good._id)}, function (err, save) {
+            j = []
+            j = tourn.joueurs
+            j.push(good._id)
+            Tournois.update({'_id':req.body.id},{joueurs:j}, function (err, save) {
               if (err){
-                console.log('localhost:3000->db error 504')
+                console.log('localhost:3000->db error 504 update')
                 return res.send({status:null,message:err})
               }
               //on verifie si l'equipe existe deja
