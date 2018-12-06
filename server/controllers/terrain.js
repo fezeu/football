@@ -13,7 +13,7 @@ exports.findAll = function(req, res){
 };
 exports.findById = function(req, res){
   var id = req.params.id;
-  User.findOne({'_id':id},function(err, result) {
+  Terrain.findOne({'_id':id},function(err, result) {
     if(err){
       res.send({status:false,message:err})
     }

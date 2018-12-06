@@ -7,4 +7,4 @@ var StatSchema = new Schema({
   ], minlength: 2, maxlength: 2}
 },{ sparse: true,unique: true, index:true });
 
-mongoose.model('StatMath', StatSchema);
+mongoose.model('StatMatch', StatSchema);

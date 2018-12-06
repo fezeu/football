@@ -6,6 +6,7 @@ var TournoisSchema = new Schema({
   equipes: {type: [Schema.Types.ObjectId],unique:true,index:true, sparse: true},
   terrains: {type: [Schema.Types.ObjectId],unique:true,index:true,sparse: true},
   calendrier:{type: Schema.Types.ObjectId},
+  programme:{type: Schema.Types.ObjectId},
   classement :{type: Schema.Types.ObjectId },
   arbitres : {type: [Schema.Types.ObjectId], minlength: 1,unique:true,index:true},
   affiche : {type: [String],unique:true,index:true},

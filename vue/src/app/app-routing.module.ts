@@ -5,7 +5,7 @@ import  { AcceuilComponent } from './acceuil/acceuil.component'
 
 const routes: Routes = [
   { path: 'acceuil', component:AcceuilComponent, data: {animation : 'acceuil'} },
-  { path: '',   redirectTo: '/acceuil', pathMatch: 'full' }
+  { path: '',   redirectTo: '/resultat', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -1,7 +1,10 @@
 
 module.exports = function(app){
     var tournois = require('./controllers/tournois');
-    app.post('/basique_info',tournois.intit)
+    app.post('/basique_info',tournois.intit);
+    app.post('/tournois_create',tournois.generate)
+    app.get('/tournois',tournois.findAll);
+    app.get('/tournois/:id', tournois.findById);
 
     var user = require('./controllers/utilisateur');
     app.get('/user', user.findAll);
@@ -12,10 +15,9 @@ module.exports = function(app){
     app.put('/user/:id', user.update);
     app.delete('/user/:id', user.delete);
 
-    var user = require('./controllers/arbitre');
+    var arbitre = require('./controllers/arbitre');
     app.get('/arbitre', arbitre.findAll);
     app.get('/arbitre/:id', arbitre.findById);
-    app.get('/arbitre', arbitre.logout);
     app.post('/arbitre', arbitre.add);
     app.put('/arbitre/:id', arbitre.update);
     app.delete('/arbitre/:id', arbitre.delete);
