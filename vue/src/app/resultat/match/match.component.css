@@ -1,0 +1,53 @@
+.formul{
+    margin-left: 20%;
+    margin-top: 90px;
+    background: #fff;
+    width: 550px;
+    
+    box-shadow:0px 6px 25px 1px grey;
+}
+.form{
+    -webkit-display:flex;
+    display: flex;
+    
+}
+.box1{
+    height: 150px;
+    width: 300px;
+    
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.box2{
+    height: 150px;
+    width: 300px;
+   
+     margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+.nomequipe1{
+    height: 30px;
+   
+}
+.logo1{
+   background-color: aliceblue; 
+    height: 120px;
+}
+.nomequipe2{
+    height: 30px;
+    
+}
+.logo2{
+   background-color: aliceblue; 
+    height: 120px;
+}
+.but{
+    margin-left: 90px;
+}
+.sub{
+    background-color: #0abfbf;
+    width: 80px;
+    height: 30px;
+}

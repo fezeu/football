@@ -8,6 +8,7 @@
     z-index: 3000;
     opacity: 1;
     background-color: #fff;
+    
 }
 
 .navbar ul li:active{
@@ -37,6 +38,8 @@
 }
 .logo{
     float: left;
+    margin-top: 25px;
+    margin-left: 5px;
 }
 .navbar ul li a{
   text-decoration: none;
