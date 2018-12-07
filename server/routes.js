@@ -1,10 +1,23 @@
 
 module.exports = function(app){
+  var poule = require('./controllers/poule');
+    app.post('/poule_all',poule.findAll);
+    app.post('/poule',poule.add);
+    app.get('/poule',poule.findAllT);
+    app.get('/poule/:id', poule.findById);
+    app.put('/poule/:id', poule.update);
+    app.delete('/poule/:id', poule.delete);
+
     var tournois = require('./controllers/tournois');
     app.post('/basique_info',tournois.intit);
     app.post('/tournois_create',tournois.generate)
     app.get('/tournois',tournois.findAll);
     app.get('/tournois/:id', tournois.findById);
+
+    var match = require('./controllers/match');
+    app.get('/user', match.findAll);
+    app.get('/user/:id', match.findById);
+    app.put('/logout:id', match.update);
 
     var user = require('./controllers/utilisateur');
     app.get('/user', user.findAll);

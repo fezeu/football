@@ -2,7 +2,17 @@
 var mongoose = require('mongoose');
 Poule = mongoose.model('Poule');
 Tournois = mongoose.model('Tournois');
+Match = mongoose.model('Match');
 
+exports.findAllT = function(req, res){
+  Poule.find({},function(err, results) {
+    if(err){
+      console.log('localhost:3000->db error 503')
+      return res.send({status:null,message:err})
+    }
+    return res.send(results);
+  });
+};
 
 exports.findAll = function(req, res){
   Poule.find({"tournois":req.body.id},function(err, results) {
@@ -126,10 +136,10 @@ exports.add = function(req, res) {
         return res.send({status:null,message:err})
       }
       if(trouver){
-        console.log('localhost:3000->terrain are ready existe');
+        console.log('localhost:3000->poule are ready existe');
         return res.send({status:false,message:'DuplicateValue'})
       }
-      creerpoule(req.body.nom)
+      creerpoule(req.body.nom,req.body.valeur,req.body.equipes,req.body.id)
     })
 }
 
@@ -188,10 +198,10 @@ exports.delete = function(req, res){
   var id = req.params.id;
   Poule.remove({'_id':id,tournois:req.body.id},function(result) {
     if (err){
-      console.log('localhost:3000->db error 504')
+      console.log('localhost:3000->db error 503')
       return res.send({status:null,message:err})
     }
-    console.log('localhost:3000->arbitre remove 200ok')
+    console.log('localhost:3000->poule remove 200ok')
     return res.send({status:true});
   });
 };
