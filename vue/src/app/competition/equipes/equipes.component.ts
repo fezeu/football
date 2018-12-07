@@ -7,7 +7,7 @@ import { CreateCompService } from '../create-comp.service';
   styleUrls: ['./equipes.component.css']
 })
 export class EquipesComponent implements OnInit {
-  joueurs = ['toto']
+  joueurs = []
   @Input('_id') _id;
   @Output('event')event:EventEmitter <any> = new EventEmitter();
   equipe = {id:'',_id:'',nom:'',coach:'',represente:'',banniere:''}
@@ -24,7 +24,9 @@ export class EquipesComponent implements OnInit {
   add(){
     this.equipe.id = this._id;
     this.comp.set_equipe(this.equipe).subscribe((e)=>{
-
+      if([e['status']]){
+        this.joueurs = []
+      }
     })
   }
 }

@@ -58,7 +58,7 @@ exports.add = function(req, res) {
           return res.status(503).send({status:null,message:err})
         }
         if(players){
-          if(players.length>10 && players.length<24){
+          if(/*players.length>10 && players.length<24*/true){
             //on verifie si l'equipe a deja et creer
             Equipe.findOne({nom:req.body.nom,tournois:req.body.id},function(err,trouver){
               if(err){
@@ -71,7 +71,7 @@ exports.add = function(req, res) {
               }
               Equipe.create({nom:req.body.nom,represente:req.body.represente,banniere:req.body.banniere,coach:req.body.caoch,joueurs: players.map((player)=>{return player._id}),tournois:req.body.id},(err,bien)=>{
                 if(err){
-                  console.log('localhost:3000->db error 504')
+                  console.log('localhost:3000->db error 503')
                   return res.status(503).send({status:null,message:err})
                 }
                 //on ajoute l'equipe au tournois

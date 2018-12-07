@@ -40,7 +40,7 @@
     </form> 
     <div class="rest">
         <ul>
-            <li *ngFor="let joueur of joueurs">joueur</li>
+            <li *ngFor="let joueur of joueurs">{{joueur}}</li>
         </ul>
     </div>
     <app-joueur [_id]="_id" [equipe]="equipe.nom" (nom)="neww($event)">equipe ici</app-joueur>

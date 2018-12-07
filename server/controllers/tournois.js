@@ -31,24 +31,16 @@ exports.intit = function(req,res){
          })
       }
 }
-pic = function(n,tab){
-    tab_r = []
-    i = 0;
-    for(i;i<tab.lenght;i++){
-        if(i!=n)tab_r.push(tab[i]);
-    }
-    return tab_r
-}
-randomiseur = function(tab){
-    tab_r = []
 
-     if(tab) {
-        num = Math.floor(Math.random() * tab.lenght)
-        tab_r.push(tab[num])
-        return tab_r.concat(randomiseur(pic(num,tab)))
+randomiseur = function(tab){
+
+     if(tab!=[]) {
+        let num = Math.floor(Math.random() * tab.lenght)
+        console.log(num,tab)
+        return tab.splice(num).concat(randomiseur(tab))
      }
         
-      return tab_r 
+      return [] 
 
 }
 updateprogramme=function(id,date,idp){
@@ -167,7 +159,8 @@ exports.generate = function(req,res){
             res.send({status:null,message:err})
         }
         if(cool){
-            equipes = randomiseur(cool.equipes)
+            if(!cool.equipes)req.send({statud:false,message:'PasEquipe'})
+            equipes = randomiseur([].concat(cool.equipes))
             //terrains = randomiseur(cool.terrains)
             //arbitres = randomiseur(arbitres)
             creerpoule('A',1,equipe.splice(1,4))

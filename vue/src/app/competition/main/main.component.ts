@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageToHeadService } from 'src/app/message-to-head.service';
+import { CreateCompService } from '../create-comp.service';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +10,8 @@ import { MessageToHeadService } from 'src/app/message-to-head.service';
 export class MainComponent implements OnInit {
   id
   constructor(
-    private mes: MessageToHeadService
+    private mes: MessageToHeadService,
+    private comp: CreateCompService
   ) {
     this.mes.message.emit({object:'affiche'});
     if(sessionStorage.getItem('user'))
@@ -19,5 +21,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  tournois(){
+    this.comp.create_tournois(this.id).subscribe()
+  }
 }
