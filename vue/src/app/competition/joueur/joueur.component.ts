@@ -10,7 +10,7 @@ import { CreateCompService } from '../create-comp.service';
 export class JoueurComponent implements OnInit {
   @Input('_id') _id;
   @Input('equipe') equipe;
-  @Output()event:EventEmitter <any> = new EventEmitter();
+  @Output('nom')event:EventEmitter <String> = new EventEmitter();
   joueur = {id:'',_id:'',equipe:'', nom:'',prenom:'',age:null,taille:null,poids:null}
   constructor(
     private comp : CreateCompService
@@ -23,7 +23,8 @@ export class JoueurComponent implements OnInit {
     this.joueur.equipe = this.equipe;
     this.comp.set_joueur(this.joueur).subscribe((e)=>{
       if(e['status']){
-        this.event.emit(this.joueur)
+        this.event.emit(this.joueur.nom);
+        
         this.joueur = {id:'',_id:'',equipe:'', nom:'',prenom:'',age:null,taille:null,poids:null};
        return console.log("joueur ajouter a l'equipe")
       }

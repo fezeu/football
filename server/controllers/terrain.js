@@ -63,20 +63,24 @@ exports.add = function(req, res) {
             return res.send({status:null,message:err})
           }
           //on ajoute le terrain au tournois
+          
           Tournois.findOne({'_id':req.body.id},(err,rep)=>{
             if(err){
               return console.log('localhost:3000->localhost:3000->db error 504 tournois add equipe')
               
             }
-            Tournois.update({'_id':req.body.id},{terrains:rep.terrains.push(bien._id)},function(err){
+            tab = []
+            tab = rep.terrains
+            tab.push(bien._id)
+            Tournois.update({'_id':req.body.id},{terrains:tab},function(err){
               if(err){
-                return console.log('localhost:3000->localhost:3000->db error 504 tournois add equipe')
+                return console.log('localhost:3000->localhost:3000->db error 503 tournois add terrain')
                 
               }
-              return console.log('localhost:3000->equipe add to tournois 200ok')
+              return console.log('localhost:3000->terrain add to tournois 200ok')
             })
           })
-          console.log('localhost:3000->team add')
+          console.log('localhost:3000->terrain add')
           return res.send({status:true,equipe:bien})
         })
       })

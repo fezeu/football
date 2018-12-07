@@ -67,7 +67,7 @@ updateprogramme=function(id,date,idp){
 updatepool=function(v,t){
     Tournois.findOne({_id:t},function(err,tour){
         if(err){
-            return console.log('errp')
+            return console.log('err update pool')
         }
         Tournois.update({_id:t},{poules:tour.poules.push(v)},function(err,p){
   
@@ -103,12 +103,12 @@ exports.generate = function(req,res){
         }
         if(cool){
             equipes = randomiseur(cool.equipes)
-            terrains = randomiseur(cool.equipes)
+            //terrains = randomiseur(cool.terrains)
             arbitres = randomiseur(arbitres)
             poul = []
             for(let i = 0;i<8;i++){
     
-                    Match.create({terrain: terrain[i],equipe:[equipes[i],equipes[8+i]],resultat:null,status:pasjouer},function(err,match){
+                    Match.create({terrain: '',equipe:[equipes[i],equipes[8+i]],resultat:null,status:pasjouer},function(err,match){
                         if(err){
                          return   res.send({status:null,message:err})
                         }

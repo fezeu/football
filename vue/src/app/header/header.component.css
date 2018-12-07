@@ -14,20 +14,21 @@
 .navbar ul li:active{
      background-color: #d2dfed;
     border-bottom: 2px solid #2d5bf2; 
+    display: inline-flex;
 }
 .navbar{
-    display: block;
+    display: inline-block;
     width: 80%;
-    margin-left: 20%;
+    margin-left: 10%;
     height: 70px;
 
 }
 .navbar ul li{
     
-    display: inline-block;
-    padding: 30px;
+    display: inline-flex;
+    padding: 15px;
     font-size: 20px;
-    
+    width: 15%;
    cursor: pointer;
 }
 .navbar ul li:hover{

@@ -1,7 +1,7 @@
 <div class="formulaire">
     <div id="text">
          Entrer les Informations des Equipes</div>
-<form     class="form" >
+<form     class="form" (submit)="add()" >
         <div class="formgroup">
                 <div class="jolielabel">
                     <label for="name">NOM:</label>
@@ -16,7 +16,7 @@
                     <label for="Represente">Represente:</label>
                 </div>
                 <div class="jolieinput">
-                    <input type="number" id="Represente" [(ngModel)]="equipe.represente" name="Represente" >
+                    <input type="text" id="Represente" [(ngModel)]="equipe.represente" name="Represente" >
                 </div>
         </div>
         <div class="formgroup">
@@ -43,6 +43,6 @@
             <li *ngFor="let joueur of joueurs">joueur</li>
         </ul>
     </div>
-    <app-joueur [_id]="_id" [equipe]="equipe.nom" (joueur)="joueurs.push(joueur.nom)">equipe ici</app-joueur>
+    <app-joueur [_id]="_id" [equipe]="equipe.nom" (nom)="neww($event)">equipe ici</app-joueur>
 </div>
 
