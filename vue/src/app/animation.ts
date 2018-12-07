@@ -1,6 +1,6 @@
 import {
   trigger, animateChild, group,
-  transition, animate, style, query,state
+  transition, animate, style, query,state,animation
 } from '@angular/animations';
 
 
@@ -61,6 +61,23 @@ export const slideInAnimation =
         ]),
         query(':enter', animateChild(), { optional: true }),
       ]),
+  ]);
+  export const slideInMenu = trigger('slideInMenu',[
+    transition(':enter',[
+      style({
+        
+      }),
+    ])
+  ])
+  export const transAnimation = animation([
+    style({
+      position: '{{position}}',
+      left:'{{left}}',
+      top:'{{top}}',
+      height: '{{ height }}',
+      opacity: '{{ opacity }}',
+    }),
+    animate('{{ time }}')
   ]);
 export const popUpAnimation = trigger('openClosed',[
     transition(':enter',[
