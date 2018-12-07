@@ -11,7 +11,7 @@ exports.findAll = function(req, res){
       console.log('localhost:3000->db error 504')
       return res.send({status:null,message:err})
     }
-    return res.send(results);
+    return res.status(200).send(results);
   });
 };
 exports.findById = function(req, res){
@@ -21,14 +21,14 @@ exports.findById = function(req, res){
       console.log('localhost:3000->db error 504')
      return res.send({status:null,message:err})
     }
-    return res.send(result);
+    return res.status(200).send(result);
   });
 };
 exports.add = function(req, res) {
   //on verifie si le user est connecter
   if(typeof(req.session.auth) == 'undefined'){
     console.log('localhost:3000->authentification fallure')
-    return res.send({status:null,message:'AuhtError'}) 
+    return res.status(401).send({status:null,message:'AuhtError'}) 
   }
   //on verifie si le tournoi est sein
   let autre = true
@@ -39,13 +39,13 @@ exports.add = function(req, res) {
   }
     if(autre){
       console.log('localhost:3000->ressource Tournois not found')
-      return res.send({status:false,message:'NotFound'})
+      return res.status(404).send({status:false,message:'NotFound'})
     }
     //on regarde le nombre d'equipe du tournois
     Tournois.findOne({'_id':req.body.id},function(err,tour){
       if(err){
-        console.log('localhost:3000->db error 504')
-        return res.send({status:null,message:err})
+        console.log('localhost:3000->db error 503')
+        return res.status(503).send({status:null,message:err})
       }
       if(tour.equipes.length>=16){
         console.log('localhost:3000->add team fallure team are complete')
@@ -54,42 +54,45 @@ exports.add = function(req, res) {
       // on regarde le nombre de jouer dans l'equipe
       Joueur.find({equipe:req.body.nom,tournois:req.body.id},(err,players)=>{
         if(err){
-          console.log('localhost:3000->db error 504')
-          return res.send({status:null,message:err})
+          console.log('localhost:3000->db error 503')
+          return res.status(503).send({status:null,message:err})
         }
         if(players){
           if(players.length>10 && players.length<24){
             //on verifie si l'equipe a deja et creer
             Equipe.findOne({nom:req.body.nom,tournois:req.body.id},function(err,trouver){
               if(err){
-                console.log('localhost:3000->db error 504')
-                return res.send({status:null,message:err})
+                console.log('localhost:3000->db error 503')
+                return res.status(503).send({status:null,message:err})
               }
               if(trouver){
                 console.log('localhost:3000->team are ready existe');
-                return res.send({status:false,message:'DuplicateValue'})
+                return res.status(404).send({status:false,message:'DuplicateValue'})
               }
               Equipe.create({nom:req.body.nom,represente:req.body.represente,banniere:req.body.banniere,coach:req.body.caoch,joueurs: players.map((player)=>{return player._id}),tournois:req.body.id},(err,bien)=>{
                 if(err){
-                  console.log('localhost:3000->localhost:3000->db error 504')
-                  return res.send({status:null,message:err})
+                  console.log('localhost:3000->db error 504')
+                  return res.status(503).send({status:null,message:err})
                 }
                 //on ajoute l'equipe au tournois
                 Tournois.findOne({'_id':req.body.id},(err,rep)=>{
                   if(err){
-                    return console.log('localhost:3000->localhost:3000->db error 504 tournois add equipe')
+                    return console.log('localhost:3000->db error 504 tournois add equipe')
                     
                   }
-                  Tournois.update({'_id':req.body.id},{equipes:rep.equipes.push(bien._id)},function(err){
+                  tab = []
+                  tab = rep.equipes
+                  tab.push(bien._id)
+                  Tournois.update({'_id':req.body.id},{equipes:tab},function(err){
                     if(err){
-                      return console.log('localhost:3000->localhost:3000->db error 504 tournois add equipe')
+                      return console.log('localhost:3000->db error 504 tournois add equipe')
                       
                     }
                     return console.log('localhost:3000->equipe add to tournois 200ok')
                   })
                 })
                 console.log('localhost:3000->team add')
-                return res.send({status:true,equipe:bien})
+                return res.status(201).send({status:true,equipe:bien})
               })
             })
 

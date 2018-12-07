@@ -17,8 +17,14 @@ export class EquipesComponent implements OnInit {
 
   ngOnInit() {
   }
-  new(e){
+  neww(e){
     if(e)
-    this.joueurs.push(e.target.value)
+    this.joueurs.push(e)
+  }
+  add(){
+    this.equipe.id = this._id;
+    this.comp.set_equipe(this.equipe).subscribe((e)=>{
+
+    })
   }
 }

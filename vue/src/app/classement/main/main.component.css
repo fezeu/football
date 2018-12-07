@@ -1,0 +1,11 @@
+.menu{
+    position: fixed;
+    left: 0;
+    top:  120px;
+    width: 20%;
+    box-shadow:0px 6px 25px 1px grey;
+}
+.content{
+    margin-left: 25%;
+    margin-top: 120px;
+}

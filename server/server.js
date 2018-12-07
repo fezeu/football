@@ -9,7 +9,7 @@ var session = require('cookie-session'); // Charge le middleware de sessions
 var Keygrip = require('keygrip')
 var cookieParser = require('cookie-parser')
 var mongoUri = 'mongodb://localhost/footappbase';
-mongoose.connect(mongoUri,{ autoIndex: false });
+mongoose.connect(mongoUri,{ autoIndex: false, useNewUrlParser: true });
 var db = mongoose.connection;
 
 db.on('error', function () {
