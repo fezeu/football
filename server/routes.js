@@ -15,9 +15,9 @@ module.exports = function(app){
     app.get('/tournois/:id', tournois.findById);
 
     var match = require('./controllers/match');
-    app.get('/user', match.findAll);
-    app.get('/user/:id', match.findById);
-    app.put('/logout:id', match.update);
+    app.get('/match', match.findAll);
+    app.get('/match/:id', match.findById);
+    app.put('/match:id', match.update);
 
     var user = require('./controllers/utilisateur');
     app.get('/user', user.findAll);

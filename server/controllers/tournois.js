@@ -59,21 +59,23 @@ updateprogramme=function(id,date,idp){
 creerpoule=function(nom,valeur,equipes,id){
     if(equipes.lenght == 2){
         Poule.create({tournois:id,nom:nom,niveau:valeur,
-            classement:[{equipe:equipes[0]},{equipe:equipes[1]}]},function(){
+            classement:[{equipe:equipes[0]},{equipe:equipes[1]}]},(err,pl)=>{
                 if(err){
                     console.log(err)
                     return false
                 }
                 updatepool(pl._id,id)
                 creermatch(equipes,pl._id)
+                console.log(equipes,pl._id)
             })
     }else{
         Poule.create({tournois:id,nom:nom,niveau:valeur,
-            classement:[{equipe:equipes[0]},{equipe:equipes[1]},{equipe:equipes[2]},{equipe:equipes[3]}]},function(err,pl){
+            classement:[{equipe:equipes[0]},{equipe:equipes[1]},{equipe:equipes[2]},{equipe:equipes[3]}]},(err,pl)=>{
                 if(err){
                     console.log(err)
                     return false
                 }
+                console.log(id)
                 updatepool(pl._id,id)
                 creermatch(equipes,pl._id)
             })
@@ -81,6 +83,7 @@ creerpoule=function(nom,valeur,equipes,id){
 
 }
 creermatch = function(equipes, id){
+  
     if(equipes.lenght == 2){
         Match.create({equipes:[{equipe:equipes[0],but:0},{equipe:equipes[1],but:0}],status:'pasjoeur',poule:id},function(err, bien){
           if(err){
@@ -124,9 +127,9 @@ updatepool=function(v,t){
             return console.log('err update pool')
         }
         tab = []
-        tab = tour
-        tab.poules.push(v)
-        Tournois.update({_id:t},{poules:tab},function(err,p){
+        tab = tour.poules
+        tab.push(v)
+        Tournois.update({_id:tour._id},{poules:tab},function(err,p){
   
         })
     })
@@ -160,14 +163,15 @@ exports.generate = function(req,res){
         }
         if(cool){
             if(!cool.equipes)req.send({statud:false,message:'PasEquipe'})
-            equipes = randomiseur([].concat(cool.equipes))
+            equipes = []
+            equipes = cool.equipes
             //terrains = randomiseur(cool.terrains)
             //arbitres = randomiseur(arbitres)
-            creerpoule('A',1,equipe.splice(1,4))
-            creerpoule('B',1,equipe.splice(1,4))
-            creerpoule('C',1,equipe.splice(1,4))
-            creerpoule('D',1,equipe.splice(1,4))
-            return res.send({status:true,tournois:getone(req.body.id)})
+            creerpoule('A',1,equipes.splice(1,4),req.body.id)
+            creerpoule('B',1,equipes.splice(1,4),req.body.id)
+            creerpoule('C',1,equipes.splice(1,4),req.body.id)
+            creerpoule('D',1,equipes.splice(1,4),req.body.id)
+            return res.send({status:true,tournois:req.body.id})
         }
         res.send({status:null,message:'NotFound'})
     })
