@@ -6,7 +6,7 @@ import { EquipeComponent } from './equipe/equipe.component';
 import { JoueurComponent } from './joueur/joueur.component';
 
 const routes: Routes = [
-  {path: 'classement',
+  {path: 'classement',component:MainComponent,
   children:[
     {path:'poules',component: PouleComponent},
     {path:'equipes',component: EquipeComponent},
