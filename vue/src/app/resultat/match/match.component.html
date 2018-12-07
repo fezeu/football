@@ -1,7 +1,8 @@
+
 <div *ngFor="let equip of matchs">
 <div class="formul">
       <div> <form     class="form" >
-            <div class="box1"><div class="nomequipe1"></div><div class="logo1"></div></div>
+            <div class="box1"><div class="nomequipe1">{{equip.equipes[0]}}</div><div class="logo1"></div></div>
             <div>
             <input type="number" class="scoreinput"  name="score1" placeholder="score" required>
                 </div>
@@ -9,11 +10,11 @@
             <div><input type="number" class="scoreinput"  name="score2" placeholder="score" required>
                 </div>
             
-            <div class="box2"><div class="nomequipe2"></div><div class="logo2"></div></div>
-             <input type="submit" id="submit" class="sub" value="send">
+            <div class="box2"><div class="nomequipe2">{{equip.equipes[1]}}</div><div class="logo2"></div></div>
+             <input type="submit" id="send" class="sub" value="send">
             </form> </div> 
     <div class="butteur">
-        <button class="sub">Butteur</button><br>
+        <button class="sub" id="but" >Butteur</button><br>
                  <form action="" class="butform">
             <input type="text"   class="but" name="buteur" placeholder="nom buteur" ><br><br>
                

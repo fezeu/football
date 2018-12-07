@@ -2,6 +2,9 @@
 body{
     margin: 0px;
     background-color: #fff;
+    background-image: url("/assets/image.jpg");
+    background-attachment: fixed;
+    background-size: 100% 100%;
 }
 h2{
     text-align: center;

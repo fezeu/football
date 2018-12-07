@@ -37,15 +37,18 @@
 }
 .nomequipe2{
     height: 30px;
-    
+ 
 }
 .logo2{
    background-color: aliceblue; 
     height: 120px;
 }
 .butteur{
-    display: none;
+   
     margin-left: 180px;
+}
+.butform{
+    
 }
 .sub{
     background-color: #0abfbf;
@@ -53,4 +56,9 @@
     height: 30px;
     border-radius: 5px;
     margin-bottom: 4px;
+}
+#send{
+    margin-top: 170px;
+    width: 100px;
+    
 }
