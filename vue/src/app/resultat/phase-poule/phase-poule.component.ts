@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhasePouleComponent implements OnInit {
 
+  matchs = [{equipes:['cameriun','russie']},{equipes:['hum','reresie']},{equipes:['hello','ruie']}]
   constructor() { }
 
   ngOnInit() {
   }
 
 }
+ 
