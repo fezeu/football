@@ -1,6 +1,17 @@
-<p>
-  phase-poule works!
-</p>
+<h1 id="jour1">Premiere Journee</h1>
+<div *ngFor="let equip of matchs">
+<div class="formul">
+      <div> <form     class="form" >
+            <div class="box1"><div class="nomequipe1">{{equip.equipes[0]}}</div><div class="logo1"></div></div>
+           
+             <div class="vs">VS</div>
+           
+            <div class="box2"><div class="nomequipe2">{{equip.equipes[1]}}</div><div class="logo2"></div></div>
+             
+            </form> </div> 
+   
+        </div>
+</div>
 <div class="joliemain">
   <app-match></app-match>
 </div>
