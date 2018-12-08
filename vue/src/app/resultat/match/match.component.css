@@ -47,8 +47,8 @@
    
     margin-left: 180px;
 }
-.butform{
-    
+#butform{
+    display: none;
 }
 .sub{
     background-color: #0abfbf;
