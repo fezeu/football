@@ -20,7 +20,7 @@ exports.findAll = function(req, res){
       console.log('localhost:3000->db error 503')
       return res.send({status:null,message:err})
     }
-    return res.send(results);
+    return res.send({status:true, poules:results});
   });
 };
 exports.findById = function(req, res){

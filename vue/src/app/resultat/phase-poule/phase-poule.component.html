@@ -1,17 +1,17 @@
-<h1 id="jour1">Premiere Journee</h1>
-<div *ngFor="let equip of matchs">
-<div class="formul">
-      <div> <form     class="form" >
-            <div class="box1"><div class="nomequipe1">{{equip.equipes[0]}}</div><div class="logo1"></div></div>
-           
-             <div class="vs">VS</div>
-           
-            <div class="box2"><div class="nomequipe2">{{equip.equipes[1]}}</div><div class="logo2"></div></div>
-             
-            </form> </div> 
-   
-        </div>
-</div>
-<div class="joliemain">
-  <app-match></app-match>
-</div>
+<section>
+  <h1 id="jour1">Premiere Journee</h1>
+
+  <div class="joliemain">
+    <app-match *ngFor="let match of jour1|async" ></app-match>
+  </div>
+  <h1 id="jour2">Deuxieme Journee</h1>
+
+  <div class="joliemain">
+    <app-match *ngFor="let match of jour2|async" ></app-match>
+  </div>
+  <h1 id="jour1">Premiere Journee</h1>
+
+  <div class="joliemain">
+    <app-match *ngFor="let match of jour3|async" ></app-match>
+  </div>
+</section>

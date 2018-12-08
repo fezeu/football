@@ -15,8 +15,10 @@ module.exports = function(app){
     app.get('/tournois/:id', tournois.findById);
 
     var match = require('./controllers/match');
+    app.get('/match_equipes/:id',match.equipesMatch);
     app.get('/match', match.findAll);
     app.get('/match/:id', match.findById);
+    app.get('/match_poule/:id',match.findAllPoule);
     app.put('/match:id', match.update);
 
     var user = require('./controllers/utilisateur');

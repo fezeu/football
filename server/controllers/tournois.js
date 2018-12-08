@@ -66,7 +66,6 @@ creerpoule=function(nom,valeur,equipes,id){
                 }
                 updatepool(pl._id,id)
                 creermatch(equipes,pl._id)
-                console.log(equipes,pl._id)
             })
     }else{
         Poule.create({tournois:id,nom:nom,niveau:valeur,
@@ -75,7 +74,6 @@ creerpoule=function(nom,valeur,equipes,id){
                     console.log(err)
                     return false
                 }
-                console.log(id)
                 updatepool(pl._id,id)
                 creermatch(equipes,pl._id)
             })
@@ -83,42 +81,53 @@ creerpoule=function(nom,valeur,equipes,id){
 
 }
 creermatch = function(equipes, id){
-  
-    if(equipes.lenght == 2){
-        Match.create({equipes:[{equipe:equipes[0],but:0},{equipe:equipes[1],but:0}],status:'pasjoeur',poule:id},function(err, bien){
+    
+    if(equipes.length == 2){
+        Match.create({equipes:[{equipe:equipes[0],but:0},{equipe:equipes[1],but:0}],status:'pasjouer',poule:id},(err, bien)=>{
           if(err){
               console.log(err)
               return false
           }
-          updatepoole(bien._id,id)  
         })
     }else {
-        if(equipes.lenght>2){
-            let equipe = equipes.pop()
-            for(let i of equipes){
-                creermatch([].push(equipe,i),id)
-            }
-            creermatch(equipes,id)
+        if(equipes.length==4){
+             equipe = equipes.pop()
+            creermatch([equipe,equipes[0]],id)
+            creermatch([equipe,equipes[1]],id)
+            creermatch([equipe,equipes[2]],id)
+            equipe = equipes.pop()
+            creermatch([equipe,equipes[0]],id)
+            creermatch([equipe,equipes[1]],id)
+            equipe = equipes.pop()
+            creermatch([equipe,equipes[0]],id)
         }
     }
 
 }
-updatepoole=function(idmatch,id){
-    Poule.findOne({"_id":id},function(err,poule){
+updatepoole=function(id){
+    Poule.findOne({"_id":id},(err,poule)=>{
         if(err){
             console.log(err)
             return false
         }
-        tab = []
-        tab = poule.matchs
-        tab.push(idmatch)
-        Poule.updateOne({"_id":id},{matchs:tab},function(err,bien){
+        Match.find({poule:id},(err,cool)=>{
             if(err){
                 console.log(err)
                 return false
             }
-            console.log('poule update')
+            tab = []
+            tab = cool
+            tab = tab.map((val)=>{return val._id});
+            return Poule.updateOne({"_id":id},{matchs:tab},function(err,bien){
+                if(err){
+                    console.log(err)
+                    return false
+                }
+                return console.log('localhost:3000->poule update',id)
+            })
         })
+
+
     })
 }
 updatepool=function(v,t){
@@ -167,12 +176,22 @@ exports.generate = function(req,res){
             equipes = cool.equipes
             //terrains = randomiseur(cool.terrains)
             //arbitres = randomiseur(arbitres)
-            creerpoule('A',1,equipes.splice(1,4),req.body.id)
-            creerpoule('B',1,equipes.splice(1,4),req.body.id)
-            creerpoule('C',1,equipes.splice(1,4),req.body.id)
-            creerpoule('D',1,equipes.splice(1,4),req.body.id)
-            return res.send({status:true,tournois:req.body.id})
+            creerpoule('GROUPE A',1,equipes.splice(0,4),req.body.id);
+            creerpoule('GROUPE B',1,equipes.splice(0,4),req.body.id);
+            creerpoule('GROUPE C',1,equipes.splice(0,4),req.body.id);
+            creerpoule('GROUPE D',1,equipes.splice(0,4),req.body.id);
+            Poule.find({tournois:req.body.id},(err,tout)=>{
+                tab=[]
+                tab = tout
+                for(let i of tab){
+                    updatepoole(i._id)
+                }
+                return res.send({status:true,tournois:req.body.id})
+            })
+            
+        }else{
+            res.send({status:null,message:'NotFound'})
         }
-        res.send({status:null,message:'NotFound'})
+        
     })
 }

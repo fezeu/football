@@ -12,7 +12,12 @@ const PROXY_CONFIG = [
           "/logout",
           "/tournois",
           "/tournois_create",
-          "/arbitre"
+          "/arbitre",
+          "/match",
+          "/match_poule",
+          "/poule",
+          "/poule_all",
+          "/match_equipes"
       ],
       target: "http://localhost:3000",
       secure: false

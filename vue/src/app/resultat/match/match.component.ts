@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CreateCompService } from 'src/app/competition/create-comp.service';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-match',
@@ -6,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./match.component.css']
 })
 export class MatchComponent implements OnInit {
-  matchs = [{equipes:['cameriun','russie']},{equipes:['hum','reresie']},{equipes:['hello','ruie']}]
-  constructor() { }
+  @Input('id') idmacht;
+  result:Subject<any[]>
+  constructor(
+    private comp: CreateCompService
+  ) {
+    this.comp.get_equipes_match(this.idmacht).subscribe((e)=>{
+      if(e['status']){
+        this.result.next(e['message'])
+      }
+    })
+   }
 
   ngOnInit() {
   }
