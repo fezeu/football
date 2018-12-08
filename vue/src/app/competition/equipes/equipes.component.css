@@ -1,9 +1,14 @@
 
 .form{
-    margin-left: 70px;
+     display: inline-block;
+     width: 60%;
+     margin-left: 15px;
      margin-top: 100px;
  }
- 
+ .rest{
+    display: inline-block;
+    width: 36%;
+ }
  #text{
      font-size: 25px;
      margin-top: 20px;

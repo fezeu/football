@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./match.component.css']
 })
 export class MatchComponent implements OnInit {
-
+  matchs = [{equipes:['cameriun','russie']},{equipes:['hum','reresie']},{equipes:['hello','ruie']}]
   constructor() { }
 
   ngOnInit() {

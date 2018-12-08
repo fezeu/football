@@ -1,13 +1,13 @@
 <div class="formulaire">
     <div id="text">
          Entrer les Informations des Equipes</div>
-<form     class="form" >
+<form     class="form" (submit)="add()" >
         <div class="formgroup">
                 <div class="jolielabel">
                     <label for="name">NOM:</label>
                 </div>
                 <div class="jolieinput">
-                    <input type="text" id="name"  name="NOM" required>
+                    <input type="text" id="name" [(ngModel)]="equipe.nom"  name="NOM" required>
                 </div>
                 
         </div>
@@ -16,7 +16,7 @@
                     <label for="Represente">Represente:</label>
                 </div>
                 <div class="jolieinput">
-                    <input type="number" id="Represente"  name="Represente" >
+                    <input type="text" id="Represente" [(ngModel)]="equipe.represente" name="Represente" >
                 </div>
         </div>
         <div class="formgroup">
@@ -24,7 +24,7 @@
                     <label for="Bannière">Bannière:</label>
                 </div>
                 <div class="jolieinput">
-                    <input type="text" id="Bannière"  name="Bannière" required>
+                    <input type="text" id="Bannière" [(ngModel)]="equipe.banniere" name="Bannière" required>
                 </div>
                 
         </div>
@@ -33,11 +33,16 @@
                     <label for="Coach">Coach:</label>
                 </div>
                 <div class="jolieinput">
-                    <input type="text" id="Coach"  name="Coach" required>
+                    <input type="text" id="Coach" [(ngModel)]="equipe.coach"  name="Coach" required>
                 </div>
         </div>
     <input type="submit" name="submit" value="SAUVEGARDE" id="submit">
     </form> 
-    <app-joueur [_id]="_id">equipe ici</app-joueur>
+    <div class="rest">
+        <ul>
+            <li *ngFor="let joueur of joueurs">{{joueur}}</li>
+        </ul>
+    </div>
+    <app-joueur [_id]="_id" [equipe]="equipe.nom" (nom)="neww($event)">equipe ici</app-joueur>
 </div>
 

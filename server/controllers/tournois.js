@@ -31,24 +31,16 @@ exports.intit = function(req,res){
          })
       }
 }
-pic = function(n,tab){
-    tab_r = []
-    i = 0;
-    for(i;i<tab.lenght;i++){
-        if(i!=n)tab_r.push(tab[i]);
-    }
-    return tab_r
-}
-randomiseur = function(tab){
-    tab_r = []
 
-     if(tab) {
-        num = Math.floor(Math.random() * tab.lenght)
-        tab_r.push(tab[num])
-        return tab_r.concat(randomiseur(pic(num,tab)))
+randomiseur = function(tab){
+
+     if(tab!=[]) {
+        let num = Math.floor(Math.random() * tab.lenght)
+        console.log(num,tab)
+        return tab.splice(num).concat(randomiseur(tab))
      }
         
-      return tab_r 
+      return [] 
 
 }
 updateprogramme=function(id,date,idp){
@@ -64,12 +56,80 @@ updateprogramme=function(id,date,idp){
     })
 
 }
+creerpoule=function(nom,valeur,equipes,id){
+    if(equipes.lenght == 2){
+        Poule.create({tournois:id,nom:nom,niveau:valeur,
+            classement:[{equipe:equipes[0]},{equipe:equipes[1]}]},(err,pl)=>{
+                if(err){
+                    console.log(err)
+                    return false
+                }
+                updatepool(pl._id,id)
+                creermatch(equipes,pl._id)
+                console.log(equipes,pl._id)
+            })
+    }else{
+        Poule.create({tournois:id,nom:nom,niveau:valeur,
+            classement:[{equipe:equipes[0]},{equipe:equipes[1]},{equipe:equipes[2]},{equipe:equipes[3]}]},(err,pl)=>{
+                if(err){
+                    console.log(err)
+                    return false
+                }
+                console.log(id)
+                updatepool(pl._id,id)
+                creermatch(equipes,pl._id)
+            })
+    }
+
+}
+creermatch = function(equipes, id){
+  
+    if(equipes.lenght == 2){
+        Match.create({equipes:[{equipe:equipes[0],but:0},{equipe:equipes[1],but:0}],status:'pasjoeur',poule:id},function(err, bien){
+          if(err){
+              console.log(err)
+              return false
+          }
+          updatepoole(bien._id,id)  
+        })
+    }else {
+        if(equipes.lenght>2){
+            let equipe = equipes.pop()
+            for(let i of equipes){
+                creermatch([].push(equipe,i),id)
+            }
+            creermatch(equipes,id)
+        }
+    }
+
+}
+updatepoole=function(idmatch,id){
+    Poule.findOne({"_id":id},function(err,poule){
+        if(err){
+            console.log(err)
+            return false
+        }
+        tab = []
+        tab = poule.matchs
+        tab.push(idmatch)
+        Poule.updateOne({"_id":id},{matchs:tab},function(err,bien){
+            if(err){
+                console.log(err)
+                return false
+            }
+            console.log('poule update')
+        })
+    })
+}
 updatepool=function(v,t){
     Tournois.findOne({_id:t},function(err,tour){
         if(err){
-            return console.log('errp')
+            return console.log('err update pool')
         }
-        Tournois.update({_id:t},{poules:tour.poules.push(v)},function(err,p){
+        tab = []
+        tab = tour.poules
+        tab.push(v)
+        Tournois.update({_id:tour._id},{poules:tab},function(err,p){
   
         })
     })
@@ -102,30 +162,16 @@ exports.generate = function(req,res){
             res.send({status:null,message:err})
         }
         if(cool){
-            equipes = randomiseur(cool.equipes)
-            terrains = randomiseur(cool.equipes)
-            arbitres = randomiseur(arbitres)
-            poul = []
-            for(let i = 0;i<8;i++){
-    
-                    Match.create({terrain: terrain[i],equipe:[equipes[i],equipes[8+i]],resultat:null,status:pasjouer},function(err,match){
-                        if(err){
-                         return   res.send({status:null,message:err})
-                        }
-                        updateprogramme(match.id,''+i+2+'/3'+'2015',req.body.id);
-                        poul.push(equipes[i])
-                        poul.push(equipes[i+7])
-                        if(i%2 == 1){
-                            Poule.create({nom:i+'',equipes:poul,niveau:0},function(err,hum){
-                                if(bien){
-                                    console.log('poul add')
-                                    updatepool(bien._id,req.body.id)
-                                }
-                            })
-                        }
-                    })
-            }
-            return res.send({status:true,tournois:getone(req.body.id)})
+            if(!cool.equipes)req.send({statud:false,message:'PasEquipe'})
+            equipes = []
+            equipes = cool.equipes
+            //terrains = randomiseur(cool.terrains)
+            //arbitres = randomiseur(arbitres)
+            creerpoule('A',1,equipes.splice(1,4),req.body.id)
+            creerpoule('B',1,equipes.splice(1,4),req.body.id)
+            creerpoule('C',1,equipes.splice(1,4),req.body.id)
+            creerpoule('D',1,equipes.splice(1,4),req.body.id)
+            return res.send({status:true,tournois:req.body.id})
         }
         res.send({status:null,message:'NotFound'})
     })

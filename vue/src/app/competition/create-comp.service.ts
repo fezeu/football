@@ -31,4 +31,7 @@ export class CreateCompService {
   set_terrain(terrain){
     return this.http.post('/terrain',terrain,httpOptions)
   }
+  create_tournois(id){
+    return this.http.post('/tournois_create',{id:id},httpOptions)
+  }
 }

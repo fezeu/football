@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageToHeadService } from '../../message-to-head.service';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private mes : MessageToHeadService
+  ) { 
+    this.mes.message.emit({object:'affiche'});
+  }
 
   ngOnInit() {
   }
