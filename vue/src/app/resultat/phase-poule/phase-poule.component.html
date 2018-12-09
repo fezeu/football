@@ -2,16 +2,20 @@
   <h1 id="jour1">Premiere Journee</h1>
 
   <div class="joliemain">
-    <app-match *ngFor="let match of jour1|async" ></app-match>
+    <app-match *ngFor="let match of jour1|async" [idmacht]="match"></app-match>
   </div>
   <h1 id="jour2">Deuxieme Journee</h1>
 
   <div class="joliemain">
-    <app-match *ngFor="let match of jour2|async" ></app-match>
+    <app-match *ngFor="let match of jour2|async" [idmacht]="match"></app-match>
   </div>
-  <h1 id="jour1">Premiere Journee</h1>
+  <h1 id="jour1">Troisieme Journee</h1>
 
   <div class="joliemain">
-    <app-match *ngFor="let match of jour3|async" ></app-match>
+    <div *ngFor="let match of jour3|async">
+      {{match}}
+        <app-match  [idmacht]="match" ></app-match>
+    </div>
+    
   </div>
 </section>

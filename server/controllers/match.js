@@ -22,19 +22,33 @@ exports.equipesMatch = function(req, res){
       console.log('localhost:3000->db error 503')
       return res.send({status:null,message:err})
     }
-    Match.findOne({"_id":results[0].equipe},(err,equipe1)=>{
-      if(err){
-        console.log('localhost:3000->db error 503')
-        return res.send({status:null,message:err})
-      }
-      Match.findOne({"_id":results[1].equipe},(err,equipe2)=>{
+    if(results){
+ 
+      Equipe.findOne({"_id":results.equipes[1].equipe},(err,equipe1)=>{
         if(err){
           console.log('localhost:3000->db error 503')
           return res.send({status:null,message:err})
         }
-        return res.send({status:true, message:[{equipe1:equipe1,but1:results[0].but,equipe2:equipe2,but2:results[0].but}]});
+  
+        if(equipe1){
+
+          Equipe.findOne({"_id":results.equipes[1].equipe},(err,equipe2)=>{
+            if(err){
+              console.log('localhost:3000->db error 503')
+              return res.send({status:null,message:err})
+            }
+            console.log(equipe1)
+            return res.send({status:true, message:[{equipe1:{nom:equipe1.nom,id:equipe1._id,represente:equipe1.represente,coach:equipe1.coach,joueurs:equipe1.joueurs,banniere:equipe1.banniere},but1:results.equipes[0].but,equipe2:{nom:equipe2.nom,id:equipe2._id,represente:equipe2.represente,coach:equipe2.coach,joueurs:equipe2.joueurs,banniere:equipe2.banniere},but2:results.equipes[1].but}]});
+          })
+        }else{
+          res.send({status:false})
+        }
+   
       })
-    })
+    }else{
+      res.send({status:false})
+    }
+    
    
   });
 };

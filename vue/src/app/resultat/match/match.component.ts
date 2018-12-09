@@ -8,19 +8,26 @@ import { Observable, Subject } from 'rxjs';
   styleUrls: ['./match.component.css']
 })
 export class MatchComponent implements OnInit {
-  @Input('id') idmacht;
-  result:Subject<any[]>
+  @Input() idmacht;
+  result:Subject<any[]>= new Subject();
   constructor(
     private comp: CreateCompService
   ) {
-    this.comp.get_equipes_match(this.idmacht).subscribe((e)=>{
-      if(e['status']){
-        this.result.next(e['message'])
-      }
-    })
+ 
    }
 
   ngOnInit() {
+    this.comp.get_equipes_match(this.idmacht).subscribe((e)=>{
+      if(e['status']){
+        let t =[]
+        t = e['message']
+        if(t){
+          console.log(t);
+          this.result.next(t);
+        }
+        
+      }
+    })
   }
 
 }

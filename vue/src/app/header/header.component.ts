@@ -9,6 +9,7 @@ import { CompteService } from '../client/compte.service';
 })
 export class HeaderComponent implements OnInit, OnChanges {
   @Input() style = [{}];
+  slideIndex = 0;
   constructor(
     private mes : MessageToHeadService,
     private compte: CompteService
@@ -17,23 +18,10 @@ export class HeaderComponent implements OnInit, OnChanges {
    }
 
   ngOnInit() {
-  var slideIndex = 0;
-showSlides();
+  
+  //this.showSlides();
 
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    
-    for (i = 0; i < slides.length; i++) {
-       slides[i].style.display = "none";  
-    }
-    slideIndex++;
-    if (slideIndex> slides.length) {slideIndex = 1}    
-    
-    slides[slideIndex-1].style.display = "block";  
-   
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
+
 
   }
   ngOnChanges(changes: SimpleChanges){
@@ -44,5 +32,19 @@ function showSlides() {
   }
   bye(){
     this.compte.logout()
+  }
+  showSlides() {
+    var i;
+    
+    
+    for (i = 0; i < $(".mySlides").length; i++) {
+      $(".mySlides")[i].style.display = "none";  
+    }
+    this.slideIndex++;
+    if (this.slideIndex> $(".mySlides").length) {this.slideIndex = 1}    
+    
+    $(".mySlides")[this.slideIndex-1].style.display = "block";  
+   
+    setTimeout(this.showSlides, 2000); // Change image every 2 seconds
   }
 }
