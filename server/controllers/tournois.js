@@ -7,7 +7,9 @@ Calendrier = mongoose.model('Calendrier');
 Match = mongoose.model('Match');
 StatMatch = mongoose.model('StatMatch');
 Programme = mongoose.model('Programme');
-Poule = mongoose.model('Poule')
+Poule = mongoose.model('Poule');
+var EventEmitter = require('events').EventEmitter;
+
 exports.intit = function(req,res){
     //on verifie les droits
     if(typeof(req.session.auth) == 'undefined'){
@@ -56,7 +58,7 @@ updateprogramme=function(id,date,idp){
     })
 
 }
-creerpoule=function(nom,valeur,equipes,id){
+creerpoule=function(nom,valeur,equipes,id,event){
     if(equipes.lenght == 2){
         Poule.create({tournois:id,nom:nom,niveau:valeur,
             classement:[{equipe:equipes[0]},{equipe:equipes[1]}]},(err,pl)=>{
@@ -65,7 +67,7 @@ creerpoule=function(nom,valeur,equipes,id){
                     return false
                 }
                 updatepool(pl._id,id)
-                creermatch(equipes,pl._id)
+                creermatch(equipes,pl._id,event)
             })
     }else{
         Poule.create({tournois:id,nom:nom,niveau:valeur,
@@ -74,13 +76,14 @@ creerpoule=function(nom,valeur,equipes,id){
                     console.log(err)
                     return false
                 }
+                creermatch(equipes,pl._id,event)
                 updatepool(pl._id,id)
-                creermatch(equipes,pl._id)
+                
             })
     }
 
 }
-creermatch = function(equipes, id){
+creermatch = function(equipes, id,event){
     
     if(equipes.length == 2){
         Match.create({equipes:[{equipe:equipes[0],but:0},{equipe:equipes[1],but:0}],status:'pasjouer',poule:id},(err, bien)=>{
@@ -88,18 +91,19 @@ creermatch = function(equipes, id){
               console.log(err)
               return false
           }
+          event.emit('match')
         })
     }else {
         if(equipes.length==4){
              equipe = equipes.pop()
-            creermatch([equipe,equipes[0]],id)
-            creermatch([equipe,equipes[1]],id)
-            creermatch([equipe,equipes[2]],id)
+            creermatch([equipe,equipes[0]],id,event)
+            creermatch([equipe,equipes[1]],id,event)
+            creermatch([equipe,equipes[2]],id,event)
             equipe = equipes.pop()
-            creermatch([equipe,equipes[0]],id)
-            creermatch([equipe,equipes[1]],id)
+            creermatch([equipe,equipes[0]],id,event)
+            creermatch([equipe,equipes[1]],id,event)
             equipe = equipes.pop()
-            creermatch([equipe,equipes[0]],id)
+            creermatch([equipe,equipes[0]],id,event)
         }
     }
 
@@ -123,7 +127,7 @@ updatepoole=function(id){
                     console.log(err)
                     return false
                 }
-                return console.log('localhost:3000->poule update',id)
+                return console.log('localhost:3000->poule update',id) 
             })
         })
 
@@ -138,8 +142,9 @@ updatepool=function(v,t){
         tab = []
         tab = tour.poules
         tab.push(v)
-        Tournois.update({_id:tour._id},{poules:tab},function(err,p){
+        Tournois.update({_id:tour._id},{poules:tab},(err,p)=>{
   
+            
         })
     })
 
@@ -153,6 +158,15 @@ exports.findAll = function(req, res){
       return res.send(results);
     });
   };
+  exports.status = function(req,res){
+    let id = req.params.id
+    Tournois.findOne({'_id':id},function(err, result) {
+        if(err){
+          res.send({message:err})
+        }
+        return res.send({status:result.status});
+      });
+}
   exports.findById = function(req, res){
     var id = req.params.id;
     Tournois.findOne({'_id':id},function(err, result) {
@@ -170,24 +184,41 @@ exports.generate = function(req,res){
         if(err){
             res.send({status:null,message:err})
         }
+        
         if(cool){
-            if(!cool.equipes)req.send({statud:false,message:'PasEquipe'})
+            if(!cool.equipes)return res.send({statud:false,message:'PasEquipe'})
+            if(cool.status=='incomplet1')res.send({statud:false,message:'Encour'})
             equipes = []
             equipes = cool.equipes
             //terrains = randomiseur(cool.terrains)
             //arbitres = randomiseur(arbitres)
-            creerpoule('GROUPE A',1,equipes.splice(0,4),req.body.id);
-            creerpoule('GROUPE B',1,equipes.splice(0,4),req.body.id);
-            creerpoule('GROUPE C',1,equipes.splice(0,4),req.body.id);
-            creerpoule('GROUPE D',1,equipes.splice(0,4),req.body.id);
-            Poule.find({tournois:req.body.id},(err,tout)=>{
-                tab=[]
-                tab = tout
-                for(let i of tab){
-                    updatepoole(i._id)
+            let event = new EventEmitter()
+            let count = 0
+            event.on('match',()=>{
+                count += 1
+                if(count == 24){
+                    Poule.find({tournois:req.body.id},(err,tout)=>{
+                        tab=[]
+                        tab = tout
+                        for(let i of tab){
+                            updatepoole(i._id)
+                        }
+                        Tournois.updateOne({_id:req.body.id},{status:'incomplet1'},(err,tour)=>{
+                            return res.send({status:true,tournois:req.body.id})
+
+                         })
+                          
+                       
+                        
+                        
+                    })
                 }
-                return res.send({status:true,tournois:req.body.id})
             })
+            creerpoule('GROUPE A',1,equipes.splice(0,4),req.body.id,event) 
+            creerpoule('GROUPE B',1,equipes.splice(0,4),req.body.id,event)
+            creerpoule('GROUPE C',1,equipes.splice(0,4),req.body.id,event)
+            creerpoule('GROUPE D',1,equipes.splice(0,4),req.body.id,event)
+           
             
         }else{
             res.send({status:null,message:'NotFound'})

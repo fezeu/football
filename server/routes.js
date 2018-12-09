@@ -10,7 +10,8 @@ module.exports = function(app){
 
     var tournois = require('./controllers/tournois');
     app.post('/basique_info',tournois.intit);
-    app.post('/tournois_create',tournois.generate)
+    app.post('/tournois_create',tournois.generate);
+    app.get('/tournois/status/:id',tournois.status);
     app.get('/tournois',tournois.findAll);
     app.get('/tournois/:id', tournois.findById);
 

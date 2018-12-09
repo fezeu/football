@@ -10,6 +10,9 @@ import { TerrainComponent } from './terrain/terrain.component';
 import { JoueurComponent } from './joueur/joueur.component';
 import { CreateCompService } from './create-comp.service';
 import { FormsModule } from  '@angular/forms';
+import { MenuComponent } from './menu/menu.component';
+import { PhasePouleComponent } from './phase-poule/phase-poule.component';
+import { MatchComponent } from './match/match.component';
 
 @NgModule({
   imports: [
@@ -17,7 +20,7 @@ import { FormsModule } from  '@angular/forms';
     CompetitionRoutingModule,
     FormsModule
   ],
-  declarations: [MainComponent, InitComponent, EquipesComponent, ArbitreComponent, TerrainComponent, JoueurComponent],
+  declarations: [MainComponent, InitComponent, EquipesComponent, ArbitreComponent, TerrainComponent, JoueurComponent, MenuComponent, PhasePouleComponent, MatchComponent],
   providers: [CreateCompService]
 })
 export class CompetitionModule { }

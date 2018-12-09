@@ -1,5 +1,11 @@
-<div class="joliemain">
+<div class="joliemain" *ngIf = "tour">
     <app-init [_id]="id">premier formulaire ici</app-init>
     <app-equipes [_id]="id">equipe ici</app-equipes>
     <button (click)="tournois()">Creer le tournois</button>
 </div>
+<section *ngIf="poule">
+    <app-menu class="menu"></app-menu>
+   <div class="content">
+     <router-outlet ></router-outlet>
+   </div>
+</section> 

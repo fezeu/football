@@ -1,0 +1,30 @@
+
+<div *ngFor="let equip of result|async">
+  <div class="formul">
+        <div> 
+          <form     class="form" >
+              <div class="box1"><div class="nomequipe1">{{equip?.equipe1?.nom}}</div><div class="logo1"></div></div>
+              <div>
+                  <input type="number" class="scoreinput"  name="score1" placeholder="score" [value]="equip?.but1">
+              </div>
+              <div class="vs">VS</div>
+              <div>
+                <input type="number" class="scoreinput"  name="score2" placeholder="score" [value]="equip?.but2" >
+              </div>
+              
+              <div class="box2"><div class="nomequipe2">{{equip?.equipe2?.nom}}</div><div class="logo2"></div></div>
+               <input type="submit" id="send" class="sub" value="send">
+          </form>
+      </div> 
+      <div class="butteur">
+          <button class="sub" id="but" onclick="document.getElementById('butform').style.display = 'block'">Butteur</button><br>
+                  <form action="" id="butform">
+              <input type="text"   class="but" name="buteur" placeholder="nom buteur" ><br><br>
+                 
+              <input type="number"   class="but" name="but" placeholder="N° de but" ><br><br>
+               <input type="submit" name="submit" class="sub" value="ADD"  >   
+                  </form>
+                       </div>
+           
+          </div>
+  </div>

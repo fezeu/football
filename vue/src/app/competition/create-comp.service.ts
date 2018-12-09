@@ -37,6 +37,9 @@ export class CreateCompService {
   create_tournois(id){
     return this.http.post('/tournois_create',{id:id},httpOptions)
   }
+  get_status(id){
+    return this.http.get(`/tournois/status/${id}`)
+  }
   get_poul(id,niv?){
     if(niv)
     return this.http.post('/poule_all',{id:id},httpOptions).pipe(map((e)=>{

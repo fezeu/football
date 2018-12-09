@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CreateCompService } from 'src/app/competition/create-comp.service';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
+import { CreateCompService } from '../create-comp.service';
 
 @Component({
   selector: 'app-match',
@@ -11,10 +11,8 @@ export class MatchComponent implements OnInit {
   @Input() idmacht;
   result:Subject<any[]>= new Subject();
   constructor(
-    private comp: CreateCompService
-  ) {
- 
-   }
+    private comp:CreateCompService
+  ) { }
 
   ngOnInit() {
     this.comp.get_equipes_match(this.idmacht).subscribe((e)=>{
@@ -22,7 +20,6 @@ export class MatchComponent implements OnInit {
         let t =[]
         t = e['message']
         if(t){
-          console.log(t)
           this.result.next(t);
         }
         
