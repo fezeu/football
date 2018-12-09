@@ -38,7 +38,7 @@ exports.equipesMatch = function(req, res){
               return res.send({status:null,message:err})
             }
            
-            return res.send({status:true, message:[{equipe1:{nom:equipe1.nom,id:equipe1._id,represente:equipe1.represente,coach:equipe1.coach,joueurs:equipe1.joueurs,banniere:equipe1.banniere},but1:results.equipes[0].but,equipe2:{nom:equipe2.nom,id:equipe2._id,represente:equipe2.represente,coach:equipe2.coach,joueurs:equipe2.joueurs,banniere:equipe2.banniere},but2:results.equipes[1].but}]});
+            return res.send({status:true,poule:results.poule, message:[{equipe1:{nom:equipe1.nom,id:equipe1._id,represente:equipe1.represente,coach:equipe1.coach,joueurs:equipe1.joueurs,banniere:equipe1.banniere},but1:results.equipes[0].but,equipe2:{nom:equipe2.nom,id:equipe2._id,represente:equipe2.represente,coach:equipe2.coach,joueurs:equipe2.joueurs,banniere:equipe2.banniere},but2:results.equipes[1].but}]});
           })
         }else{
           res.send({status:false})
@@ -88,11 +88,11 @@ exports.update = function(req, res) {
       }
     }
     if(autre){
-      console.log('localhost:3000->ressource Tournois not found')
+      console.log('localhost:3000->ressource Tournois not found',req.body.id)
       return res.send({status:false,message:'NotFound'})
     }
   var id = req.params.id;
-  //on cherche l'arbitre qui appartient a ce tournois
+  
   Match.updateOne({"_id":id}, {equipes:req.body.equipes,status:req.body.status,statistiques:req.body.statistiques},
     function (err, up) {
       if (err){
@@ -100,12 +100,14 @@ exports.update = function(req, res) {
         return res.send({status:null,message:err})
       }
       if(up){
-        Poule.findOne({"_id":up.poule},(err,poul)=>{
+        console.log(up)
+        Poule.findOne({"_id":req.body.poule},(err,poul)=>{
           if (err){
             console.log('localhost:3000->db error 503')
             return res.send({status:null,message:err})
           }
-          Match.find({poule:poul._id},(err,matchs)=>{
+          console.log(poul)
+          Match.find({poule:req.body.poule},(err,matchs)=>{
             if (err){
               console.log('localhost:3000->db error 503')
               return res.send({status:null,message:err})
@@ -139,7 +141,8 @@ exports.update = function(req, res) {
                 }
               }
             }
-            Poule.updateOne({"_id":poul._id},{classement:classement},(err,good)=>{
+            
+            Poule.updateOne({"_id":req.body.poule},{classement:classement},(err,good)=>{
               if (err){
                 console.log('localhost:3000->db error 503')
                 return res.send({status:null,message:err})
@@ -147,14 +150,11 @@ exports.update = function(req, res) {
               console.log('localhost:3000->match update');
               return res.send({status:true})
             })
-
           })
 
         })
        
       }
-      console.log('localhost:3000->ressource Tournois not found')
-      res.send({status:false,message:'NotFound'})
   });
 }
 

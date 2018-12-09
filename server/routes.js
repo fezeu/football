@@ -20,7 +20,7 @@ module.exports = function(app){
     app.get('/match', match.findAll);
     app.get('/match/:id', match.findById);
     app.get('/match_poule/:id',match.findAllPoule);
-    app.put('/match:id', match.update);
+    app.put('/match/:id', match.update);
 
     var user = require('./controllers/utilisateur');
     app.get('/user', user.findAll);

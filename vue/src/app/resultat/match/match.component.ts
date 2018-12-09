@@ -22,7 +22,6 @@ export class MatchComponent implements OnInit {
         let t =[]
         t = e['message']
         if(t){
-          console.log(t)
           this.result.next(t);
         }
         

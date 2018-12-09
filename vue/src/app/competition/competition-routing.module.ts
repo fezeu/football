@@ -7,6 +7,7 @@ const routes: Routes = [
   {path: 'competition',component:  MainComponent, data: { animation: 'competition' },
   children:[
     {path:'phase_poule',component:PhasePouleComponent}
+    
   ]}
 ];
 

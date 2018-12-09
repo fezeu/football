@@ -60,4 +60,8 @@ export class CreateCompService {
   get_equipes_match(id){
     return this.http.get(`/match_equipes/${id}`)
   }
+  update_match(match,id){
+    
+    return this.http.put(`/match/${id}`,match,httpOptions)
+  }
 }

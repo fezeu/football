@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
       if(e['status']){
         if(e['status']=='incomplet1'){
           this.poule = true
-          this.route.navigate['./phase_poule'];
+          this.route.navigate(['/competition/phase_poule']);
         }else{
           this.tour =true
         }
@@ -40,8 +40,10 @@ export class MainComponent implements OnInit {
     console.log(this.id)
     this.comp.create_tournois(this.id).subscribe((e)=>{
       if(e['status']){
+        this.tour =false
         this.poule = true
-        this.route.navigate['./phase_poule']
+        this.route.navigate(['./','phase_poule']);
+        
       }
     })
   }

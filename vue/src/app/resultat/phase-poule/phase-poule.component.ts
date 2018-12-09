@@ -25,7 +25,7 @@ export class PhasePouleComponent implements OnInit {
         tab2.push(i.matchs[2],i.matchs[3])
         tab3.push(i.matchs[4],i.matchs[5])
       }
-      console.log(tab1)
+      
       this.jour1.next(tab1);
       this.jour2.next(tab2);
       this.jour3.next(tab3)
