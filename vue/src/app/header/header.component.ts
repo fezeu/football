@@ -1,7 +1,7 @@
 import { Component, OnInit , Input, OnChanges, SimpleChanges} from '@angular/core';
 import { MessageToHeadService } from '../message-to-head.service';
 import { CompteService } from '../client/compte.service';
-import { url } from 'inspector';
+
 
 @Component({
   selector: 'app-header',
@@ -24,8 +24,12 @@ export class HeaderComponent implements OnInit, OnChanges {
   let mesimage =['head1.jpg','head2.jpg','head3.jpg','head4.jpg'];
   let i = 0
   setInterval(()=>{
-     
-    $('#content').css({
+   $('.navbar ul li').on('click',(e)=>{
+    e.preventDefault();
+    $(".active").removeClass('active');
+    $(e.target).addClass('active');
+   })
+   $('#content').css({
       'background-image':`url(/assets/${mesimage[i%4]})`
     })
     i = (4+i+1)%4
@@ -45,14 +49,15 @@ export class HeaderComponent implements OnInit, OnChanges {
     }else{
       $('#apphead').css({
         'position':'relative',
-        'top':'0',
-        'max-height': height
+        'top':'-5px',
+        'max-height': height,
+       // 'transform': `translate3d(0,${height},0)`
        })
       }
 
     $('#content').css({ 
       'opacity': opacite,
-      'min-height': height
+      
     })
     
 });

@@ -6,66 +6,75 @@
     opacity: 1;
     background-color: rgb(5, 5, 202);
     box-shadow: 0px 8px 14px -3px grey;
-    z-index: 2001;
+    z-index: 2002;
     height: 480px;
+    transition: 0.5s background-image height;
+    transition-property: opacity background-color;
 }
 .overley{
-  
-  margin-bottom: 5px; 
-  background-image: url('/assets/head1.jpg');
-  background-repeat: no-repeat;
   background-size: 100%;
-  transition: 0.5s background-image;
-  transition-property: opacity height position ;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-image: url('/assets/head1.jpg');
+  transition-property: opacity  position transform;
   vertical-align: bottom;
-  z-index: 2002;
+  z-index: 2001;
 
 }
 .menu{
   position: fixed;
-  top: 5px;
+  top: 2px;
   display: flex;
   width: 100%;
   z-index: 2003;
   
 }
 
-.navbar ul li:active{
-    border-bottom: 2px solid #2d5bf2; 
-}
+
 .navbar{
     display: inline-block;
-    width: 80%;
-    margin-left: 10%;
+    width: 90%;
+    margin-left: 5%;
     height: 70px;
 
 }
-
+.active{
+  border-bottom: 2px solid #fff;
+}
 .navbar ul li{
     
     display: inline-flex;
-    padding: 15px;
+    
     height: 30px;
-   cursor: pointer;
+   
 }
 .navbar ul li :hover{
     opacity: 0.8;
-    border-bottom: 1px solid #ffff;
-    
 }
+
 .logo{
   display: inline-flex;
   width:9%;
   margin-left: 5px;
 }
 .navbar ul li a{
+  padding: 15px;
   text-decoration: none;
   color: #d9d9d9;
   text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
   font-size: 1.4em;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  height: 100%;
 
 }
 .navbar ul li a:hover{
+  text-decoration: none;
+}
+.navbar ul li a:active{
   text-decoration: none;
 }
 .dec{
