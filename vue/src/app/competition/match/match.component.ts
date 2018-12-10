@@ -12,7 +12,7 @@ export class MatchComponent implements OnInit {
   @Input() idmacht;
   idpoule
   result:Subject<any[]>= new Subject();
-  macth  = {poule:'',id:'',equipes:[{equipe:'',but:0},{equipe:'',but:0}],status,statistique:[]}
+  macth  = {poule:'',id:'',equipes:[{equipe:'',but:0},{equipe:'',but:0}],status:'jouer',statistique:[]}
   constructor(
     private comp:CreateCompService
   ) { }
