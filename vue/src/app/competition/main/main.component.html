@@ -3,9 +3,11 @@
     <app-equipes [_id]="id">equipe ici</app-equipes>
     <button (click)="tournois()">Creer le tournois</button>
 </div>
-<section *ngIf="poule">
-    <app-menu class="menu1"></app-menu>
-   <div class="content">
-     <router-outlet ></router-outlet>
-   </div>
+<section *ngIf="poule" class="topajuste">
+    <nav class="menuContainer">
+        <app-menu class="menu1"></app-menu>
+    </nav>
+    <div class="content">
+        <router-outlet ></router-outlet>
+    </div>
 </section> 
