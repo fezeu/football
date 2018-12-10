@@ -20,6 +20,13 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+    $(document).on('scroll',function(){
+      let height = $('.tete').outerHeight();
+      $('.menu1').css({
+        'position':'fixed',
+        top:height+ 15
+      })
+    })
   }
 
 }

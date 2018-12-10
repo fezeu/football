@@ -1,12 +1,13 @@
-.menu{
+.menu1{
     position: fixed;
     left: 0;
-    top:  120px;
+    top:  490px;
     width: 20%;
     box-shadow:0px 6px 25px 1px grey;
     background-color: #343333;
     filter: alpha(opacity=60); 
     opacity: 0.8;
+    transition-property:  position ;
 }
 .content{
     margin-left: 25%;
