@@ -43,5 +43,5 @@ export class MatchComponent implements OnInit {
       }
     })
   }
-
+}
 }

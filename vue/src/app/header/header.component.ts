@@ -1,6 +1,7 @@
 import { Component, OnInit , Input, OnChanges, SimpleChanges} from '@angular/core';
 import { MessageToHeadService } from '../message-to-head.service';
 import { CompteService } from '../client/compte.service';
+import { url } from 'inspector';
 
 @Component({
   selector: 'app-header',
@@ -18,9 +19,43 @@ export class HeaderComponent implements OnInit, OnChanges {
    }
 
   ngOnInit() {
-  
+    
   //this.showSlides();
+  let mesimage =['head1.jpg','head2.jpg','head3.jpg','head4.jpg'];
+  let i = 0
+  setInterval(()=>{
+     
+    $('#content').css({
+      'background-image':`url(/assets/${mesimage[i%4]})`
+    })
+    i = (4+i+1)%4
+  },10000)
+  $(document).on('scroll',function(){
+   let opacite = 1- $(document).scrollTop()/180;
+   let height = 480- $(document).scrollTop()
+   if(opacite<0)opacite=0;
+   if(height<280){
+     height=80
+     $('#apphead').css({
+      'position':'fixed', 
+      'top':'0',
+      'max-height': height
+     })
 
+    }else{
+      $('#apphead').css({
+        'position':'relative',
+        'top':'0',
+        'max-height': height
+       })
+      }
+
+    $('#content').css({ 
+      'opacity': opacite,
+      'min-height': height
+    })
+    
+});
 
 
   }
