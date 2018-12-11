@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   ngOnInit() {
     
   //this.showSlides();
-  let mesimage =['foot15.jpg','image.jpg','foot10.jpg','foot13.jpg'];
+  let mesimage =['foot10.jpg','image.jpg','foot15.jpg','foot18.jpg'];
   let i = 0
   setInterval(()=>{
    $('.navbar ul li').on('click',(e)=>{
