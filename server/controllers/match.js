@@ -117,27 +117,30 @@ exports.update = function(req, res) {
           num = 0;
           for(let i of poul.classement){
             num++;
-            classement.push({equipe:new mongoose.Types.ObjectId(i.equipe),points:0,Null:0,buts_contre:0,buts_pour:0,gagner:0,perdue:0})
+            classement.push({equipe:new mongoose.Types.ObjectId(i.equipe),nom:i.nom,points:0,Null:0,buts_contre:0,buts_pour:0,gagner:0,perdue:0})
           }
           tab = []
           tab = matchs
           
           for(let i of matchs){
-           
+           if(i.status!='pasjouer'){
+             console.log(i.equipes[0].equipe,i.equipes[1].equipe)
             for( let eq=0;eq<num;eq++ ){
-   
-              console.log(poul.classement[eq],'poiiii',classement[eq])
-              if(classement[eq].equipe == i.equipes[0].equipe){
-                classement[eq].points += (i.equipes[0].but > i.equipes[1].but)? 3: (i[0].but == i[1].but)? 1: 0;
+             
+              if(''+classement[eq].equipe == ''+i.equipes[0].equipe){
+                
+                classement[eq].points += (i.equipes[0].but > i.equipes[1].but)? 3: (i.equipes[0].but == i.equipes[1].but)? 1: 0;
                 classement[eq].Null +=  (i.equipes[0].but == i.equipes[1].but)? 1: 0;
                 classement[eq].buts_contre += i.equipes[1].but;
                 classement[eq].buts_pour += i.equipes[0].but;
                 classement[eq].gagner += (i.equipes[0].but > i.equipes[1].but)? 1 : 0;
                 classement[eq].perdue += (i.equipes[0].but < i.equipes[1].but)? 1 : 0;
+
               }
-              if(classement[eq].equipe == i.equipes[1].equipe){
-                classement[eq].points += (i.equipes[1].but > i.equipes[0].but)? 3: (i[1].but == i[0].but)? 1: 0;
-                classement[eq].Null +=  (i.equipes[1].but == i.equipes[0].but)? 1: 0;
+              if(''+ classement[eq].equipe == ''+ i.equipes[1].equipe){
+                console.log(classement[eq].equipe,i.equipes[1].equipe,i.equipes[0].equipe)
+                classement[eq].points += (i.equipes[1].but > i.equipes[0].but)? 3: (i.equipes[1].but == i.equipes[0].but)? 1: 0;
+                classement[eq].Null +=  (i.equipes[0].but == i.equipes[1].but)? 1: 0;
                 classement[eq].buts_contre += i.equipes[0].but;
                 classement[eq].buts_pour += i.equipes[1].but;
                 classement[eq].gagner += (i.equipes[1].but > i.equipes[0].but)? 1 : 0;
@@ -145,8 +148,10 @@ exports.update = function(req, res) {
               }
               
             }
+           }
+          
           }
-          t=[]
+          let classons = [{equipe:new mongoose.Types.ObjectId(i.equipe),nom:i.nom,points:0,Null:0,buts_contre:0,buts_pour:0,gagner:0,perdue:0}]
           
           Poule.updateOne({"_id":req.body.poule},{classement:classement},(err,good)=>{
             if (err){

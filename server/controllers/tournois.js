@@ -125,24 +125,36 @@ creerpoule=function(nom,valeur,equipes,id,event){
 creermatch = function(equipes, id,event){
     
     if(equipes.length == 2){
-        Match.create({equipes:[{equipe:equipes[0],but:0},{equipe:equipes[1],but:0}],status:'pasjouer',poule:id},(err, bien)=>{
-          if(err){
-              console.log(err)
-              return false
-          }
-          event.emit('match')
+        Equipe.findOne({_id:equipes[0]},(err,eqp)=>{
+            if(err){
+                console.log(err)
+                return false
+            }
+            Equipe.findOne({_id:equipes[1]},(err,eqp1)=>{
+                if(err){
+                    console.log(err)
+                    return false
+                }
+                Match.create({equipes:[{equipe:equipes[0],but:0,nom:eqp.nom},{equipe:equipes[1],but:0,nom:eqp1.nom}],status:'pasjouer',poule:id},(err, bien)=>{
+                    if(err){
+                        console.log(err)
+                        return false
+                    }
+                    console.log('localhost:3000->match create',equipes[0],' ',equipes[1])
+                    event.emit('match')
+                  })
+            })
         })
+
     }else {
         if(equipes.length==4){
-             equipe = equipes.pop()
-            creermatch([equipe,equipes[0]],id,event)
-            creermatch([equipe,equipes[1]],id,event)
-            creermatch([equipe,equipes[2]],id,event)
-            equipe = equipes.pop()
-            creermatch([equipe,equipes[0]],id,event)
-            creermatch([equipe,equipes[1]],id,event)
-            equipe = equipes.pop()
-            creermatch([equipe,equipes[0]],id,event)
+            
+            creermatch([equipes[0],equipes[1]],id,event);
+            creermatch([equipes[1],equipes[3]],id,event);
+            creermatch([equipes[2],equipes[3]],id,event);
+            creermatch([equipes[0],equipes[2]],id,event);
+            creermatch([equipes[0],equipes[3]],id,event);
+            creermatch([equipes[1],equipes[2]],id,event);
         }
     }
 
