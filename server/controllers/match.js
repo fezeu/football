@@ -113,39 +113,47 @@ exports.update = function(req, res) {
           }
           
          
-  
-          for(let i in poul.classement){
-            
+          let classement = []
+          num = 0;
+          for(let i of poul.classement){
+            num++;
+            classement.push({equipe:new mongoose.Types.ObjectId(i.equipe),nom:i.nom,points:0,Null:0,buts_contre:0,buts_pour:0,gagner:0,perdue:0})
           }
           tab = []
-         tab = poul.classement.toArray()
           tab = matchs
           
           for(let i of matchs){
-           console.log(tab,tab.legnth)
-            for( let eq in poul.classement.keys()){
+           if(i.status!='pasjouer'){
+             console.log(i.equipes[0].equipe,i.equipes[1].equipe)
+            for( let eq=0;eq<num;eq++ ){
+             
+              if(''+classement[eq].equipe == ''+i.equipes[0].equipe){
+                
+                classement[eq].points += (i.equipes[0].but > i.equipes[1].but)? 3: (i.equipes[0].but == i.equipes[1].but)? 1: 0;
+                classement[eq].Null +=  (i.equipes[0].but == i.equipes[1].but)? 1: 0;
+                classement[eq].buts_contre += i.equipes[1].but;
+                classement[eq].buts_pour += i.equipes[0].but;
+                classement[eq].gagner += (i.equipes[0].but > i.equipes[1].but)? 1 : 0;
+                classement[eq].perdue += (i.equipes[0].but < i.equipes[1].but)? 1 : 0;
+
+              }
+              if(''+ classement[eq].equipe == ''+ i.equipes[1].equipe){
+                console.log(classement[eq].equipe,i.equipes[1].equipe,i.equipes[0].equipe)
+                classement[eq].points += (i.equipes[1].but > i.equipes[0].but)? 3: (i.equipes[1].but == i.equipes[0].but)? 1: 0;
+                classement[eq].Null +=  (i.equipes[0].but == i.equipes[1].but)? 1: 0;
+                classement[eq].buts_contre += i.equipes[0].but;
+                classement[eq].buts_pour += i.equipes[1].but;
+                classement[eq].gagner += (i.equipes[1].but > i.equipes[0].but)? 1 : 0;
+                classement[eq].perdue += (i.equipes[1].but < i.equipes[0].but)? 1 : 0;
+              }
               
-              console.log(eq)
-              if(poul.classement[eq].equipe == i.equipes[0].equipe){
-                poul.classement[eq].points += (i.equipes[0].but > i.equipes[1].but)? 3: (i[0].but == i[1].but)? 1: 0;
-                poul.classement[eq].Null +=  (i.equipes[0].but == i.equipes[1].but)? 1: 0;
-                poul.classement[eq].buts_contre += i.equipes[1].but;
-                poul.classement[eq].buts_pour += i.equipes[0].but;
-                poul.classement[eq].gagner += (i.equipes[0].but > i.equipes[1].but)? 1 : 0;
-                poul.classement[eq].perdue += (i.equipes[0].but < i.equipes[1].but)? 1 : 0;
-              }
-              if(poul.classement[eq].equipe == i.equipes[1].equipe){
-                poul.classement[eq].points += (i.equipes[1].but > i.equipes[0].but)? 3: (i[1].but == i[0].but)? 1: 0;
-                poul.classement[eq].Null +=  (i.equipes[1].but == i.equipes[0].but)? 1: 0;
-                poul.classement[eq].buts_contre += i.equipes[0].but;
-                poul.classement[eq].buts_pour += i.equipes[1].but;
-                poul.classement[eq].gagner += (i.equipes[1].but > i.equipes[0].but)? 1 : 0;
-                poul.classement[eq].perdue += (i.equipes[1].but < i.equipes[0].but)? 1 : 0;
-              }
             }
+           }
+          
           }
-         
-          Poule.updateOne({"_id":req.body.poule},{classement:poul.classement},(err,good)=>{
+          let classons = [{equipe:new mongoose.Types.ObjectId(i.equipe),nom:i.nom,points:0,Null:0,buts_contre:0,buts_pour:0,gagner:0,perdue:0}]
+          
+          Poule.updateOne({"_id":req.body.poule},{classement:classement},(err,good)=>{
             if (err){
               console.log('localhost:3000->db error 503')
               return res.send({status:null,message:err})

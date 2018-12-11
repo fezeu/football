@@ -24,9 +24,12 @@ export class MatchComponent implements OnInit {
         t = e['message']
         
         if(t){
-          this.macth.poule=e['poule']
-          this.macth.equipes[0].equipe = t[0].equipe2.id
+          this.macth.poule=e['poule'];
+          this.macth.equipes[0].but = t[0].but1;
+          this.macth.equipes[1].but = t[0].but2;
+          this.macth.equipes[0].equipe = t[0].equipe1.id
           this.macth.equipes[1].equipe = t[0].equipe2.id
+          console.log(t)
           this.result.next(t);
         }
         
