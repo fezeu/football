@@ -8,6 +8,7 @@ Match = mongoose.model('Match');
 StatMatch = mongoose.model('StatMatch');
 Programme = mongoose.model('Programme');
 Poule = mongoose.model('Poule');
+Equipe = mongoose.model('Equipe');
 var EventEmitter = require('events').EventEmitter;
 
 exports.intit = function(req,res){
@@ -60,26 +61,64 @@ updateprogramme=function(id,date,idp){
 }
 creerpoule=function(nom,valeur,equipes,id,event){
     if(equipes.lenght == 2){
-        Poule.create({tournois:id,nom:nom,niveau:valeur,
-            classement:[{equipe:equipes[0]},{equipe:equipes[1]}]},(err,pl)=>{
+        return Equipe.findOne({_id:equipes[0]},(err,eqp)=>{
+            if(err){
+                console.log(err)
+                return false
+            } 
+            return Equipe.findOne({_id:equipes[1]},(err,eqp1)=>{
                 if(err){
                     console.log(err)
                     return false
-                }
-                updatepool(pl._id,id)
-                creermatch(equipes,pl._id,event)
+                } 
+                return Poule.create({tournois:id,nom:nom,niveau:valeur,
+                    classement:[{equipe:equipes[0],nom:eqp.nom},{equipe:equipes[1],nom:eqp1.nom}]},(err,pl)=>{
+                        if(err){
+                            console.log(err)
+                            return false
+                        }
+                        updatepool(pl._id,id)
+                        creermatch(equipes,pl._id,event)
+                    })
             })
+        })
+ 
     }else{
-        Poule.create({tournois:id,nom:nom,niveau:valeur,
-            classement:[{equipe:equipes[0]},{equipe:equipes[1]},{equipe:equipes[2]},{equipe:equipes[3]}]},(err,pl)=>{
+        return Equipe.findOne({_id:equipes[0]},(err,eqp)=>{
+            if(err){
+                console.log(err)
+                return false
+            } 
+            return Equipe.findOne({_id:equipes[1]},(err,eqp1)=>{
                 if(err){
                     console.log(err)
                     return false
-                }
-                creermatch(equipes,pl._id,event)
-                updatepool(pl._id,id)
-                
+                } 
+                return Equipe.findOne({_id:equipes[2]},(err,eqp2)=>{
+                    if(err){
+                        console.log(err)
+                        return false
+                    } 
+                   return Equipe.findOne({_id:equipes[3]},(err,eqp3)=>{
+                        if(err){
+                            console.log(err)
+                            return false
+                        } 
+                        Poule.create({tournois:id,nom:nom,niveau:valeur,
+                            classement:[{equipe:equipes[0],nom:eqp.nom},{equipe:equipes[1],nom:eqp1.nom},{equipe:equipes[2],nom:eqp2.nom},{equipe:equipes[3],nom:eqp3.nom}]},(err,pl)=>{
+                                if(err){
+                                    console.log(err)
+                                    return false
+                                }
+                                creermatch(equipes,pl._id,event)
+                                updatepool(pl._id,id)
+                                
+                            })
+                    })
+                })
             })
+        })
+        
     }
 
 }

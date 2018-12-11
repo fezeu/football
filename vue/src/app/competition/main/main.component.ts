@@ -35,6 +35,26 @@ export class MainComponent implements OnInit {
    }
 
   ngOnInit() {
+    $(document).on('scroll',function(){
+      let height = $('.tete').outerHeight();
+      if(height<=95){
+        $('.menu1').css({
+          'position':'fixed',
+           'top': 95
+        });
+        $('.topajuste').css({
+          'margin-top':290
+        });
+      }else{
+        $('.menu1').css({
+          'position':'relative',
+        });
+        $('.topajuste').css({
+          'margin-top':0
+        });
+      }
+      
+    })
   }
   tournois(){
     console.log(this.id)

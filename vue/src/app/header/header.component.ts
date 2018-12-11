@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   ngOnInit() {
     
   //this.showSlides();
-  let mesimage =['head1.jpg','head2.jpg','head3.jpg','head4.jpg'];
+  let mesimage =['head1.jpg','image.jpg','foot10.jpg','foot13.jpg'];
   let i = 0
   setInterval(()=>{
    $('.navbar ul li').on('click',(e)=>{
@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit, OnChanges {
     i = (4+i+1)%4
   },10000)
   $(document).on('scroll',function(){
-   let opacite = 1- $(document).scrollTop()/180;
+   let opacite = 1- $(document).scrollTop()/220;
    let height = 480- $(document).scrollTop()
    if(opacite<0)opacite=0;
    if(height<280){

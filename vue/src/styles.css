@@ -32,10 +32,10 @@ h2{
     background: #fff;
 }
 .joliemain{
-    display: block;
+    display: inline-block;
     widows: 100%;
-    margin-top: 170px;
-    z-index: 3001;
+    margin-top: 5px;
+    z-index: 1999;
 }
 
 label {

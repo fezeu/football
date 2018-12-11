@@ -4,7 +4,7 @@ Match = mongoose.model('Match');
 Tournois = mongoose.model('Tournois');
 Poule = mongoose.model('Poule');
 Equipe = mongoose.model('Equipe');
-
+EventEmitter = require('events').EventEmitter
 
 exports.findAll = function(req, res){
   Match.find({},function(err, results) {
@@ -92,69 +92,81 @@ exports.update = function(req, res) {
       return res.send({status:false,message:'NotFound'})
     }
   var id = req.params.id;
+  marchup = false
+  event = new EventEmitter();
+  event.on('match',()=>{
+    console.log('localhost:3000->match update');
+    return res.send({status:true})
+  });
+  event.on('update',()=>{
+   
+      Poule.findOne({"_id":req.body.poule},(err,poul)=>{
+        if (err){
+          console.log('localhost:3000->db error 503')
+          return res.send({status:null,message:err})
+        }
+       
+        Match.find({poule:req.body.poule},(err,matchs)=>{
+          if (err){
+            console.log('localhost:3000->db error 503')
+            return res.send({status:null,message:err})
+          }
+          
+         
   
+          for(let i in poul.classement){
+            
+          }
+          tab = []
+         tab = poul.classement.toArray()
+          tab = matchs
+          
+          for(let i of matchs){
+           console.log(tab,tab.legnth)
+            for( let eq in poul.classement.keys()){
+              
+              console.log(eq)
+              if(poul.classement[eq].equipe == i.equipes[0].equipe){
+                poul.classement[eq].points += (i.equipes[0].but > i.equipes[1].but)? 3: (i[0].but == i[1].but)? 1: 0;
+                poul.classement[eq].Null +=  (i.equipes[0].but == i.equipes[1].but)? 1: 0;
+                poul.classement[eq].buts_contre += i.equipes[1].but;
+                poul.classement[eq].buts_pour += i.equipes[0].but;
+                poul.classement[eq].gagner += (i.equipes[0].but > i.equipes[1].but)? 1 : 0;
+                poul.classement[eq].perdue += (i.equipes[0].but < i.equipes[1].but)? 1 : 0;
+              }
+              if(poul.classement[eq].equipe == i.equipes[1].equipe){
+                poul.classement[eq].points += (i.equipes[1].but > i.equipes[0].but)? 3: (i[1].but == i[0].but)? 1: 0;
+                poul.classement[eq].Null +=  (i.equipes[1].but == i.equipes[0].but)? 1: 0;
+                poul.classement[eq].buts_contre += i.equipes[0].but;
+                poul.classement[eq].buts_pour += i.equipes[1].but;
+                poul.classement[eq].gagner += (i.equipes[1].but > i.equipes[0].but)? 1 : 0;
+                poul.classement[eq].perdue += (i.equipes[1].but < i.equipes[0].but)? 1 : 0;
+              }
+            }
+          }
+         
+          Poule.updateOne({"_id":req.body.poule},{classement:poul.classement},(err,good)=>{
+            if (err){
+              console.log('localhost:3000->db error 503')
+              return res.send({status:null,message:err})
+            }
+            event.emit('match')
+          })
+        })
+  
+      })
+     
+  })
   Match.updateOne({"_id":id}, {equipes:req.body.equipes,status:req.body.status,statistiques:req.body.statistiques},
     function (err, up) {
       if (err){
         console.log('localhost:3000->db error 503')
         return res.send({status:null,message:err})
       }
-      if(up){
-        console.log(up)
-        Poule.findOne({"_id":req.body.poule},(err,poul)=>{
-          if (err){
-            console.log('localhost:3000->db error 503')
-            return res.send({status:null,message:err})
-          }
-          console.log(poul)
-          Match.find({poule:req.body.poule},(err,matchs)=>{
-            if (err){
-              console.log('localhost:3000->db error 503')
-              return res.send({status:null,message:err})
-            }
-            let classement = []
-            let tab = []
-            tab = poul.classement
-            for(let i of tab){
-              classement.push({equipe:i.equipe,points:0,gagner:0,perdue:0,Null:0,buts_pour:0,buts_contre:0})
-            }
-            tab = matchs
-            let eq = 0
-            for(let i of matchs){
-
-              for( eq=0;eq <classement.legnth;eq++){
-                if(classement[eq].equipe == i[0].equipe){
-                  classement[eq].points += (i[0].but > i[1].but)? 3: (i[0].but == i[1].but)? 1: 0;
-                  classement[eq].Null +=  (i[0].but == i[1].but)? 1: 0;
-                  classement[eq].buts_contre += i[1].but;
-                  classement[eq].buts_pour += i[0].but;
-                  classement[eq].gagner += (i[0].but > i[1].but)? 1 : 0;
-                  classement[eq].perdue += (i[0].but < i[1].but)? 1 : 0;
-                }
-                if(classement[eq].equipe == i[1].equipe){
-                  classement[eq].points += (i[1].but > i[0].but)? 3: (i[1].but == i[0].but)? 1: 0;
-                  classement[eq].Null +=  (i[1].but == i[0].but)? 1: 0;
-                  classement[eq].buts_contre += i[0].but;
-                  classement[eq].buts_pour += i[1].but;
-                  classement[eq].gagner += (i[1].but > i[0].but)? 1 : 0;
-                  classement[eq].perdue += (i[1].but < i[0].but)? 1 : 0;
-                }
-              }
-            }
-            
-            Poule.updateOne({"_id":req.body.poule},{classement:classement},(err,good)=>{
-              if (err){
-                console.log('localhost:3000->db error 503')
-                return res.send({status:null,message:err})
-              }
-              console.log('localhost:3000->match update');
-              return res.send({status:true})
-            })
-          })
-
-        })
-       
-      }
+      marchup = true
+      event.emit('update')
   });
+  
+ 
 }
 

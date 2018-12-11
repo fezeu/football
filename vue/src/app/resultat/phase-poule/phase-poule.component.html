@@ -1,17 +1,17 @@
-<section>
+<section class="joliemain">
   <h1 id="jour1">Premiere Journee</h1>
 
-  <div class="joliemain">
+  <div >
     <app-match *ngFor="let match of jour1|async" [idmacht]="match"></app-match>
   </div>
   <h1 id="jour2">Deuxieme Journee</h1>
 
-  <div class="joliemain">
+  <div >
     <app-match *ngFor="let match of jour2|async" [idmacht]="match"></app-match>
   </div>
   <h1 id="jour1">Troisieme Journee</h1>
 
-  <div class="joliemain">
+  <div >
     <div *ngFor="let match of jour3|async">
         <app-match  [idmacht]="match" ></app-match>
     </div>

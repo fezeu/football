@@ -2,9 +2,9 @@ var mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 
 var MatchSchema = new Schema({
- equipes: [{equipe:Schema.Types.ObjectId,but:Number,default:0}],
+ equipes: {type:[{equipe:Schema.Types.ObjectId,but:Number,default:0}],sparse: true,unique: true, index:true},
  status:{type: String, enum:['jouer','pasjouer'],default:'pasjouer'},
- statistiques: [{joeur:String,but:Number}],
+ statistiques: {type:[{joeur:String,but:Number}],sparse: true,unique: true, index:true},
  poule: Schema.Types.ObjectId
 },{ sparse: true,unique: true, index:true });
 
