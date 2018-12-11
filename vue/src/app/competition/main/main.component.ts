@@ -48,6 +48,7 @@ export class MainComponent implements OnInit {
       }else{
         $('.menu1').css({
           'position':'relative',
+          'top':5
         });
         $('.topajuste').css({
           'margin-top':0

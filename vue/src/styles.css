@@ -78,13 +78,14 @@ border-radius: 5px;
 .content{
     display: inline-block;
     width: 70%;
-    
+    vertical-align: top;
 }
 .menuContainer{
-    width: 25%;
-    height: 100%;
+    width: 30%;
     display: inline-block;
+    vertical-align: top;
 }
+
 /*
 .button {
   display: inline-block;
