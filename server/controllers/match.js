@@ -124,7 +124,7 @@ exports.update = function(req, res) {
           
           for(let i of matchs){
            if(i.status!='pasjouer'){
-             console.log(i.equipes[0].equipe,i.equipes[1].equipe)
+             
             for( let eq=0;eq<num;eq++ ){
              
               if(''+classement[eq].equipe == ''+i.equipes[0].equipe){
@@ -138,7 +138,7 @@ exports.update = function(req, res) {
 
               }
               if(''+ classement[eq].equipe == ''+ i.equipes[1].equipe){
-                console.log(classement[eq].equipe,i.equipes[1].equipe,i.equipes[0].equipe)
+                
                 classement[eq].points += (i.equipes[1].but > i.equipes[0].but)? 3: (i.equipes[1].but == i.equipes[0].but)? 1: 0;
                 classement[eq].Null +=  (i.equipes[0].but == i.equipes[1].but)? 1: 0;
                 classement[eq].buts_contre += i.equipes[0].but;
@@ -151,9 +151,37 @@ exports.update = function(req, res) {
            }
           
           }
-          let classons = [{equipe:new mongoose.Types.ObjectId(i.equipe),nom:i.nom,points:0,Null:0,buts_contre:0,buts_pour:0,gagner:0,perdue:0}]
           
-          Poule.updateOne({"_id":req.body.poule},{classement:classement},(err,good)=>{
+          let classons = [];
+          console.log(classement)
+          while(num>0){
+            max = 0
+
+            for(let i=1;i<num;i++){
+              if(classement[max].points<classement[i].points){
+                max = i;
+              }else{
+                if(classement[max].points==classement[i].point){
+                  if((classement[max].buts_pour-classement[max].buts_contre)<(classement[i].buts_pour-classement[i].buts_contre)){
+                    max = i;
+                  }else{
+                    if((classement[max].buts_pour-classement[max].buts_contre)==(classement[i].buts_pour-classement[i].buts_contre)){
+                     if(classement[max].non<classement[i].nom){
+                       max = i
+                     }
+                    }
+                  }
+                }
+              }
+            }
+           
+            classons.push(classement.splice(max,1));
+            num --;
+           
+          }
+          console.log(classons,'classons')
+          
+          Poule.updateOne({"_id":req.body.poule},{classement:classons.map((val)=>{return val.pop()})},(err,good)=>{
             if (err){
               console.log('localhost:3000->db error 503')
               return res.send({status:null,message:err})
