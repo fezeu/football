@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     $(document).on('scroll',function(){
       let height = $('.tete').outerHeight();
-      if(height<=95){
+      if(height<=90){
         $('.menu1').css({
           'position':'fixed',
            'top': 95
@@ -27,7 +27,8 @@ export class MainComponent implements OnInit {
         });
       }else{
         $('.menu1').css({
-          'position':'relative',
+          'position': 'relative',
+          'top': 5
         });
         $('.topajuste').css({
           'margin-top':0
