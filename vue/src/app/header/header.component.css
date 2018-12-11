@@ -12,11 +12,11 @@
     transition-property: opacity background-color;
 }
 .overley{
-  background-size: 100%;
+  background-size: 100% 100%;
   height: 100%;
   width: 100%;
   background-repeat: no-repeat;
-  background-image: url('/assets/head1.jpg');
+  background-image: url('/assets/foot10.jpg');
   transition-property: opacity  position transform;
   vertical-align: bottom;
   z-index: 2001;
