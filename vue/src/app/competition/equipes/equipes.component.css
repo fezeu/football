@@ -1,24 +1,19 @@
 
 .form{
-     display: inline-block;
-     width: 60%;
-     margin-left: 15px;
+    margin-left: 70px;
      margin-top: 100px;
- }
- .rest{
-    display: inline-block;
-    width: 36%;
- }
+}
+ 
  #text{
      font-size: 25px;
      margin-top: 20px;
      text-align: center;
- }
+}
  #text1{
      font-size: 25px;
      margin-top: 20px;
      text-align: center;
- }
+}
  #submit{
      margin-left: 80px;
      width: 150px;
@@ -28,21 +23,21 @@
  font-size: 20px;
      border: 0px;
      cursor: pointer;
- }
+}
  .footer{
      background-color: #000;
      color: #fff;
      margin-top: 20px;
      height: 100px;
- }
+}
  .foot3{
      float:right;
      margin-right: 40%;
      margin-top: 20px;
- }
+}
  .foot2{
      float: left;
- }
+}
  .foot1{
-     text-align: center;
- }
+     text-align:center;
+}
