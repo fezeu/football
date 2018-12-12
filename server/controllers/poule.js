@@ -275,8 +275,8 @@ exports.quart = function(req,res){
                   return false
               }
               updatepool(pl._id,id);
-              creermatch([t1[0].equipe,t2[1].equipe],pl._id);
-              Match.create({equipes:[{equipe:t1[0].equipe,but:0},{equipe:t2[1].equipe,but:0}],status:'pasjoeur',poule:id},function(err, bien){
+              
+              Match.create({equipes:[{equipe:t1[0].equipe,but:0},{equipe:t2[1].equipe,but:0}],status:'pasjouer',poule:id},function(err, bien){
                 if(err){
                     console.log(err)
                     return false
@@ -300,7 +300,7 @@ exports.quart = function(req,res){
                       }
                       updatepool(pl._id,id);
                       
-                      Match.create({equipes:[{equipe:t1[1].equipe,but:0},{equipe:t2[0].equipe,but:0}],status:'pasjoeur',poule:id},function(err, bien){
+                      Match.create({equipes:[{equipe:t1[1].equipe,but:0},{equipe:t2[0].equipe,but:0}],status:'pasjouer',poule:id},function(err, bien){
                         if(err){
                             console.log(err)
                             return false
@@ -324,7 +324,7 @@ exports.quart = function(req,res){
                               }
                               updatepool(pl._id,id);
                              
-                              Match.create({equipes:[{equipe:t3[0].equipe,but:0},{equipe:t4[1].equipe,but:0}],status:'pasjoeur',poule:id},function(err, bien){
+                              Match.create({equipes:[{equipe:t3[0].equipe,but:0},{equipe:t4[1].equipe,but:0}],status:'pasjouer',poule:id},function(err, bien){
                                 if(err){
                                     console.log(err)
                                     return false
@@ -348,8 +348,8 @@ exports.quart = function(req,res){
                                           return false
                                       }
                                       updatepool(pl._id,id);
-                                      creermatch([t3[1].equipe,t4[0].equipe],pl._id);
-                                      Match.create({equipes:[{equipe:t3[1].equipe,but:0},{equipe:t4[0].equipe,but:0}],status:'pasjoeur',poule:id},function(err, bien){
+                                     
+                                      Match.create({equipes:[{equipe:t3[1].equipe,but:0},{equipe:t4[0].equipe,but:0}],status:'pasjouer',poule:id},function(err, bien){
                                         if(err){
                                             console.log(err)
                                             return false
