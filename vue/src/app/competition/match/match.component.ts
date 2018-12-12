@@ -29,7 +29,6 @@ export class MatchComponent implements OnInit {
           this.macth.equipes[1].but = t[0].but2;
           this.macth.equipes[0].equipe = t[0].equipe1.id
           this.macth.equipes[1].equipe = t[0].equipe2.id
-          console.log(t)
           this.result.next(t);
         }
         

@@ -1,10 +1,22 @@
+.classement{
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    padding: 15px;
+    padding-bottom: 40px;
+}
+.grp{
+    display: block;
+    margin-top: 50px;
+}
 .table
 {
    
 	text-align:center;
-    width: 80%;
+    width: 100%;
     margin: auto;
-    margin-top: 20px;
     border-collapse: separate;
     border-spacing: 0;
 }
@@ -44,5 +56,7 @@ th{
   h1
 {
     text-align:center;
-    
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.5em;
 }

@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 Poule = mongoose.model('Poule');
 Tournois = mongoose.model('Tournois');
 Match = mongoose.model('Match');
+EventEmitter= require('events').EventEmitter;
+var event = new EventEmitter(); 
 
 exports.findAllT = function(req, res){
   Poule.find({},function(err, results) {
@@ -38,7 +40,7 @@ exports.findById = function(req, res){
 creerpoule=function(nom,valeur,equipes,id){
   if(equipes.lenght == 2){
       Poule.create({tournois:id,nom:nom,niveau:valeur,
-          classement:[{equipe:equipes[0]},{equipe:equipes[1]}]},function(){
+          classement:[{equipe:equipes[0]},{equipe:equipes[1]}]},function(err,pl){
               if(err){
                   console.log(err)
                   return false
@@ -206,3 +208,173 @@ exports.delete = function(req, res){
   });
 };
 
+exports.quart = function(req,res){
+  let id = req.params.id
+      //on verifie si le user est connecter
+      if(typeof(req.session.auth) == 'undefined'){
+        console.log('localhost:3000->authentification fallure')
+        return res.send({status:null,message:'AuhtError'}) 
+      }
+        //on verifie si le tournoi est sein
+      let autre = true
+      for(let elm of req.session.auth.tournois){
+        if(id == elm){
+          autre = false
+        }
+      }
+      if(autre){
+        console.log('localhost:3000->ressource Tournois not found')
+        return res.send({status:false,message:'NotFound'})
+       }
+      Poule.find({niveau:1,tournois:id},function(err,pouls){
+      if(err){
+        res.send({status:null,message:err})
+      }
+      
+      let t1 ;
+      let t2 ;
+      let t3 ;
+      let t4 ;
+     console.log(pouls)
+      for(let i=0;i<4;i++){
+        if(pouls[i].nom =='GROUPE A'){
+          t1 = pouls [i].classement;
+        }
+        if(pouls[i].nom =='GROUPE B'){
+          t2 = pouls [i].classement;
+        }
+        if(pouls[i].nom =='GROUPE C'){
+          t3 = pouls [i].classement;
+        }
+        if(pouls[i].nom =='GROUPE D'){
+          t4 = pouls[i].classement;
+        }
+      }
+      console.log(t1,t2,t3,t4)
+      let nombre = 0
+      event.on('match_q',(e)=>{
+        nombre++;
+        if(nombre == 4){
+          res.send({status:true})
+        }
+      })
+      Poule.findOne({nom:'MATCH 1',niveau:2,tournois:id},function(err,trouver){
+        if(err){
+          console.log('localhost:3000->db error 503')
+          return res.send({status:null,message:err})
+        }
+        if(trouver){
+          console.log('localhost:3000->poule are ready existe');
+          return res.send({status:false,message:'DuplicateValue'})
+        }
+ 
+        Poule.create({tournois:id,nom:'MATCH 1',niveau:2,
+          classement:[{equipe:t1[0].equipe},{equipe:t2[1].equipe}]},function(err,pl){
+              if(err){
+                  console.log(err)
+                  return false
+              }
+              updatepool(pl._id,id);
+              creermatch([t1[0].equipe,t2[1].equipe],pl._id);
+              Match.create({equipes:[{equipe:t1[0].equipe,but:0},{equipe:t2[1].equipe,but:0}],status:'pasjoeur',poule:id},function(err, bien){
+                if(err){
+                    console.log(err)
+                    return false
+                }
+                event.emit('match_q')
+                Poule.findOne({nom:'MATCH 2',niveau:2,tournois:id},function(err,trouver){
+                  if(err){
+                    console.log('localhost:3000->db error 503')
+                    return res.send({status:null,message:err})
+                  }
+                  if(trouver){
+                    console.log('localhost:3000->poule are ready existe');
+                    return res.send({status:false,message:'DuplicateValue'})
+                  }
+                  
+                  Poule.create({tournois:id,nom:'MATCH 2',niveau:2,
+                  classement:[{equipe:t1[1].equipe},{equipe:t2[0].equipe}]},function(err,pl){
+                      if(err){
+                          console.log(err)
+                          return false
+                      }
+                      updatepool(pl._id,id);
+                      
+                      Match.create({equipes:[{equipe:t1[1].equipe,but:0},{equipe:t2[0].equipe,but:0}],status:'pasjoeur',poule:id},function(err, bien){
+                        if(err){
+                            console.log(err)
+                            return false
+                        }
+                        event.emit('match_q')
+                        Poule.findOne({nom:'MATCH 3',niveau:2,tournois:id},function(err,trouver){
+                          if(err){
+                            console.log('localhost:3000->db error 503')
+                            return res.send({status:null,message:err})
+                          }
+                          if(trouver){
+                            console.log('localhost:3000->poule are ready existe');
+                            return res.send({status:false,message:'DuplicateValue'})
+                          }
+                          
+                          Poule.create({tournois:id,nom:'MATCH 3',niveau:2,
+                          classement:[{equipe:t3[0].equipe},{equipe:t4[1].equipe}]},function(err,pl){
+                              if(err){
+                                  console.log(err)
+                                  return false
+                              }
+                              updatepool(pl._id,id);
+                             
+                              Match.create({equipes:[{equipe:t3[0].equipe,but:0},{equipe:t4[1].equipe,but:0}],status:'pasjoeur',poule:id},function(err, bien){
+                                if(err){
+                                    console.log(err)
+                                    return false
+                                }
+                                event.emit('match_q')
+                                Poule.findOne({nom:'MATCH 4',niveau:2,tournois:id},function(err,trouver){
+                                  if(err){
+                                    console.log('localhost:3000->db error 503')
+                                    return res.send({status:null,message:err})
+                                  }
+                                  if(trouver){
+                                    console.log('localhost:3000->poule are ready existe');
+                                    return res.send({status:false,message:'DuplicateValue'})
+                                  }
+                                 
+                                  
+                                  Poule.create({tournois:id,nom:'MATCH 3',niveau:2,
+                                  classement:[{equipe:t3[1].equipe},{equipe:t4[0].equipe}]},function(err,pl){
+                                      if(err){
+                                          console.log(err)
+                                          return false
+                                      }
+                                      updatepool(pl._id,id);
+                                      creermatch([t3[1].equipe,t4[0].equipe],pl._id);
+                                      Match.create({equipes:[{equipe:t3[1].equipe,but:0},{equipe:t4[0].equipe,but:0}],status:'pasjoeur',poule:id},function(err, bien){
+                                        if(err){
+                                            console.log(err)
+                                            return false
+                                        }
+                                        event.emit('match_q')
+                                       return updatepoole(bien._id,id)  
+                                      })
+                                  })
+                                })
+                               return updatepoole(bien._id,id)  
+                              })
+                          })
+                        })
+                       return updatepoole(bien._id,id)  
+                      })
+                  })
+                })
+               return updatepoole(bien._id,id)  
+              })
+              
+          })
+        
+      })
+      
+      
+      
+    })
+}

@@ -63,7 +63,7 @@ export class MainComponent implements OnInit {
       if(e['status']){
         this.tour =false
         this.poule = true
-        this.route.navigate(['./','phase_poule']);
+        this.route.navigate(['/competition/phase_poule']);
         
       }
     })
