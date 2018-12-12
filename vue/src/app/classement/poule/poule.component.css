@@ -5,6 +5,11 @@
     width: 80%;
     margin: auto;
     margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.promu{
+    background-color: rgb(237, 239, 241);
 }
 td
 {
@@ -14,20 +19,27 @@ td
 }
 tr{
     height: 40px;
-    background-color: #3f3da7d8;
 }
-table tr:nth-child(odd) td {
-  background-color: #F0F0F0;
+.points{
+    font-weight: bold
 }
-.cools{
-    background-color: #3f3da7d8;
-    
+td,th{
+    border-bottom: 1px solid #DFE1E5;
+    color: rgba(0,0,0,.87);
+    font-size: 14px;
+    line-height: 14px;
+    height: 40px;
+    padding: 0;
+    padding-right: 0px;
+    vertical-align: middle;
 }
+
 .eq{
-    width: 20%;
+    width: 30%;
 }
 th{
-    width: 8%;
+    font-weight: 500;
+
 }
   h1
 {

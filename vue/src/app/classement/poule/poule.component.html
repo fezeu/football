@@ -1,16 +1,16 @@
 	
-
+<h1>classement </h1>
 <div *ngFor="let poule of poule1|async">
   <table class="table">
-    <caption>classement {{poule.nom |uppercase}}</caption>
+    <caption>{{poule.nom |uppercase}}</caption>
     <thead>
       <tr>
-        <th class="eq">Equipe</th><th>point</th><th>match jouer</th><th>match gagnes</th><th>match perdues</th><th>match null</th><th>buts pour</th><th>buts contre</th><th>goal avirage</th>
+        <th></th> <th class="eq">Equipe</th><th>MJ</th><th>MG</th><th>MP</th><th>N</th><th class="points">Pts</th><th>BP</th><th>BC</th><th>DB</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let equipes of poule.classement">
-        <td>{{equipes.nom}}</td><td>{{equipes.points}}</td><td>{{equipes.gagner+equipes.perdue+equipes.Null}}</td><td>{{equipes.gagner}}</td><td>{{equipes.perdue}}</td><td>{{equipes.Null}}</td><td>{{equipes.buts_pour}}</td><td>{{equipes.buts_contre}}</td><td>{{equipes.buts_pour-equipes.buts_contre}}</td>
+      <tr *ngFor="let equipes of poule.classement; let i = index" [class.promu]="i==0||i==1">
+        <td>{{i+1}}</td> <td>{{equipes.nom}}</td><td>{{equipes.gagner+equipes.perdue+equipes.Null}}</td><td>{{equipes.gagner}}</td><td>{{equipes.perdue}}</td><td>{{equipes.Null}}</td><td class="points">{{equipes.points}}</td><td>{{equipes.buts_pour}}</td><td>{{equipes.buts_contre}}</td><td>{{equipes.buts_pour-equipes.buts_contre}}</td>
       </tr>
     </tbody>
   </table>
