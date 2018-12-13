@@ -1,3 +1,18 @@
 .match{
     box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.groupmatch{
+    box-shadow: 2px 2px 30px -2px grey;
+    padding: 15px;
+    padding-bottom: 45px;
+    margin-top: 20px;
+}
+.tout{
+    padding: 15px;
+}
+h2{
+    padding-top: 0;
+    font-size: 20px;
+    font-weight: 500;
+}

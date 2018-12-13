@@ -38,7 +38,7 @@ exports.equipesMatch = function(req, res){
               return res.send({status:null,message:err})
             }
            
-            return res.send({status:true,poule:results.poule, message:[{equipe1:{nom:equipe1.nom,id:equipe1._id,represente:equipe1.represente,coach:equipe1.coach,joueurs:equipe1.joueurs,banniere:equipe1.banniere},but1:results.equipes[0].but,equipe2:{nom:equipe2.nom,id:equipe2._id,represente:equipe2.represente,coach:equipe2.coach,joueurs:equipe2.joueurs,banniere:equipe2.banniere},but2:results.equipes[1].but}]});
+            return res.send({status:true,poule:results.poule,isjouer:results.status == 'jouer', message:[{equipe1:{nom:equipe1.nom,id:equipe1._id,represente:equipe1.represente,coach:equipe1.coach,joueurs:equipe1.joueurs,banniere:equipe1.banniere},but1:results.equipes[0].but,equipe2:{nom:equipe2.nom,id:equipe2._id,represente:equipe2.represente,coach:equipe2.coach,joueurs:equipe2.joueurs,banniere:equipe2.banniere},but2:results.equipes[1].but}]});
           })
         }else{
           res.send({status:false})

@@ -37,7 +37,10 @@ export class QuartComponent implements OnInit {
         }
         
       }
-      this.matchs.next([m1,m2,m3,m4])
+      if(m1 && m2 && m3 && m4){
+        this.matchs.next([m1,m2,m3,m4]);
+      }
+      
     })
     if(sessionStorage.getItem('user')){
       this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];
@@ -49,5 +52,11 @@ export class QuartComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  demi(){
+    this.comp.init_demi(this.id).subscribe((e)=>{
+      if(e['status']){
+        alert("tout c'est bien passer")
+      }
+    })
+  }
 }
