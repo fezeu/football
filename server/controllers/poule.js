@@ -5,7 +5,7 @@ Tournois = mongoose.model('Tournois');
 Match = mongoose.model('Match');
 EventEmitter= require('events').EventEmitter;
 var event1 = new EventEmitter(); 
-
+var event2 = new EventEmitter(); 
 exports.findAllT = function(req, res){
   Poule.find({},function(err, results) {
     if(err){
@@ -343,5 +343,71 @@ exports.quart = function(req,res){
       creerpoule1('MATCH 3',2,[t3[0].equipe,t4[1].equipe],id,event1);
       creerpoule1('MATCH 4',2,[t3[1].equipe,t4[0].equipe],id,event1); 
       
+    })
+}
+
+
+exports.demi = function(req,res){
+  let id = req.params.id
+      //on verifie si le user est connecter
+      if(typeof(req.session.auth) == 'undefined'){
+        console.log('localhost:3000->authentification fallure')
+        return res.send({status:null,message:'AuhtError'}) 
+      }
+        //on verifie si le tournoi est sein
+      let autre = true
+      for(let elm of req.session.auth.tournois){
+        if(id == elm){
+          autre = false
+        }
+      }
+      if(autre){
+        console.log('localhost:3000->ressource Tournois not found')
+        return res.send({status:false,message:'NotFound'})
+       }
+      Poule.find({niveau:2,tournois:id},function(err,pouls){
+      if(err){
+        res.send({status:null,message:err})
+      }
+      
+      let t1 ;
+      let t2 ;
+      let t3;
+      let t4;
+     console.log(pouls)
+      for(let i=0;i<2;i++){
+        if(pouls[i].nom =='MATCH 1'){
+          t1 = pouls [i].classement;
+        }
+        if(pouls[i].nom =='MATCH 2'){
+          t2 = pouls [i].classement;
+        }
+        if(pouls[i].nom =='MATCH 3'){
+          t3 = pouls [i].classement;
+        }
+        if(pouls[i].nom =='MATCH 4'){
+          t4 = pouls [i].classement;
+        }          
+      }
+      
+      let nombre = 0
+      event2.on('match',(e)=>{
+        nombre++;
+        if(nombre == 2){
+          Poule.find({tournois:id},(err,tout)=>{
+            tab=[]
+            tab = tout
+            for(let i of tab){
+                updatepoole(i._id)
+            }
+            Tournois.updateOne({_id:id},{status:'incomplet2'},(err,tour)=>{
+                return res.send({status:true,tournois:id})
+
+             })
+          })
+        }
+      })
+      creerpoule1('MATCH 5',2,[t1[0].equipe,t2[1].equipe],id,event2);
+      creerpoule1('MATCH 6',2,[t3[1].equipe,t4[0].equipe],id,event2);
     })
 }
