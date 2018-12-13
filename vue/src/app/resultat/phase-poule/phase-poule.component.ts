@@ -31,19 +31,22 @@ export class PhasePouleComponent implements OnInit {
       let t3 ;
       let t4 ;
     
-      for(let i=0;i<4;i++){
-        if(e[i].nom =='GROUPE A'){
-          t1 = e [i];
+      for(let i of e){
+        if(i){
+          if(i.nom =='GROUPE A'){
+            t1 = i;
+          }
+          if(i.nom =='GROUPE B'){
+            t2  = i;
+          }
+          if(i.nom =='GROUPE C'){
+            t3 = i;
+          }
+          if(i.nom =='GROUPE D'){
+            t4 = i;
+          }
         }
-        if(e[i].nom =='GROUPE B'){
-          t2 = e [i];
-        }
-        if(e[i].nom =='GROUPE C'){
-          t3 = e [i];
-        }
-        if(e[i].nom =='GROUPE D'){
-          t4 = e [i];
-        }
+        
       }
       this.gp1_j1.next([t1.matchs[0],t1.matchs[1]]);
       this.gp1_j2.next([t1.matchs[2],t1.matchs[3]]);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateCompService } from 'src/app/competition/create-comp.service';
+import { CreateCompService } from '../create-comp.service';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -10,7 +10,6 @@ import { Subject } from 'rxjs';
 export class QuartComponent implements OnInit {
   id
   matchs:Subject<any[]> = new Subject();
-
   constructor(
     private comp:CreateCompService
   ) { 
@@ -38,8 +37,8 @@ export class QuartComponent implements OnInit {
         }
         
       }
-      if(m1&&m2&&m3&&m4){
-        this.matchs.next([m1,m2,m3,m4])
+      if(m1 && m2 && m3 && m4){
+        this.matchs.next([m1,m2,m3,m4]);
       }
       
     })

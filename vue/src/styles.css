@@ -33,7 +33,7 @@ h2{
 }
 .joliemain{
     display: inline-block;
-    widows: 100%;
+    width: 100%;
     margin-top: 5px;
     z-index: 1999;
 }
@@ -55,9 +55,9 @@ label {
     
 }
 .scoreinput{
-     border: none;
+    border: none;
     border-bottom: 1px solid #191515;
-border-radius: 5px;
+    border-radius: 5px;
     height: 20px;
     width: 80px;
     margin-top: 80px;
@@ -80,8 +80,7 @@ border-radius: 5px;
 .content{
     display: inline-block;
     width: 70%;
-vertical-align: top;
-
+    vertical-align: top;
 }
 .menuContainer{
     width: 30%;
@@ -134,4 +133,18 @@ vertical-align: top;
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+h1
+{
+    text-align:center;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.5em;
+}
+h3{
+    text-align: center;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-top: 0;
 }

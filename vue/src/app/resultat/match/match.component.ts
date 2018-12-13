@@ -10,6 +10,7 @@ import { Observable, Subject } from 'rxjs';
 export class MatchComponent implements OnInit {
   @Input() idmacht;
   result:Subject<any[]>= new Subject();
+  isjouer = false;
   constructor(
     private comp: CreateCompService
   ) {
@@ -21,6 +22,7 @@ export class MatchComponent implements OnInit {
       if(e['status']){
         let t =[]
         t = e['message']
+        this.isjouer = e['isjouer']
         if(t){
           this.result.next(t);
         }

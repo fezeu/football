@@ -112,8 +112,6 @@ exports.login = function (req,res){
         '_id': result._id,
         'nom': result.nom,
         'email': result.email,
-        'terrains': result.terrains,
-        'calendrier': result.calendrier,
         'tournois': result.tournois
       };
       console.log('localhost:3000->user login 200ok')
@@ -121,9 +119,6 @@ exports.login = function (req,res){
         '_id': result._id,
         'nom': result.nom,
         'email': result.email,
-        'terrains': result.terrains,
-        'arbitres': result.arbitres,
-        'calendrier': result.calendrier,
         'tournois': result.tournois
       }});
     }

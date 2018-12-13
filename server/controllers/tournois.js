@@ -60,7 +60,11 @@ updateprogramme=function(id,date,idp){
 
 }
 creerpoule=function(nom,valeur,equipes,id,event){
-    if(equipes.lenght == 2){
+    taille = 0;
+    for(let i in equipes){
+      taille++;
+    }
+    if(taille == 2){
         return Equipe.findOne({_id:equipes[0]},(err,eqp)=>{
             if(err){
                 console.log(err)
@@ -148,12 +152,11 @@ creermatch = function(equipes, id,event){
 
     }else {
         if(equipes.length==4){
-            
-            creermatch([equipes[0],equipes[1]],id,event);
-            creermatch([equipes[1],equipes[3]],id,event);
-            creermatch([equipes[2],equipes[3]],id,event);
-            creermatch([equipes[0],equipes[2]],id,event);
             creermatch([equipes[0],equipes[3]],id,event);
+            creermatch([equipes[1],equipes[3]],id,event);
+            creermatch([equipes[0],equipes[2]],id,event);
+            creermatch([equipes[2],equipes[3]],id,event);
+            creermatch([equipes[0],equipes[1]],id,event);
             creermatch([equipes[1],equipes[2]],id,event);
         }
     }

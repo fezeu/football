@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { ClientModule } from './client/client.module';
 import { CompetitionModule } from './competition/competition.module';
 import { ClassementModule } from './classement/classement.module';
-import { ProgrammeModule } from './programme/programme.module';
 import { MessageToHeadService } from './message-to-head.service';
 import { FooterComponent } from './footer/footer.component';
 import { ResultatModule } from './resultat/resultat.module';
@@ -28,7 +27,6 @@ import { ResultatModule } from './resultat/resultat.module';
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    ProgrammeModule,
     ClassementModule,
     CompetitionModule,
     ClientModule,
