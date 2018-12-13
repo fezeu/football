@@ -86,4 +86,7 @@ export class CreateCompService {
   init_quart(id){
     return this.http.get(`/poule/quart/${id}`)
   }
+  init_demi(id){
+    return this.http.get(`/poule/demi/${id}`)
+  }
 }

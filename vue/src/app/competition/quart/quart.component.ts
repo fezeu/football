@@ -52,5 +52,11 @@ export class QuartComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  demi(){
+    this.comp.init_demi(this.id).subscribe((e)=>{
+      if(e['status']){
+        alert("tout c'est bien passer")
+      }
+    })
+  }
 }

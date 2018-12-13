@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateCompService } from 'src/app/competition/create-comp.service';
 import { Subject } from 'rxjs';
+import { CreateCompService } from '../create-comp.service';
 
 @Component({
   selector: 'app-demi',
@@ -16,8 +16,8 @@ export class DemiComponent implements OnInit {
     this.comp.poule3.subscribe((e)=>{
       let m1;
       let m2 ;
-   
-      console.log(e)
+ 
+      
       for(let i of e){
         if(i){
           console.log(i)
@@ -27,12 +27,12 @@ export class DemiComponent implements OnInit {
           if(i.nom == 'MATCH 6'){
             m2 = i;
           }
-          
+
         }
         
       }
-      if(m1 && m2){
-        this.matchs.next([m1,m2])
+      if(m1 && m2 ){
+        this.matchs.next([m1,m2]);
       }
       
     })
@@ -42,7 +42,7 @@ export class DemiComponent implements OnInit {
         
       })
     }
-   }
+  }
 
   ngOnInit() {
   }
