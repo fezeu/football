@@ -2,7 +2,7 @@
 module.exports = function(app){
   var poule = require('./controllers/poule');
     app.post('/poule_all',poule.findAll);
-    app.post('/poule',poule.add);
+    app.get('/poule/quart/:id',poule.quart);
     app.get('/poule',poule.findAllT);
     app.get('/poule/:id', poule.findById);
     app.put('/poule/:id', poule.update);

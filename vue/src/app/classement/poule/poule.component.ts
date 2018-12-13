@@ -18,7 +18,29 @@ export class PouleComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.poule1 = this.comp.poule1
+    this.comp.poule1.subscribe((e)=>{
+      let t1 = [];
+      let t2 = [];
+      let t3 = [];
+      let t4 = [];
+      console.log(e)
+      for(let i=0;i<4;i++){
+        if(e[i].nom =='GROUPE A'){
+          t1 = e [i];
+        }
+        if(e[i].nom =='GROUPE B'){
+          t2 = e [i];
+        }
+        if(e[i].nom =='GROUPE C'){
+          t3 = e [i];
+        }
+        if(e[i].nom =='GROUPE D'){
+          t4 = e [i];
+        }
+        this.poule1.next([t1,t2,t3,t4]);
+
+      }
+    })
     if(sessionStorage.getItem('user'))
     this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];
     this.comp.get_poul(this.id).subscribe((e)=>{

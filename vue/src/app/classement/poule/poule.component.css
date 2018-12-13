@@ -1,8 +1,27 @@
-table
+.classement{
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    padding: 15px;
+    padding-bottom: 40px;
+}
+.grp{
+    display: block;
+    margin-top: 50px;
+}
+.table
 {
    
 	text-align:center;
-	
+    width: 100%;
+    margin: auto;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+.promu{
+    background-color: rgb(237, 239, 241);
 }
 td
 {
@@ -10,18 +29,28 @@ td
 	text-align: center;    
 	
 }
-table tr:nth-child(odd) td {
-  background-color: #F0F0F0;
+tr{
+    height: 40px;
 }
-.cools{
-    background-color: #3f3da7d8;
-    
+.points{
+    font-weight: bold
 }
-  h1
-{
-    text-align:center;
-    
+td,th{
+    border-bottom: 1px solid #DFE1E5;
+    color: rgba(0,0,0,.87);
+    font-size: 14px;
+    line-height: 14px;
+    height: 40px;
+    padding: 0;
+    padding-right: 0px;
+    vertical-align: middle;
 }
-TR{
-    background-color: #3f3da7d8;
+
+.eq{
+    width: 30%;
 }
+th{
+    font-weight: 500;
+
+}
+

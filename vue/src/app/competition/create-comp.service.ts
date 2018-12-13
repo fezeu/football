@@ -83,4 +83,7 @@ export class CreateCompService {
     
     return this.http.put(`/match/${id}`,match,httpOptions)
   }
+  init_quart(id){
+    return this.http.get(`/poule/quart/${id}`)
+  }
 }

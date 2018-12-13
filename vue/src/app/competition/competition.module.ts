@@ -13,6 +13,7 @@ import { FormsModule } from  '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { PhasePouleComponent } from './phase-poule/phase-poule.component';
 import { MatchComponent } from './match/match.component';
+import { QuartComponent } from './quart/quart.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import { MatchComponent } from './match/match.component';
     CompetitionRoutingModule,
     FormsModule
   ],
-  declarations: [MainComponent, InitComponent, EquipesComponent, ArbitreComponent, TerrainComponent, JoueurComponent, MenuComponent, PhasePouleComponent, MatchComponent],
+  declarations: [MainComponent, InitComponent, EquipesComponent, ArbitreComponent, TerrainComponent, JoueurComponent, MenuComponent, PhasePouleComponent, MatchComponent, QuartComponent],
   providers: [CreateCompService]
 })
 export class CompetitionModule { }

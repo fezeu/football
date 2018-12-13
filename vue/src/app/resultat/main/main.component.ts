@@ -29,14 +29,17 @@ export class MainComponent implements OnInit {
         });
         $('.topajuste').css({
           'margin-top':290
-        })
+        });
+        
       }else{
         $('.menu1').css({
           'position':'relative',
+          'top':5
         });
         $('.topajuste').css({
           'margin-top': 0
         });
+       
       }
     })
   }
