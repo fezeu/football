@@ -16,6 +16,8 @@ export class CreateCompService {
   poule1:Subject<any> = new Subject();
   poule2:Subject<any> = new Subject();
   poule3:Subject<any> = new Subject();
+  poule4:Subject<any> = new Subject();
+
   constructor(
     private http: HttpClient
   ) { 
@@ -56,6 +58,9 @@ export class CreateCompService {
       if(niv==3){
         this.poule3.next(tniv)
       }
+      if(niv==4){
+        this.poule4.next(tniv)
+      }
       return tniv
     }))
   }else{
@@ -67,6 +72,8 @@ export class CreateCompService {
       if(t2)this.poule2.next(t2);
       let t3 = tab.map((val)=>{if(val.niveau==3)return val});
       if(t3)this.poule3.next(t3);
+      let t4 = tab.map((val)=>{if(val.niveau==4)return val});
+      if(t4)this.poule4.next(t4);
     }))
   }
   }
@@ -88,5 +95,8 @@ export class CreateCompService {
   }
   init_demi(id){
     return this.http.get(`/poule/demi/${id}`)
+  }
+  init_finale(id){
+    return this.http.get(`/poule/finale/${id}`)
   }
 }

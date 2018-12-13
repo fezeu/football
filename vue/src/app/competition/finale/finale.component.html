@@ -1,8 +1,8 @@
 <section>
-    <h1>Demi finale</h1>
+    <h1>Finale</h1>
     <article *ngFor="let match of matchs|async">
-      <h2>{{(match.nom=='MATCH 5')?'MATCH 1':'MATCH 2'}}</h2>
+
       <app-match  [idmacht]="match.matchs[0]"></app-match>
     </article>
-    <button (click)="finale()">finale</button>
+    
   </section>

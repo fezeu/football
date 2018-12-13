@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { CreateCompService } from 'src/app/competition/create-comp.service';
+import { CreateCompService } from '../create-comp.service';
 
 @Component({
   selector: 'app-finale',

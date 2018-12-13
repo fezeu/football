@@ -17,10 +17,10 @@ export class DemiComponent implements OnInit {
       let m1;
       let m2 ;
    
-      console.log(e)
+   
       for(let i of e){
         if(i){
-          console.log(i)
+    
           if(i.nom == 'MATCH 5'){
             m1 = i;
           }

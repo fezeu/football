@@ -20,7 +20,7 @@ export class DemiComponent implements OnInit {
       
       for(let i of e){
         if(i){
-          console.log(i)
+          
           if(i.nom == 'MATCH 5'){
             m1 = i;
           }
@@ -46,5 +46,11 @@ export class DemiComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  finale(){
+    this.comp.init_finale(this.id).subscribe((e)=>{
+      if(e['status']){
+        alert("tout c'est bien passer")
+      }
+    })
+  }
 }
