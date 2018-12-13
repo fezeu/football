@@ -1,6 +1,6 @@
 <section>
     <a name="jour1"></a>
-  <h1 id="jour1">Premiere Journee</h1>
+  <h1 >Premiere Journee</h1>
 
   <div class="joliemain">
     <h3>GROUPE A</h3>
@@ -20,8 +20,8 @@
       <h3>GROUPE D</h3>
     <app-match *ngFor="let match of gp4_j1|async" [idmacht]="match"></app-match>
   </div>
-  
-  <h1 id="jour2">Deuxieme Journee</h1>
+  <a name="jour2"></a>
+  <h1 >Deuxieme Journee</h1>
 
   <div class="joliemain">
       <h3>GROUPE A</h3>
@@ -60,5 +60,5 @@
         <h3>GROUPE D</h3>
       <app-match *ngFor="let match of gp4_j3|async" [idmacht]="match"></app-match>
     </div>
-    <button (click)="quart()">inti quart</button>
+    <button (click)="quart()" id="quart" class="button"><span>GO TO QUART</span></button>
 </section>
