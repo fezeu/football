@@ -11,27 +11,27 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnInit {
   poule = false;
   tour = false
-  id
+  id;
+  private Tstatus
   constructor(
     private mes: MessageToHeadService,
     private comp: CreateCompService,
     private route: Router
   ) {
     this.mes.message.emit({object:'affiche'});
-    if(sessionStorage.getItem('user'))
-    this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];
-    this.comp.get_status(this.id).subscribe((e)=>{
-      if(e['status']){
-        if(e['status']=='incomplet1'){
-          this.poule = true
-          this.route.navigate(['/competition/phase_poule']);
-        }else{
-          this.tour =true
-        }
-      }else{
-        this.tour =true
-      }
-    })
+    if(sessionStorage.getItem('user')){
+      this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];
+      this.Tstatus =  sessionStorage.getItem('Tstatus')
+    }
+    if(this.Tstatus){
+      this.check_status(this.Tstatus)
+    }else{
+      this.comp.get_status(this.id).subscribe((e)=>{
+        this.check_status(this.Tstatus);
+        sessionStorage.setItem('Tstatus',e['status'])
+      })
+    }
+
    }
 
   ngOnInit() {
@@ -57,6 +57,24 @@ export class MainComponent implements OnInit {
       
     })
   }
+  private check_status(status){
+    if(status){
+      if(status=='incomplet1'){
+        this.poule = true
+        this.route.navigate(['/competition/phase_poule']);
+      }else{
+        if(status=='incomplet2'){
+          this.poule = true
+          this.route.navigate(['/competition/quart']);
+        }else{
+          this.tour =true
+        }
+       
+      }
+    }else{
+      this.tour =true
+    }
+  }
   tournois(){
     console.log(this.id)
     this.comp.create_tournois(this.id).subscribe((e)=>{
@@ -64,7 +82,7 @@ export class MainComponent implements OnInit {
         this.tour =false
         this.poule = true
         this.route.navigate(['/competition/phase_poule']);
-        
+        sessionStorage.setItem('Tstatus',e['status']);
       }
     })
   }

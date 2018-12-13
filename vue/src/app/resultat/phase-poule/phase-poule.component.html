@@ -1,10 +1,10 @@
-<section>
+<section class="match">
     <h1 id="jour1">Premiere Journee</h1>
   
-    <div class="joliemain">
+   <div class="joliemain">
       <h3>GROUPE A</h3>
       <app-match *ngFor="let match of gp1_j1|async" [idmacht]="match"></app-match>
-    </div>
+    </div> 
     <div class="joliemain">
         <h3>GROUPE B</h3>
       <app-match *ngFor="let match of gp2_j1|async" [idmacht]="match"></app-match>
