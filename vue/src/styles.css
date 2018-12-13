@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body{
     margin: 0px;
-    background-color: #fff;
+    background-color: rgb(250, 242, 242);
     background-attachment: fixed;
     background-size: 100% 100%;
 }
