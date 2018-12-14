@@ -81,6 +81,16 @@
 .dec{
     float: right;
 }
+@media screen and (max-width:480px){
+    .navbar ul li{
+    
+    display: none;
+        
+    
+    height: 30px;
+   
+}
+}
 /*
 * {box-sizing:border-box}
 body {font-family: Verdana,sans-serif;}
