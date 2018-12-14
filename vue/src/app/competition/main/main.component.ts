@@ -14,33 +14,10 @@ export class MainComponent implements OnInit {
   id;
   private Tstatus
   constructor(
-    private mes: MessageToHeadService,
-    private comp: CreateCompService,
-    private route: Router
+
   ) {
-    this.mes.message.emit({object:'affiche'});
-    if(sessionStorage.getItem('user')){
-      this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];
-      this.Tstatus =  sessionStorage.getItem('Tstatus')
-    }
-    if(this.Tstatus){
-      if(this.Tstatus =='incomplet'){
-        this.tour =true
-      }else{
-        this.poule = true
-        this.route.navigate(['/competition/phase_poule']);
-      }
-    }else{
-      this.comp.get_status(this.id).subscribe((e)=>{
-        if(e['status'] =='incomplet'){
-          this.tour =true
-        }else{
-          this.poule = true
-          this.route.navigate(['/competition/phase_poule']);
-        } 
-        sessionStorage.setItem('Tstatus',e['status'])
-      })
-    }
+   
+    
 
    }
 
@@ -68,15 +45,5 @@ export class MainComponent implements OnInit {
     })
   }
  
-  tournois(){
-    console.log(this.id)
-    this.comp.create_tournois(this.id).subscribe((e)=>{
-      if(e['status']){
-        this.tour =false
-        this.poule = true
-        this.route.navigate(['/competition/phase_poule']);
-        sessionStorage.setItem('Tstatus',e['status']);
-      }
-    })
-  }
+
 }

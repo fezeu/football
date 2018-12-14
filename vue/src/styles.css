@@ -38,18 +38,34 @@ h2{
     z-index: 1999;
 }
 
-label {
-    width: 400px;
-    margin-right: 20px;
-    padding-right:40px;
-}
 
+button{
+    overflow: hidden;
+    color: #fff;
+    background-color: #7451eb;
+    border-color: #7451eb;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    outline: none;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+}
 .jolieinput input{
 
     border: none;
     border-bottom: 1px solid #191515;
-    width: 250px;
-    border-radius: 5px;
+    width: 70%;
     height: 30px;
     font-size: 20px;
     

@@ -14,6 +14,7 @@ import { MatchComponent } from './match/match.component';
 import { QuartComponent } from './quart/quart.component';
 import { DemiComponent } from './demi/demi.component';
 import { FinaleComponent } from './finale/finale.component';
+import { NewCompComponent } from './new-comp/new-comp.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,7 @@ import { FinaleComponent } from './finale/finale.component';
     CompetitionRoutingModule,
     FormsModule
   ],
-  declarations: [MainComponent, InitComponent, EquipesComponent, JoueurComponent, MenuComponent, PhasePouleComponent, MatchComponent, QuartComponent, DemiComponent, FinaleComponent],
+  declarations: [MainComponent, InitComponent, EquipesComponent, JoueurComponent, MenuComponent, PhasePouleComponent, MatchComponent, QuartComponent, DemiComponent, FinaleComponent, NewCompComponent],
   providers: [CreateCompService]
 })
 export class CompetitionModule { }
