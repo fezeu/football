@@ -17,17 +17,14 @@ export class EquipesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-     
-  }
-  
-  photoe(liste){
-    var image = document.createElement('img');
-  
-        image.src = window.URL.createObjectURL(liste[0]);
+    document.querySelector('#equipePhoto').addEventListener('change', function() {
 
-    console.log(liste.files)
-    $('.photo').append(image)
+      alert(this.files[0].name);
+  
+  });
   }
+  
+  
   neww(e){
     if(e)
     this.joueurs.push(e)
