@@ -10,7 +10,7 @@ import { MessageToHeadService } from './message-to-head.service';
   animations:[slideInAnimation]
 })
 export class AppComponent {
-  affiche: boolean = false;
+  affiche: boolean = true;
   style = {};
   constructor(
     private mes : MessageToHeadService

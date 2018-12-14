@@ -1,4 +1,6 @@
-var express = require('express'),
+var express = require('express');
+var morgan = require('morgan');
+var favicon = require('serve-favicon');
 mongoose = require('mongoose'),
 fs = require('fs');
 var csrf = require('csurf') // Charge le middleware de sessions
@@ -16,9 +18,9 @@ db.on('error', function () {
   throw new Error('unable to connect to database at ' + mongoUri);
 });
 // supprimer la db
-/*db.dropDatabase('footappbase',function(err){
+db.dropDatabase('footappbase',function(err){
   console.log(err)
-})*/
+})
 
 
 // create express app
@@ -29,7 +31,9 @@ var api = createApiRouter()
 
 // mount api before csrf is appended to the app stack
 app.use('/api', api)
-
+.use(morgan('combined'))
+.use(express.static(__dirname + '/vue'))
+.use(favicon(__dirname + '/vue/favicon.ico'))
 // now add csrf and other middlewares, after the "/api" was mounted
 //pour lire le json 
 app.use(bodyParser.json());

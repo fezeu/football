@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit, OnChanges {
     i = (4+i+1)%4
   },10000)
   $(document).on('scroll',function(){
-   let opacite = 1- $(document).scrollTop()/220;
+   let opacite = 1- $(document).scrollTop()/180;
    let height = 480- $(document).scrollTop()
    if(opacite<0)opacite=0;
    if(height<280){

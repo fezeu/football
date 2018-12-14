@@ -8,6 +8,7 @@ import { CreateCompService } from '../create-comp.service';
 })
 export class EquipesComponent implements OnInit {
   joueurs = []
+  photo = false;
   @Input('_id') _id;
   @Output('event')event:EventEmitter <any> = new EventEmitter();
   equipe = {id:'',_id:'',nom:'',coach:'',represente:'',banniere:''}
@@ -16,6 +17,16 @@ export class EquipesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+     
+  }
+  
+  photoe(liste){
+    var image = document.createElement('img');
+  
+        image.src = window.URL.createObjectURL(liste[0]);
+
+    console.log(liste.files)
+    $('.photo').append(image)
   }
   neww(e){
     if(e)

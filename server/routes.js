@@ -3,6 +3,8 @@ module.exports = function(app){
   var poule = require('./controllers/poule');
     app.post('/poule_all',poule.findAll);
     app.get('/poule/quart/:id',poule.quart);
+    app.get('/poule/demi/:id',poule.demi);
+    app.get('/poule/finale/:id',poule.finale);
     app.get('/poule',poule.findAllT);
     app.get('/poule/:id', poule.findById);
     app.put('/poule/:id', poule.update);

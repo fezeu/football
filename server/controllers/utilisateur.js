@@ -35,7 +35,7 @@ exports.add = function(req, res) {
           console.log('localhost:3000->db error 504')
           return res.send({status:null,message:err})
         }
-        Tournois.create({organisateurs:[req.body.nom]},(err,ok)=>{
+        Tournois.create({organisateurs:[req.body.nom],status:'incomplet'},(err,ok)=>{
           if (err) {
             console.log('localhost:3000->db error 504')
             return  res.send({status:null,message:err})
