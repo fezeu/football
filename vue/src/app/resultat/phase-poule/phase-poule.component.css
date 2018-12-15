@@ -16,3 +16,8 @@ h2{
     font-size: 20px;
     font-weight: 500;
 }
+@media screen and (max-width:480px){
+    .tout{
+        margin-top: 350px;
+    }
+}

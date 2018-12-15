@@ -9,3 +9,8 @@ h3{
 
     margin-top: 20px;
 }
+@media screen and (max-width:480px){
+    .tout{
+        margin-top: 300px;
+    }
+}

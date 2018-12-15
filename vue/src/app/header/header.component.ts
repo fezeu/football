@@ -9,6 +9,7 @@ import { CompteService } from '../client/compte.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnChanges {
+    men=true;
   @Input() style = [{}];
   slideIndex = 0;
   constructor(
@@ -62,7 +63,30 @@ export class HeaderComponent implements OnInit, OnChanges {
     
 });
 
-
+document.getElementById("menu").onclick=function(){
+    if(this.men){
+    $(".navbar ul li").css({
+        "display":"block"
+        })
+    this.men=false
+       $('#apphead').css({
+        'position':'relative',
+        'top':'-5px',
+        'max-height': 200,
+       // 'transform': `translate3d(0,${height},0)`
+       })
+     $(document).scrollTop(0)   
+        
+    }
+    else{
+         $(".navbar ul li").css({
+        "display":"none"
+    })
+    this.men=true
+   
+    }
+    
+}
   }
   ngOnChanges(changes: SimpleChanges){
     for (let elm in changes.style.currentValue){
