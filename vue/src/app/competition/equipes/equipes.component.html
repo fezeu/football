@@ -1,6 +1,9 @@
 <div class="formulaire">
+    <div class="message"></div>
     <h1>Equipe</h1>
-<form     class="form" (submit)="add()" >
+<form     class="form" (submit)="sendep(fil)" >
+<div class="equipe">
+    <div class="basique">
         <div class="formgroup">
                 <div class="jolielabel">
                     <label for="name">NOM:</label>
@@ -29,23 +32,34 @@
         </div>
 
 
-    <div class="formgroup">
-        <button type="submit">Enregistrer</button>
-    </div>
-    </form> 
-    <div  class="formgroup">
+  
+</div>
+ 
+    <div  class="photo">
         <div id="prev"></div>
-        <form action="/photoequipe" (submit)="sendep(fil)" id="savephoto"  method="post" enctype="multipart/form-data">
+        <div class="buttonCo">
+            <button class="buttonCe">photo</button>
+        </div>
           <input type="file" id="file" #fil name="equipe" [(ngModel)]='photo' />
-          <button type="submit">Save</button>
-        </form>
+ 
     </div>
-    <div class="rest">
-        <ul>
-            <li *ngFor="let joueur of joueurs">{{joueur}}</li>
-        </ul>
+</div>
+  
+    <div class="joueurInfos">
+        <div class="joueur">
+                <app-joueur [_id]="_id" [equipe]="equipe.nom" (nom)="neww($event)"></app-joueur>
+        </div>
+        <div class="rest"> 
+                <h3>Liste joueurs</h3>
+                <ul class="liens">
+                    <li *ngFor="let joueur of joueurs" class="button">{{joueur}}</li>
+                </ul>
+        </div>
     </div>
-    <app-joueur [_id]="_id" [equipe]="equipe.nom" (nom)="neww($event)">equipe ici</app-joueur>
+        <div class="buttonCo prin">
+                <button type="submit" class="buttonCe ">Enregistrer</button>
+        </div>
+    </form>
 </div>
 
 

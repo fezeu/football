@@ -46,6 +46,7 @@ exports.add = function(req, res) {
         console.log('localhost:3000->db error 504')
         return res.send({status:null,message:err})
       }
+      
       //equipe pleine
       if(bien.length>=23){
         console.log('localhost:3000->add player faillure complete team')
@@ -56,13 +57,17 @@ exports.add = function(req, res) {
 
         Tournois.findOne({'_id':req.body.id},function(err,tourn){
           if(err){
-            console.log('localhost:3000->db error 504 find')
-            res.send({status:null,message:err})
+            console.log('localhost:3000->db error 503 find')
+            return res.send({status:null,message:err})
+          }
+          if(!tourn){
+            console.log('localhost:3000-> ressource tournoi ',req.body.id,'Not Found')
+            return res.send({status:false,message:'TourNotFound'})
           }
                 //on creer le joueur
           Joueur.create({nom:req.body.nom,prenom:req.body.prenom,age:req.body.age,photo:req.body.photo,taille:req.body.taille,poids:req.body.poids,poste:req.body.poste,dossard:req.body.dossard,equipe:req.body.equipe,tournois:req.body.id},function(err,good){
             if(err){
-             console.log('localhost:3000->db error 504 create')
+             console.log('localhost:3000->db error 503 create')
              return res.send({status:null,message:err})
             }
             j = []

@@ -28,7 +28,7 @@ export class JoueurComponent implements OnInit {
         this.joueur = {id:'',_id:'',equipe:'', nom:'',prenom:'',age:null,taille:null,poids:null};
        return console.log("joueur ajouter a l'equipe")
       }
-      alert("une erreur c'est produite "+ JSON.parse(e['message']))
+      alert("une erreur c'est produite "+ ['message'])
     })
   }
 

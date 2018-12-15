@@ -1,6 +1,6 @@
 import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
 import { CreateCompService } from '../create-comp.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 
 
@@ -33,13 +33,8 @@ export class EquipesComponent implements OnInit {
           
           reader.addEventListener('load', function() {
   
-              var imgElement = document.createElement('img');
-              imgElement.style.maxWidth = '150px';
-              imgElement.style.maxHeight = '150px';
-              imgElement.src = this.result;
-              prev.appendChild(imgElement);
-           
-  
+              $('#prev').css({'background-image':`url(${this.result})`});
+              
           });
   
           reader.readAsDataURL(file);
@@ -75,10 +70,12 @@ export class EquipesComponent implements OnInit {
     
 
     xhr.addEventListener('load', (e)=> {
-      if(xhr.response.status){
-        this.equipe.banniere = xhr.response.name
+      let t =JSON.parse( xhr.response)
+      if(t.status){
+        this.equipe.banniere = t.name
       }
-        alert('Upload terminé !');
+      
+      this.add()
     });
 
     var form = new FormData();

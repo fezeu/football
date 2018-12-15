@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit, OnChanges {
     
 });
 
-document.getElementById("menu").onclick=function(){
+document.getElementById("menu").onclick=()=>{
     if(this.men){
     $(".navbar ul li").css({
         "display":"block"

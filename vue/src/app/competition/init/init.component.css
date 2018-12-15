@@ -6,16 +6,7 @@
 .form{
  display: block;
  margin-top: 30px;
-}
-.jolielabel{
-    text-align: end;
-}
-input{
-    outline: none;
-    border: none;
-    border-bottom: 1px solid black;
-    color: blue;
-    border-radius: 0;
+ padding-left: 45px;
 }
 
 #text{
@@ -27,14 +18,4 @@ input{
     font-size: 25px;
     margin-top: 20px;
     text-align: center;
-}
-#submit{
-    margin-left: 80px;
-    width: 150px;
-    background-color: #2fbaf8;
-    margin-top:30px;
-    height: 30px;
-font-size: 20px;
-    border: 0px;
-    cursor: pointer;
 }

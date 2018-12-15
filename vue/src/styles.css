@@ -64,11 +64,18 @@ button{
 .jolieinput input{
 
     border: none;
-    border-bottom: 1px solid #191515;
+    border-bottom: 1px solid rgb(216, 206, 206);
     width: 70%;
     height: 30px;
     font-size: 20px;
     
+}
+input{
+    outline: none;
+    border: none;
+    
+    color: blue;
+    border-radius: 0;
 }
 .scoreinput{
     border: none;
@@ -90,8 +97,9 @@ button{
     padding: 10px;
     filter: alpha(opacity=60); 
     opacity: 1;
-   transition-property:  position ;
+    transition-property:  position ;
     z-index: 2000;
+    
 }
 .content{
     display: inline-block;
@@ -190,3 +198,22 @@ h3{
 }
 }
 
+.buttonCe{
+    display: block;
+    margin: auto;
+    width: 54%;
+    padding: 12px;
+}
+.buttonCe:hover{
+    transform: scale(1.05, 1.05);
+}
+.buttonCo{
+    margin-top: 25px;
+    margin-left: -20px;
+
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: azure!important;
+    color: blue!important;
+}
