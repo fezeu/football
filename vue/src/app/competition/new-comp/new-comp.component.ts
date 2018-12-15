@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageToHeadService } from 'src/app/message-to-head.service';
 import { CreateCompService } from '../create-comp.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-new-comp',
   templateUrl: './new-comp.component.html',
@@ -24,6 +25,7 @@ export class NewCompComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
   tournois(){
     console.log(this.id)

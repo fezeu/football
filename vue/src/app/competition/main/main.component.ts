@@ -27,21 +27,26 @@ export class MainComponent implements OnInit {
       if(height<=95){
         $('.menu1').css({
           'position':'fixed',
-           'top': 95
+           'top': 95,
+           'box-shadow': '0px 6px 25px 1px grey',
+           'transition': '0.2s  box-shadow ease-in'
         });
         $('.topajuste').css({
           'margin-top':290
         });
+        
       }else{
         $('.menu1').css({
           'position':'relative',
-          'top':5
+          'top':5,
+          'box-shadow': '0px 0px 0px 0px grey',
+          'transition': '0s  box-shadow ease-in'
         });
         $('.topajuste').css({
-          'margin-top':0
+          'margin-top': 0
         });
+       
       }
-      
     })
   }
  

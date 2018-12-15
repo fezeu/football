@@ -53,4 +53,11 @@ th{
     font-weight: 500;
 
 }
-
+@media (max-width:425px){
+    .disp{
+        display: none;
+    }
+    .eq{
+        width: 45%;
+    }
+}

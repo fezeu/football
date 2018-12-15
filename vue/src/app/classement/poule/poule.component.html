@@ -9,26 +9,27 @@
                     <th></th> 
                     <th class="eq">Equipe</th>
                     <th>MJ</th>
-                    <th>MG</th>
-                    <th>MP</th>
-                    <th>N</th>
+                    <th class="disp">MG</th>
+                    <th class="disp">MP</th>
+                    <th class="disp">N</th>
                     <th class="points">Pts</th>
-                    <th>BP</th>
-                    <th>BC</th>
+                    <th class="disp">BP</th>
+                    <th class="disp">BC</th>
                     <th>DB</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let equipes of poule.classement; let i = index" [class.promu]="i==0||i==1">
                     <td>{{i+1}}</td> 
-                    <td>{{equipes.nom}}</td>
-                    <td>{{equipes.gagner+equipes.perdue+equipes.Null}}</td>
-                    <td>{{equipes.gagner}}</td>
-                    <td>{{equipes.perdue}}</td>
-                    <td>{{equipes.Null}}</td>
+                    <td><span><img *ngIf="equipes.banniere" src="/images/`{{equipes.banniere}}`"></span>
+                        <span>{{equipes.nom}}</span></td>
+                    <td >{{equipes.gagner+equipes.perdue+equipes.Null}}</td>
+                    <td class="disp">{{equipes.gagner}}</td>
+                    <td class="disp">{{equipes.perdue}}</td>
+                    <td class="disp">{{equipes.Null}}</td>
                     <td class="points">{{equipes.points}}</td>
-                    <td>{{equipes.buts_pour}}</td>
-                    <td>{{equipes.buts_contre}}</td>
+                    <td class="disp">{{equipes.buts_pour}}</td>
+                    <td class="disp">{{equipes.buts_contre}}</td>
                     <td>{{equipes.buts_pour-equipes.buts_contre}}</td>
                 </tr>
             </tbody>

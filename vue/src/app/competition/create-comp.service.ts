@@ -8,6 +8,12 @@ const httpOptions = {
     
   })
 };
+const httpOption = {
+  headers: new HttpHeaders({
+    'Content-Type':  'multipart/form-data',
+  })
+};
+
 
 @Injectable({
   providedIn: 'root'
@@ -98,5 +104,8 @@ export class CreateCompService {
   }
   init_finale(id){
     return this.http.get(`/poule/finale/${id}`)
+  }
+  send_photo_e(photo){
+    return this.http.post('/photoequipe',photo,httpOption)
   }
 }

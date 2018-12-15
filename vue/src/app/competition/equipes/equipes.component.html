@@ -18,15 +18,7 @@
                     <input type="text" id="Represente" [(ngModel)]="equipe.represente" name="Represente" >
                 </div>
         </div>
-        <div class="formgroup">
-                <div class="jolielabel">
-                    <label for="Bannière">Bannière:</label>
-                </div>
-                <div class="jolieinput">
-                    <input type="text" id="Bannière" [(ngModel)]="equipe.banniere" name="Bannière" required>
-                </div>
-                
-        </div>
+  
         <div class="formgroup">
                 <div class="jolielabel">
                     <label for="Coach">Coach:</label>
@@ -35,17 +27,19 @@
                     <input type="text" id="Coach" [(ngModel)]="equipe.coach"  name="Coach" required>
                 </div>
         </div>
-    <div class="photo" >
 
-    </div>
-    <div class="formgroup">
-        <input type="file" name='photo' #photo (change)="photoe(photo)" accept="image/*,.pdf" id="equipePhoto"/>
-    </div>
+
     <div class="formgroup">
         <button type="submit">Enregistrer</button>
     </div>
     </form> 
- 
+    <div  class="formgroup">
+        <div id="prev"></div>
+        <form action="/photoequipe" (submit)="sendep(fil)" id="savephoto"  method="post" enctype="multipart/form-data">
+          <input type="file" id="file" #fil name="equipe" [(ngModel)]='photo' />
+          <button type="submit">Save</button>
+        </form>
+    </div>
     <div class="rest">
         <ul>
             <li *ngFor="let joueur of joueurs">{{joueur}}</li>
@@ -53,6 +47,5 @@
     </div>
     <app-joueur [_id]="_id" [equipe]="equipe.nom" (nom)="neww($event)">equipe ici</app-joueur>
 </div>
-
 
 

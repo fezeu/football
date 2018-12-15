@@ -47,6 +47,10 @@ exports.add = function(req, res) {
         console.log('localhost:3000->db error 503')
         return res.status(503).send({status:null,message:err})
       }
+      if(!tour){
+        console.log('localhost:3000->None tournoi')
+        return res.send({status:null,message:'NoneTournoi'})
+      }
       if(tour.equipes.length>=16){
         console.log('localhost:3000->add team fallure team are complete')
         return res.send({status:null,message:'TeamComplete'})

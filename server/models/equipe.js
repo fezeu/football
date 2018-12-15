@@ -7,7 +7,7 @@ var EquipeSchema = new Schema({
   banniere: String,
   coach: String,
   joueurs:{type: [Schema.Types.ObjectId], minlength: 11, maxlength: 23, required: true, index: true, unique: true, sparse: true},
-  tournois: {type:Schema.Types.ObjectId,required: true}
+  tournois: {type:Schema.Types.ObjectId,required: true},
 },{ sparse: true,unique: true, index:true });
 
 mongoose.model('Equipe', EquipeSchema);

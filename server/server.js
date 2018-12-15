@@ -1,6 +1,8 @@
 var express = require('express');
 var morgan = require('morgan');
 var favicon = require('serve-favicon');
+var multer  = require('multer');
+var upload = multer({ dest: 'images/' });
 mongoose = require('mongoose'),
 fs = require('fs');
 var csrf = require('csurf') // Charge le middleware de sessions
@@ -11,6 +13,7 @@ var session = require('cookie-session'); // Charge le middleware de sessions
 var Keygrip = require('keygrip')
 var cookieParser = require('cookie-parser')
 var mongoUri = 'mongodb://localhost/footappbase';
+
 mongoose.connect(mongoUri,{ autoIndex: false, useNewUrlParser: true });
 var db = mongoose.connection;
 
@@ -33,6 +36,7 @@ var api = createApiRouter()
 app.use('/api', api)
 .use(morgan('combined'))
 .use(express.static(__dirname + '/vue'))
+.use(express.static(__dirname + '/images'))
 .use(favicon(__dirname + '/vue/favicon.ico'))
 // now add csrf and other middlewares, after the "/api" was mounted
 //pour lire le json 
@@ -57,6 +61,12 @@ require('./models/organisateur');
 require('./models/poule');
 require('./models/programme');
 require('./models/statistiques_match');
+app.post('/photoequipe', upload.single('equipe'), function (req, res, next) {
+  // req.file is the `avatar` file
+   console.log(req.file)
+   if(req.file)return res.send({status:true,name:req.file.filename})
+  
+})
 require('./routes')(app);
 
 app.listen(3000);

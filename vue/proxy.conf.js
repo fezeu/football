@@ -1,6 +1,7 @@
 const PROXY_CONFIG = [
   {
       context: [
+          "/photoequipe",
           "/equipe",
           "/carton",
           "/joueur",
@@ -20,7 +21,17 @@ const PROXY_CONFIG = [
           "/match_equipes"
       ],
       target: "http://localhost:3000",
-      secure: false
+      secure: false,
+      
+  },
+  {
+    '/images':{
+        target: "http://localhost:3000",
+        secure: false,
+        "pathRewrite": {
+            "^/images": ""
+          }
+    }
   }
 ]
 
