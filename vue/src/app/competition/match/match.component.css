@@ -32,15 +32,17 @@
    
 }
 .logo1{
-   background-color: aliceblue; 
     height: 120px;
+    background-color: rgb(250,242,242);
+    border-radius: 4px;
 }
 .nomequipe2{
     height: 30px;
  
 }
 .logo2{
-   background-color: aliceblue; 
+    background-color: rgb(250,242,242);
+    border-radius: 4px;
     height: 120px;
 }
 .butteur{

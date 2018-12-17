@@ -7,19 +7,10 @@
  display: block;
  margin-top: 30px;
 }
- #text{
-     font-size: 25px;
-     margin-top: 20px;
-     text-align: center;
-}
- #text1{
-     font-size: 25px;
-     margin-top: 20px;
-     text-align: center;
-}
+
 .equipe{
     display: flex;
-    height: 250px;
+ 
 }
 .basique{
     display: inline-block;
@@ -33,19 +24,15 @@
 #prev{
     display: block;
     width: 90%;
-    height: 80%;
+    height:200px;
     background-color: rgb(250,242,242);
     border-radius: 4px;
-    transition-property: 0.5s background-image;
+    transition: 0.5s background-image;
 }
 #file{
     display: inline-block;
-    width: 57%;
-    position: relative;
+    position: fixed;
     top: -31px;
-    left: 35px;
-    border: solid;
-    padding: 1px;
     opacity: 0;
 }
 .buttonCo {
@@ -73,4 +60,26 @@
     background-color: indigo!important;
     border-color: indigo!important;
 
+}
+@media (max-width:480px){
+    .basique{
+        display: block;
+        width: 100%;
+
+    }
+    .photo{
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .equipe{
+        display: block;
+      
+    }
+    .joueurInfos{
+        display: block;
+    }
+    .equipe{
+        display: block;
+    }
 }

@@ -1,5 +1,9 @@
 
 module.exports = function(app){
+  var defaul = require('./controllers/default');
+    app.get('/default',defaul.findAll);
+    app.put('/default',defaul.update);
+    
   var poule = require('./controllers/poule');
     app.post('/poule_all',poule.findAll);
     app.get('/poule/quart/:id',poule.quart);

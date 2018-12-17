@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 User = mongoose.model('User');
 Tournois = mongoose.model('Tournois');
 Programme = mongoose.model('Programme');
+Default = mongoose.model('Default');
 
 exports.findAll = function(req, res){
   User.find({},function(err, results) {
@@ -32,33 +33,42 @@ exports.add = function(req, res) {
       }
       
         if(err){
-          console.log('localhost:3000->db error 504')
+          console.log('localhost:3000->db error 503')
           return res.send({status:null,message:err})
         }
         Tournois.create({organisateurs:[req.body.nom],status:'incomplet'},(err,ok)=>{
           if (err) {
-            console.log('localhost:3000->db error 504')
+            console.log('localhost:3000->db error 503')
             return  res.send({status:null,message:err})
           }
-          Programme.create({tournois:ok._id},function(err,pro){
+          Default.create({
+            id:ok._id
+          },(err,cool)=>{
             if (err) {
-             return console.log('localhost:3000->db error 504')
-            }
-            Tournois.update({programme:pro._id},function(err,go){
-              if (err) {
-                return console.log('localhost:3000->db error 504')
-               }
-            })
-          })
-          User.create({nom:req.body.nom,password:req.body.password,email:req.body.email, tournois:[ok._id]}, function (err, user) {
-            if (err) {
-              console.log('localhost:3000->db error 504')
+              console.log('localhost:3000->db error 503')
               return  res.send({status:null,message:err})
             }
-
-            console.log('localhost:3000->user add 200ok')
-            return res.send({status:true});
-          });
+            Programme.create({tournois:ok._id},function(err,pro){
+              if (err) {
+               return console.log('localhost:3000->db error 503')
+              }
+              Tournois.update({programme:pro._id},function(err,go){
+                if (err) {
+                  return console.log('localhost:3000->db error 503')
+                 }
+              })
+            })
+            User.create({nom:req.body.nom,password:req.body.password,email:req.body.email, tournois:[ok._id]}, function (err, user) {
+              if (err) {
+                console.log('localhost:3000->db error 503')
+                return  res.send({status:null,message:err})
+              }
+  
+              console.log('localhost:3000->user add 200ok')
+              return res.send({status:true});
+            });
+          })
+          
         })
 
       

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animation';
 import { MessageToHeadService } from './message-to-head.service';
+import { CompteService } from './client/compte.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
   affiche: boolean = true;
   style = {};
   constructor(
-    private mes : MessageToHeadService
+    private mes : MessageToHeadService,
+    private compt : CompteService
   ){
     this.mes.message.subscribe((e)=>{
       if(e['object']){
@@ -34,6 +36,12 @@ export class AppComponent {
             this.style = e['style'] 
           }        
         }
+      }
+    });
+    this.compt.put_default('5c16f00ea1d3fe1cb048607a').subscribe()
+    this.compt.get_default().subscribe((e)=>{
+      if(e){
+        sessionStorage.setItem('user',JSON.stringify({tournois:[e[0].id]}));
       }
     })
   }

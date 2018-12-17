@@ -25,6 +25,7 @@ export class EquipesComponent implements OnInit {
 
   ngOnInit() {
   
+  
     (()=> {
 
       function createThumbnail(file) {
@@ -32,7 +33,7 @@ export class EquipesComponent implements OnInit {
           var reader = new FileReader();
           
           reader.addEventListener('load', function() {
-  
+             
               $('#prev').css({'background-image':`url(${this.result})`});
               
           });
@@ -57,12 +58,21 @@ export class EquipesComponent implements OnInit {
   
   })();
 
+  $('#buttonph').click((e)=>{
+    e.preventDefault();
+    $('#file').trigger('click');
+
+  });
+  
+ 
   
   }
   sendep(file){
     
 
-
+    if(!file.files[0]){
+      return  this.add()
+    }
     var xhr = new XMLHttpRequest();
     
     xhr.open('POST', '/photoequipe');

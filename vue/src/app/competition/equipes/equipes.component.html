@@ -1,15 +1,15 @@
 <div class="formulaire">
     <div class="message"></div>
     <h1>Equipe</h1>
-<form     class="form" (submit)="sendep(fil)" >
+<form     class="form" id="monform" (submit)=" sendep(fil)" >
 <div class="equipe">
     <div class="basique">
         <div class="formgroup">
                 <div class="jolielabel">
-                    <label for="name">NOM:</label>
+                    <label for="name">NOM</label>
                 </div>
                 <div class="jolieinput">
-                    <input type="text" id="name" [(ngModel)]="equipe.nom"  name="NOM" required>
+                    <input type="text" id="name" [(ngModel)]="equipe.nom"  name="nom" required>
                 </div>
                 
         </div>
@@ -18,7 +18,7 @@
                     <label for="Represente">Represente:</label>
                 </div>
                 <div class="jolieinput">
-                    <input type="text" id="Represente" [(ngModel)]="equipe.represente" name="Represente" >
+                    <input type="text" id="Represente" [(ngModel)]="equipe.represente" name="represente" >
                 </div>
         </div>
   
@@ -27,7 +27,7 @@
                     <label for="Coach">Coach:</label>
                 </div>
                 <div class="jolieinput">
-                    <input type="text" id="Coach" [(ngModel)]="equipe.coach"  name="Coach" required>
+                    <input type="text" id="Coach" [(ngModel)]="equipe.coach"  name="coach" required>
                 </div>
         </div>
 
@@ -38,7 +38,7 @@
     <div  class="photo">
         <div id="prev"></div>
         <div class="buttonCo">
-            <button class="buttonCe">photo</button>
+            <button class="buttonCe" type="button" id="buttonph">photo</button>
         </div>
           <input type="file" id="file" #fil name="equipe" [(ngModel)]='photo' />
  

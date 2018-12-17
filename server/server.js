@@ -21,9 +21,9 @@ db.on('error', function () {
   throw new Error('unable to connect to database at ' + mongoUri);
 });
 // supprimer la db
-db.dropDatabase('footappbase',function(err){
+/*db.dropDatabase('footappbase',function(err){
   console.log(err)
-})
+})*/
 
 
 // create express app
@@ -36,7 +36,10 @@ var api = createApiRouter()
 app.use('/api', api)
 .use(morgan('combined'))
 .use(express.static(__dirname + '/vue'))
-.use(express.static(__dirname + '/images'))
+.use(express.static(__dirname + '/images',{
+  maxAge: '1d',
+  
+}))
 .use(favicon(__dirname + '/vue/favicon.ico'))
 // now add csrf and other middlewares, after the "/api" was mounted
 //pour lire le json 
@@ -46,6 +49,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
  //app.use(cookieParser())
  //app.use(csrf({ cookie: true }))
 
+require('./models/default')
 require('./models/arbitre')
 require('./models/tournois')
 require('./models/match'); 

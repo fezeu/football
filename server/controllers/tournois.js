@@ -9,6 +9,7 @@ StatMatch = mongoose.model('StatMatch');
 Programme = mongoose.model('Programme');
 Poule = mongoose.model('Poule');
 Equipe = mongoose.model('Equipe');
+
 var EventEmitter = require('events').EventEmitter;
 
 exports.intit = function(req,res){
@@ -16,7 +17,7 @@ exports.intit = function(req,res){
     if(typeof(req.session.auth) == 'undefined'){
         return res.send({status:null,message:'AuhtError'}) 
       }else{
-          //on regarde si le tournois es sien
+          //on regarde si le tournois est sien
         let autre = true
         for(let elm of req.session.auth.tournois){
             if(elm == req.body.id){
@@ -108,8 +109,22 @@ creerpoule=function(nom,valeur,equipes,id,event){
                             console.log(err)
                             return false
                         } 
+                        var t = [eqp,eqp1,eqp2,eqp3]
+                        var cle
+                        var classer = true
+                        while(classer){
+                            classer = false
+                            for(let i = 0; i<t.length-1;i++){
+                                if(t[i].nom>t[i+1].nom){
+                                    cle = t[i+1];
+                                    t[i+1] = t[i]
+                                    t[i] = cle
+                                    classer = true
+                                }
+                            }
+                        }
                         Poule.create({tournois:id,nom:nom,niveau:valeur,
-                            classement:[{equipe:equipes[0],nom:eqp.nom},{equipe:equipes[1],nom:eqp1.nom},{equipe:equipes[2],nom:eqp2.nom},{equipe:equipes[3],nom:eqp3.nom}]},(err,pl)=>{
+                            classement:[{equipe:t[0]._id,nom:t[0].nom},{equipe:t[1]._id,nom:t[1].nom},{equipe:t[2]._id,nom:t[2].nom},{equipe:t[3]._id,nom:t[3].nom}]},(err,pl)=>{
                                 if(err){
                                     console.log(err)
                                     return false

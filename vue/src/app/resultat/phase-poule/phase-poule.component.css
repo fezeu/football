@@ -11,9 +11,10 @@
 .tout{
     padding: 15px;
 }
+
 h2{
+    font-size: 1.2em;
     padding-top: 0;
-    font-size: 20px;
     font-weight: 500;
 }
 @media screen and (max-width:480px){

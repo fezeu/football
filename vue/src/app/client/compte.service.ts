@@ -33,4 +33,10 @@ export class CompteService {
   create(user:{nom:String,password: String,email:String}){
     return this.http.post('/user',user,httpOptions)
   }
+  get_default(){
+    return this.http.get('/default')
+  }
+  put_default(id){
+    return this.http.put('/default',{id:id},httpOptions)
+  }
 }
