@@ -70,7 +70,28 @@ app.post('/photoequipe', upload.single('equipe'), function (req, res, next) {
    console.log(req.file)
    if(req.file)return res.send({status:true,name:req.file.filename})
   
-})
+});
+app.get('/images/:name', function (req, res, next) {
+
+  var options = {
+    root: __dirname + '/images/',
+    dotfiles: 'deny',
+    headers: {
+        'x-timestamp': Date.now(),
+        'x-sent': true
+    }
+  };
+
+  var fileName = req.params.name;
+  res.sendFile(fileName, options, function (err) {
+    if (err) {
+      next(err);
+    } else {
+      console.log('Sent:', fileName);
+    }
+  });
+
+});
 require('./routes')(app);
 
 app.listen(3000);
