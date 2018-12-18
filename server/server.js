@@ -10,6 +10,8 @@ var bodyParser = require('body-parser'); // Charge le middleware de gestion des 
 var session = require('cookie-session'); // Charge le middleware de sessions
 
 
+
+
 var Keygrip = require('keygrip')
 var cookieParser = require('cookie-parser')
 var mongoUri = 'mongodb://localhost/footappbase';
@@ -33,6 +35,7 @@ var app = express()
 var api = createApiRouter()
 
 // mount api before csrf is appended to the app stack
+
 app.use('/api', api)
 .use(morgan('combined'))
 .use(express.static(__dirname + '/vue'))
@@ -41,6 +44,7 @@ app.use('/api', api)
   
 }))
 .use(favicon(__dirname + '/vue/favicon.ico'))
+
 // now add csrf and other middlewares, after the "/api" was mounted
 //pour lire le json 
 app.use(bodyParser.json());

@@ -1,6 +1,6 @@
-<section>
+<section class="tout">
     <h1> Finale</h1>
-    <article *ngFor="let match of matchs|async">
+    <article *ngFor="let match of matchs|async" class="groupmatch">
       <app-match  [idmacht]="match.matchs[0]"></app-match>
     </article>
     

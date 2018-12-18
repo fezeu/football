@@ -1,65 +1,56 @@
-.matchi{
 
-    margin-left: 5%; 
-}
-.formul{
-    margin: auto;
-    margin-top: 5px;
-    background: #fff;
-    width: 100%;
-  
-}
 .form{
     -webkit-display:flex;
      display: flex;
-    
+     margin-top: 5px;
+     width: 100%;
+     height: 140px;
 }
 .box1{
-    height: 100px;
-    width: 200px;
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-bottom: 20px;
+    display: inline-block;
+    width: 40%;
 }
 .box2{
-    height: 150px;
-    width: 200px;
-   
-     margin-top: 20px;
-    margin-right: 10px;
-    margin-bottom: 20px;
+    display: inline-block;
+    width: 40%;
 }
 .nomequipe1{
     height: 30px;
    
 }
 .logo1{
-    background-color: rgb(250,242,242);
+    background-color: #fff;
     border-radius: 4px;
-    height: 120px;
+}
+.jolieimage{
+    height: 100px;
 }
 .nomequipe2{
     height: 30px;
  
 }
 .logo2{
-    background-color: rgb(250,242,242);
+    background-color: #fff;
     border-radius: 4px;
-    height: 120px;
 }
 
 
 
 
 .score{
+    display: inline-block;
     border: none;
-    height: 60px;
-    width: 60px;
-    margin-top: 19%;
+    width: 10%;
+    margin-top: 8%;
     font-size: 200%;
     text-align: center;
 
 }
 h3{
     font-size: 0.8em;
+}
+@media (max-width:480px){
+    .score{
+        margin-top: 15%;
+    }
 }

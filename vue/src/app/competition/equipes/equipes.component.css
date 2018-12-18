@@ -56,11 +56,7 @@
 .prin{
     margin-top: 20px;
 }
-.prinb{
-    background-color: indigo!important;
-    border-color: indigo!important;
 
-}
 @media (max-width:480px){
     .basique{
         display: block;

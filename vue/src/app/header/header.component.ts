@@ -23,7 +23,27 @@ export class HeaderComponent implements OnInit, OnChanges {
     
   //this.showSlides();
   let mesimage =['foot10.jpg','image.jpg','foot15.jpg','foot18.jpg'];
-  let i = 0
+  let i = 0;
+  let Height = 480;
+  let max = 280
+  let Width1 = $(document).outerWidth();
+  if(Width1<=480){
+    Height = 280
+    max = 180
+  }else{
+    Height = 480
+    max = 280
+  }
+  $(document).on('resize',()=>{
+    Width1 = $(document).outerWidth();
+    if(Width1<=480){
+      Height = 280
+      max = 180
+    }else{
+      Height = 480
+      max=280
+    }
+  })
   setInterval(()=>{
    $('.navbar ul li').on('click',(e)=>{
     e.preventDefault();
@@ -35,11 +55,12 @@ export class HeaderComponent implements OnInit, OnChanges {
     })
     i = (4+i+1)%4
   },10000)
-  $(document).on('scroll',function(){
+  $(document).on('scroll',()=>{
    let opacite = 1- $(document).scrollTop()/180;
-   let height = 480- $(document).scrollTop()
+   let height = Height- $(document).scrollTop()
    if(opacite<0)opacite=0;
-   if(height<280){
+   if(height< max ){
+    
      height=80
      $('#apphead').css({
       'position':'fixed', 
@@ -97,18 +118,5 @@ document.getElementById("menu").onclick=()=>{
   bye(){
     this.compte.logout()
   }
-  showSlides() {
-    var i;
-    
-    
-    for (i = 0; i < $(".mySlides").length; i++) {
-      $(".mySlides")[i].style.display = "none";  
-    }
-    this.slideIndex++;
-    if (this.slideIndex> $(".mySlides").length) {this.slideIndex = 1}    
-    
-    $(".mySlides")[this.slideIndex-1].style.display = "block";  
-   
-    setTimeout(this.showSlides, 2000); // Change image every 2 seconds
-  }
+  
 }

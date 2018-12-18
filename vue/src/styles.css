@@ -33,12 +33,16 @@ h2{
 }
 .joliemain{
     display: inline-block;
-    width: 100%;
     margin-top: 5px;
     z-index: 1999;
 }
 
-
+a{
+    color: #fff;
+}
+.prinb:hover{
+    box-shadow: 0px 2px 8px 3px grey;
+}
 button{
     overflow: hidden;
     color: #fff;
@@ -184,9 +188,38 @@ h3{
     height:100%;
 }
 
-
+.groupmatch{
+    box-shadow: 2px 2px 30px -2px grey;
+    padding: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 42%;
+    display: inline-block;
+    margin-left: 2%;
+}
+.tout{
+    padding: 15px;
+}
+h2{
+    font-size: 1.2em;
+    padding-top: 0;
+    font-weight: 500;
+}
 @media screen and (max-width:480px){
-    .menucontener{
+    .scoreinput{
+        width: 40px;
+    }
+    .menu1{
+        width: 85%;
+    }
+    .groupmatch{
+        display: block;
+        width: 80%;
+    }
+    .tout{
+        margin-top: 350px;
+    }
+    .menuContainer{
        display: block;
         width: 100%;
        
