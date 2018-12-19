@@ -11,7 +11,11 @@
 }
 .foot2{
     float: left;
+    
 }
 .foot1{
     text-align: center;
+}
+li a{
+    color: #fff;
 }
