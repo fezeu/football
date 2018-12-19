@@ -36,7 +36,7 @@
 </div>
  
     <div  class="photo">
-        <div id="prev"></div>
+        <div id="prev"><img class="jolieimage"/></div>
         <div class="buttonCo">
             <button class="buttonCe" type="button" id="buttonph">photo</button>
         </div>
@@ -51,9 +51,11 @@
         </div>
         <div class="rest"> 
                 <h3>Liste joueurs</h3>
-                <ul class="liens">
-                    <li *ngFor="let joueur of joueurs" class="button">{{joueur}}</li>
-                </ul>
+                <div style="overflow:auto;height:200px">
+                    <ul class="liens">
+                        <li *ngFor="let joueur of joueurs" class="button">{{joueur}}</li>
+                    </ul>
+                </div>
         </div>
     </div>
         <div class="buttonCo prin">

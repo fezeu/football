@@ -57,6 +57,9 @@ export class PhasePouleComponent implements OnInit {
       this.gp3_j1.next([t3.matchs[0],t3.matchs[1]]);
       this.gp3_j2.next([t3.matchs[2],t3.matchs[3]]);
       this.gp3_j3.next([t3.matchs[4],t3.matchs[5]]);
+      this.gp4_j1.next([t4.matchs[0],t4.matchs[1]]);
+      this.gp4_j2.next([t4.matchs[2],t4.matchs[3]]);
+      this.gp4_j3.next([t4.matchs[4],t4.matchs[5]]);
     })
     if(sessionStorage.getItem('user')){
       this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];

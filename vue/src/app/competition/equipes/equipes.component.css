@@ -27,7 +27,10 @@
     height:200px;
     background-color: rgb(250,242,242);
     border-radius: 4px;
-    transition: 0.5s background-image;
+}
+img{
+    transition: all 0.5s;
+    border-radius: 4px;
 }
 #file{
     display: inline-block;
@@ -56,11 +59,7 @@
 .prin{
     margin-top: 20px;
 }
-.prinb{
-    background-color: indigo!important;
-    border-color: indigo!important;
 
-}
 @media (max-width:480px){
     .basique{
         display: block;

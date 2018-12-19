@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './animation';
 import { MessageToHeadService } from './message-to-head.service';
@@ -10,7 +10,7 @@ import { CompteService } from './client/compte.service';
   styleUrls: ['./app.component.css'],
   animations:[slideInAnimation]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   affiche: boolean = true;
   style = {};
   constructor(
@@ -38,12 +38,15 @@ export class AppComponent {
         }
       }
     });
-    this.compt.put_default('5c16f00ea1d3fe1cb048607a').subscribe()
+    
     this.compt.get_default().subscribe((e)=>{
       if(e){
         sessionStorage.setItem('user',JSON.stringify({tournois:[e[0].id]}));
       }
     })
+  }
+  ngOnInit(){
+    
   }
   getAnimationData(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];

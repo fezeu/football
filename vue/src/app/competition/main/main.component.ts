@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
   poule = false;
-  tour = false
+  tour = false;
   id;
   private Tstatus
   constructor(
@@ -22,26 +22,61 @@ export class MainComponent implements OnInit {
    }
 
   ngOnInit() {
-    $(document).on('scroll',function(){
+    let Width1 = $(document).outerWidth();
+    if(Width1 <=480){
+      $('.menu1').css({
+        'position':'fixed',
+         'top': 95,
+         'box-shadow': '0px 6px 25px 1px grey',
+         'transition': '0.2s  box-shadow ease-in',
+         'display': 'None'
+      });
+    }
+    $(document).on('resize',()=>{
+        Width1 = $(document).outerWidth();
+        if(Width1<=480){
+          $('.menu1').css({
+            'position':'fixed',
+             'top': 95,
+             'box-shadow': '0px 6px 25px 1px grey',
+             'transition': '0.2s  box-shadow ease-in',
+             'display':'None'
+          });
+        }else{
+ 
+        }
+    })
+    $(document).on('scroll',()=>{
       let height = $('.tete').outerHeight();
       if(height<=95){
-        $('.menu1').css({
-          'position':'fixed',
-           'top': 95,
-           'box-shadow': '0px 6px 25px 1px grey',
-           'transition': '0.2s  box-shadow ease-in'
-        });
-        $('.topajuste').css({
-          'margin-top':290
-        });
+        if(Width1 >480){
+          $('.menu1').css({
+            'position':'fixed',
+             'top': 95,
+             'box-shadow': '0px 6px 25px 1px grey',
+             'transition': '0.2s  box-shadow ease-in'
+          });
+          $('.topajuste').css({
+            'margin-top':290
+          });
+        }else{
+          $('.topajuste').css({
+            'margin-top':195
+          });
+        }
+  
+
         
       }else{
-        $('.menu1').css({
-          'position':'relative',
-          'top':5,
-          'box-shadow': '0px 0px 0px 0px grey',
-          'transition': '0s  box-shadow ease-in'
-        });
+        if(Width1>480){
+          $('.menu1').css({
+            'position':'relative',
+            'top':5,
+            'box-shadow': '0px 0px 0px 0px grey',
+            'transition': '0s  box-shadow ease-in'
+          });
+        }
+
         $('.topajuste').css({
           'margin-top': 0
         });
