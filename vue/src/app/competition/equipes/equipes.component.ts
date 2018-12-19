@@ -34,7 +34,7 @@ export class EquipesComponent implements OnInit {
           
           reader.addEventListener('load', function() {
              
-              $('#prev').css({'background-image':`url(${this.result})`});
+              $('#prev img').attr('src',this.result);
               
           });
   
@@ -111,6 +111,7 @@ export class EquipesComponent implements OnInit {
         this.joueurs = []
         this.photo = ''
         this.equipe = {id:'',_id:'',nom:'',coach:'',represente:'',banniere:''};
+        $('#prev img').attr('src','');
       }
     })
   }

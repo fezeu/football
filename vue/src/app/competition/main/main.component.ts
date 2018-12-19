@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
   poule = false;
-  tour = false
+  tour = false;
   id;
   private Tstatus
   constructor(

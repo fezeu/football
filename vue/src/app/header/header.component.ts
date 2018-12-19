@@ -59,23 +59,32 @@ export class HeaderComponent implements OnInit, OnChanges {
    let opacite = 1- $(document).scrollTop()/180;
    let height = Height- $(document).scrollTop()
    if(opacite<0)opacite=0;
-   if(height< max ){
-    
-     height=80
-     $('#apphead').css({
+   if(!this.men){
+    $('#apphead').css({
       'position':'fixed', 
       'top':'0',
-      'max-height': height
+      'max-height': 280
      })
-
-    }else{
+   }else{
+    if(height< max ){
+    
+      height=80
       $('#apphead').css({
-        'position':'relative',
-        'top':'-5px',
-        'max-height': height,
-       // 'transform': `translate3d(0,${height},0)`
-       })
-      }
+       'position':'fixed', 
+       'top':'0',
+       'max-height': height
+      })
+ 
+     }else{
+       $('#apphead').css({
+         'position':'relative',
+         'top':'-5px',
+         'max-height': height,
+        // 'transform': `translate3d(0,${height},0)`
+        })
+       }
+   }
+   
 
     $('#content').css({ 
       'opacity': opacite,
@@ -86,23 +95,29 @@ export class HeaderComponent implements OnInit, OnChanges {
 
 document.getElementById("menu").onclick=()=>{
     if(this.men){
-    $(".navbar ul li").css({
+    $(".navbar ").css({
         "display":"block"
         })
     this.men=false
        $('#apphead').css({
         'position':'relative',
-        'top':'-5px',
-        'max-height': 200,
+        'top':'0px',
+        'max-height': 280,
        // 'transform': `translate3d(0,${height},0)`
        })
-     $(document).scrollTop(0)   
-        
+       $(document).scrollTop(0)   
+       $('.tout').css({
+         'margin-top':'270px'
+       })
     }
     else{
-         $(".navbar ul li").css({
+      $('.tout').css({
+        'margin-top':'15px'
+      })
+         $(".navbar ").css({
         "display":"none"
     })
+    $(document).scrollTop($(document).scrollTop()-1)
     this.men=true
    
     }
