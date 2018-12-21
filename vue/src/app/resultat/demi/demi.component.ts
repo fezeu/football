@@ -41,6 +41,11 @@ export class DemiComponent implements OnInit {
       this.comp.get_poul(this.id,3).subscribe((rep)=>{
         
       })
+    }else{
+      this.id= JSON.parse( sessionStorage.getItem('default'));
+      this.comp.get_poul(this.id,3).subscribe((rep)=>{
+        
+      })
     }
    }
 

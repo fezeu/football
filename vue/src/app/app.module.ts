@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { AcceuilComponent } from './acceuil/acceuil.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ClientModule } from './client/client.module';
 import { CompetitionModule } from './competition/competition.module';
@@ -19,7 +18,6 @@ import { ResultatModule } from './resultat/resultat.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    AcceuilComponent,
     FooterComponent,
     
   ],

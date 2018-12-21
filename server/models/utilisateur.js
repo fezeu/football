@@ -3,7 +3,7 @@ Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
   nom: {type:String, trim: true, required: true, lowercase: true},
-  password: {type: String, required: true},
+  password: {type: String},
   email: {type:String, required: true},
   terrains: {type: [ Schema.Types.ObjectId], default: [],unique:true,index:true, sparse: true},
   calendrier: {type: [ Schema.Types.ObjectId ], default: [],unique:true,index:true,sparse:true},

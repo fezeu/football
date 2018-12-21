@@ -1,13 +1,11 @@
-
-        <div class="formulaire">
-            <div id="text">
-            Register to creat your competion</div>
+<div class="topajuste">
+        <h1>Inscription</h1>
         <form     class="form" (submit)="add()">
             
-            
+                
                <div class="formgroup">
                 <div class="jolielabel">
-                   <label for="name">NAME:</label>
+                   <label for="name">NAME</label>
                 </div>
                 <div class="jolieinput">
                       <input type="text" id="name" [(ngModel)]="user.nom" name="name" required>
@@ -17,7 +15,7 @@
                         <div class="formgroup">
                 <div class="jolielabel">
                   
-                    <label for="email">EMAIL:</label>
+                    <label for="email">EMAIL</label>
 
                 </div>
                 <div class="jolieinput">
@@ -27,18 +25,20 @@
             </div>
             <div class="formgroup">
                 <div class="jolielabel">
-                   <label for="password">PASSWORD:</label>
+                   <label for="password">PASSWORD</label>
                 </div>
                 <div class="jolieinput">
-                     <input type="password" id="password" [(ngModel)]="user.password" name="password" required>
+                     <input type="password" id="password" [(ngModel)]="user.password" name="password" >
                 </div>
             
             </div>
-            <input type="submit" name="submit" value="Connecter" id="submit">
+            <div class="buttonCo">
+                    <button class="buttonCe" type="submit">{{register}}</button>
+            </div>
             </form> 
          <div id="text1">
            If you have a competion,connect<br>
-           <a routerLink="/connexion">connexion</a><br/>
+           <a routerLink="/connexion" style="color:blue">connexion</a><br/>
         </div>
         </div>
         

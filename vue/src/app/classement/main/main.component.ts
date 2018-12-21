@@ -12,6 +12,21 @@ export class MainComponent implements OnInit {
     private mes : MessageToHeadService
   ) { 
     this.mes.message.emit({object:'affiche'});
+    this.mes.message.emit({
+      object:'script',
+      de:'head',
+      script:
+      {
+        fonction:      (function(){
+          $(document).ready(function(){
+            $(".active").removeClass('active');
+            $('#classement').addClass('active');
+          })
+          
+        })()
+      }
+
+    })
   }
 
   ngOnInit() {

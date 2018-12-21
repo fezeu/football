@@ -1,73 +1,52 @@
 
-.header{
-    height: 80px;
-    background-color: rgba(51, 23, 139, 0.363);
-    box-shadow: 0px 13px 14px -3px #;
-}
-.formulaire{
-    margin-left: 30%;
-    margin-top: 90px;
-    background: rgb(250, 242, 242);
-   display: block width ;
-   margin:auto;
-   }
-.form{
-   margin-left: 60px;
+.topajuste{
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: block;
+    width: 55%;
+    margin: auto;
     margin-top: 30px;
-    padding: 50px
+    padding: 15px;
+    padding-bottom: 40px;
+}
+.form{
+
+    padding-inline-start: 14%;
    
 }
 
 
-#text{
-    font-size: 25px;
-    margin-top: 100px;
-    text-align: center;
-}
 #text1{
-    font-size: 25px;
+    font-size: 13px;
     margin-top: 20px;
     text-align: center;
 }
-#submit{
-    margin-left: 35%;
-    width: 25%;
-    background-color: #2b1992bc;
-    margin-top:30px;
-    height: 30px;
-    font-size: 20px;
-    border: 0px;
-}
-.footer{
-    background-color: #000;
-    color: #fff;
-    margin-top: 20px;
-    height: 100px;
-}
-.foot3{
-    float:right;
-    margin-right: 40%;
-    margin-top: 20px;
-    
-}
-.foot2{
-    float: left;
-}
-.foot1{
-    text-align: center;
-}
-input{
-    border-radius:0; 
-    height: 30px;
-    font-size: 20px;
-   
-}
+
+
+
 h1{
-    padding-top: 80px;
+    padding-top: 0.2em;
+    margin-bottom: 1.5em;
 }
-label {
-    width: 35%;
-    margin-right: 25%;
-    padding-right:80%;
-    margin-left: 35%;
+
+
+@media(max-width:480px){
+    .topajuste{
+        width: 90%;
+    }
+    .jolielabel{
+        display: block;
+        width: 65%;
+        margin: auto;
+        margin-top: 20px;
+    }
+    .jolieinput{
+        display: block;
+        width: 70%;
+        margin: auto;
+        margin-top: 15px;
+    }
+    .jolieinput input{
+        width: 100%;
+    
+    }
 }

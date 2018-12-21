@@ -66,6 +66,11 @@ export class PhasePouleComponent implements OnInit {
       this.comp.get_poul(this.id,1).subscribe((rep)=>{
         
       })
+    }else{
+      this.id= JSON.parse( sessionStorage.getItem('default'));
+      this.comp.get_poul(this.id,1).subscribe((rep)=>{
+        
+      })
     }
   }
 

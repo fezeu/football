@@ -10,18 +10,24 @@ import { CompteService } from '../client/compte.service';
 })
 export class HeaderComponent implements OnInit, OnChanges {
     men=true;
+  f = {fonction:null}
+  @Input('manager') connecter = false;
+  @Input() script:any;
   @Input() style = [{}];
+  
   slideIndex = 0;
   constructor(
     private mes : MessageToHeadService,
     private compte: CompteService
   ) {
-    
+    if(sessionStorage.getItem('user')){
+      this.connecter = true
+    }
    }
 
   ngOnInit() {
     
-  //this.showSlides();
+  
   let mesimage =['foot10.jpg','image.jpg','foot15.jpg','foot18.jpg'];
   let i = 0;
   let Height = 480;
@@ -65,7 +71,15 @@ export class HeaderComponent implements OnInit, OnChanges {
       'top':'0',
       'max-height': 280
      })
+     $('#content').css({ 
+      'opacity': 0,
+      
+    })
    }else{
+    $('#content').css({ 
+      'opacity': opacite,
+      
+    })
     if(height< max ){
     
       height=80
@@ -86,10 +100,7 @@ export class HeaderComponent implements OnInit, OnChanges {
    }
    
 
-    $('#content').css({ 
-      'opacity': opacite,
-      
-    })
+    
     
 });
 
@@ -125,9 +136,21 @@ document.getElementById("menu").onclick=()=>{
 }
   }
   ngOnChanges(changes: SimpleChanges){
-    for (let elm in changes.style.currentValue){
-      $('.monHead').css(elm['proprite'],elm['valeur'] )
+    if(changes.style){
+      if(changes.style.currentValue){
+        for (let elm in changes.style.currentValue){
+          $(elm['selecteur']).css(elm['proprite'],elm['valeur'] )
+        }
+      }
+ 
     }
+    if(typeof(changes.script.currentValue)!='undefined'){
+      changes.script.currentValue.fonction
+      
+      
+     
+    }
+
     
   }
   bye(){

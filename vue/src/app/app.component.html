@@ -1,5 +1,5 @@
 
-<app-header *ngIf="affiche" [style]="style"></app-header>
+<app-header *ngIf="affiche" [script]="script" [style]="style" [manager]="manage"></app-header>
 <div class="container" [@routeAnimation]="getAnimationData(routerOutlet)">
     <router-outlet #routerOutlet="outlet"></router-outlet>
   </div>

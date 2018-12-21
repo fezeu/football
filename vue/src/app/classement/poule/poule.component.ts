@@ -44,8 +44,12 @@ export class PouleComponent implements OnInit {
       }
       
     })
-    if(sessionStorage.getItem('user'))
-    this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];
+    if(sessionStorage.getItem('user')){
+      this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];
+    }else{
+      this.id = JSON.parse(sessionStorage.getItem('default'))
+    }
+
     this.comp.get_poul(this.id).subscribe((e)=>{
       console.log(e)
     })

@@ -14,10 +14,24 @@ export class MainComponent implements OnInit {
   id;
   private Tstatus
   constructor(
-
+    private mes: MessageToHeadService,
+    private route : Router
   ) {
-   
-    
+    if(!sessionStorage.getItem('user')['tournois']){
+      this.route.navigate(['/resultat'])
+    }
+    this.mes.message.emit({
+      object:'script',
+      de:'head',
+      script:
+      {fonction:(function(){
+        $(document).ready(function(){
+          $(".active").removeClass('active');
+          $('#manage').addClass('active');
+        })
+        
+      })()}
+    })
 
    }
 

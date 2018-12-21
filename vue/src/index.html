@@ -2,11 +2,20 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Vue</title>
+  <title>Competition manager</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script src="https://global.localizecdn.com/localize.js"></script>
+<script>!function(a){if(!a.Localize){a.Localize={};for(var e=["translate","untranslate","phrase","initialize","translatePage","setLanguage","getLanguage","detectLanguage","getAvailableLanguages","untranslatePage","bootstrap","prefetch","on","off"],t=0;t<e.length;t++)a.Localize[e[t]]=function(){}}}(window);</script>
+
+<script>
+  Localize.initialize({
+    key: '[[app:key]]', 
+    rememberLanguage: true
+  });
+</script>
 </head>
 <body>
   <app-root></app-root>

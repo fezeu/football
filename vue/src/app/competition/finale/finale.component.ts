@@ -38,6 +38,11 @@ export class FinaleComponent implements OnInit {
       this.comp.get_poul(this.id, 4).subscribe((rep)=>{
         
       })
+    }else{
+      this.id= JSON.parse( sessionStorage.getItem('default'));
+      this.comp.get_poul(this.id, 4).subscribe((rep)=>{
+        
+      })
     }
    }
 

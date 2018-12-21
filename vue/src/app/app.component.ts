@@ -13,6 +13,8 @@ import { CompteService } from './client/compte.service';
 export class AppComponent implements OnInit{
   affiche: boolean = true;
   style = {};
+  manage;
+  script;
   constructor(
     private mes : MessageToHeadService,
     private compt : CompteService
@@ -25,6 +27,14 @@ export class AppComponent implements OnInit{
         }
         if(e['object']=='affiche'){
           this.affiche = true;
+        }
+        if(e['object']=='manage'){
+          this.manage = e['value']
+        }
+        if(e['object']=='script'){
+          if(e['de']=='head'){
+            this.script = e['script']
+          }
         }
         if(e['object']=='style'){
           if(e['de']=='app'){
@@ -41,7 +51,7 @@ export class AppComponent implements OnInit{
     
     this.compt.get_default().subscribe((e)=>{
       if(e){
-        sessionStorage.setItem('user',JSON.stringify({tournois:[e[0].id]}));
+        sessionStorage.setItem('defaut',JSON.stringify({tournois:[e[0].id]}));
       }
     })
   }

@@ -15,7 +15,19 @@ export class MainComponent implements OnInit {
   ) { 
     this.mes.message.emit({object:'affiche'});
 
-    
+    this.mes.message.emit({
+      object:'script',
+      de:'head',
+      script:
+      {fonction:(function(){
+        $(document).ready(function(){
+          $(".active").removeClass('active');
+          $('#match').addClass('active');
+        })
+        
+      })()}
+
+    })
 
   }
 
