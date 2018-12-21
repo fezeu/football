@@ -260,8 +260,9 @@ exports.generate = function(req,res){
         }
         
         if(cool){
-            if(!cool.equipes)return res.send({statud:false,message:'PasEquipe'})
-            if(cool.status=='incomplet1')res.send({statud:false,message:'Encour'})
+            if(!cool.equipes)return res.send({status:false,message:'PasEquipe'})
+            if(cool.equipes.length>17)return res.send({status:false,message:'PasAssezDEquipes'})
+            if(cool.status=='incomplet1')return res.send({status:false,message:'Encour'})
             equipes = []
             equipes = cool.equipes
             //terrains = randomiseur(cool.terrains)
