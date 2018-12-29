@@ -2,7 +2,10 @@ var express = require('express');
 var morgan = require('morgan');
 var favicon = require('serve-favicon');
 var multer  = require('multer');
-var upload = multer({ dest: 'images/' });
+var upload = multer({ dest: 'images/' ,filename: function (req, file, cb) {
+  console.log(file.filename)
+  cb(null, file.fieldname + '-' + Date.now())
+}});
 mongoose = require('mongoose'),
 fs = require('fs');
 var csrf = require('csurf') // Charge le middleware de sessions

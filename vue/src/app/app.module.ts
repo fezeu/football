@@ -13,6 +13,8 @@ import { ClassementModule } from './classement/classement.module';
 import { MessageToHeadService } from './message-to-head.service';
 import { FooterComponent } from './footer/footer.component';
 import { ResultatModule } from './resultat/resultat.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { ResultatModule } from './resultat/resultat.module';
     ResultatModule,
     AppRoutingModule,
     HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [MessageToHeadService],
   bootstrap: [AppComponent]
