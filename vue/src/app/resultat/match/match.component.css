@@ -41,13 +41,16 @@
     display: inline-block;
     border: none;
     width: 10%;
-    margin-top: 30%;
+    margin-top: 20%;
     font-size: 200%;
     text-align: center;
 
 }
 h3{
     font-size: 0.8em;
+}
+.vs{
+    margin-top: 60px;
 }
 @media (max-width:480px){
     .score{
