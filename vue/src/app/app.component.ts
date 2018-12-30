@@ -48,7 +48,9 @@ export class AppComponent implements OnInit{
         }
       }
     });
-    
+    if(!sessionStorage.getItem('user')){
+      sessionStorage.removeItem('user')
+    }
     this.compt.get_default().subscribe((e)=>{
       if(e){
         sessionStorage.setItem('default',JSON.stringify({tournois:[e[0].id]}));

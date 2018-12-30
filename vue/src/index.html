@@ -7,20 +7,26 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script src="https://global.localizecdn.com/localize.js"></script>
-<script>!function(a){if(!a.Localize){a.Localize={};for(var e=["translate","untranslate","phrase","initialize","translatePage","setLanguage","getLanguage","detectLanguage","getAvailableLanguages","untranslatePage","bootstrap","prefetch","on","off"],t=0;t<e.length;t++)a.Localize[e[t]]=function(){}}}(window);</script>
-
-<script>
-  Localize.initialize({
-    key: '[[app:key]]', 
-    rememberLanguage: true
-  });
-</script>
+ 
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1976d2">
 </head>
 <body>
   <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
+ 
+<script>
+  if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('ngsw-worker.js', { scope: '/' }).then(function(reg) {
+    // registration worked
+    console.log('Registration succeeded. Scope is ' + reg.scope,reg.active,reg);
+  }).catch(function(error) {
+    // registration failed
+    console.log('Registration failed with ' + error);
+  });
+};
+</script>
 </body>
 </html>
