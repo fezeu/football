@@ -49,7 +49,7 @@ export class QuartComponent implements OnInit {
         
       })
     }else{
-      this.id= JSON.parse( sessionStorage.getItem('default'));
+      this.id= JSON.parse( sessionStorage.getItem('default'))['tournois'];
       this.comp.get_poul(this.id,2).subscribe((rep)=>{
         
       })

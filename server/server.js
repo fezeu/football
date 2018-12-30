@@ -2,10 +2,15 @@ var express = require('express');
 var morgan = require('morgan');
 var favicon = require('serve-favicon');
 var multer  = require('multer');
-var upload = multer({ dest: 'images/' ,filename: function (req, file, cb) {
-  console.log(file.filename)
-  cb(null, file.fieldname + '-' + Date.now())
-}});
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'images/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname.replace('.', '_' + Date.now()+'.') )
+  }
+})
+var upload = multer({ storage: storage });
 mongoose = require('mongoose'),
 fs = require('fs');
 var csrf = require('csurf') // Charge le middleware de sessions
@@ -74,7 +79,7 @@ require('./models/programme');
 require('./models/statistiques_match');
 app.post('/photoequipe', upload.single('equipe'), function (req, res, next) {
   // req.file is the `avatar` file
-   console.log(req.file)
+  
    if(req.file)return res.send({status:true,name:req.file.filename})
   
 });

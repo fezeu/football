@@ -111,7 +111,14 @@ export class EquipesComponent implements OnInit {
         this.joueurs = []
         this.photo = ''
         this.equipe = {id:'',_id:'',nom:'',coach:'',represente:'',banniere:''};
-        $('#prev img').attr('src','');
+        $('#prev img').attr('src','default.png');
+      }else if(e['status']==false){
+        if(e['message']=='TeamComplete'){
+          alert("nombre d'equipe complet")
+        }
+        if(e['message']=='DuplicateValue'){
+          alert("l'equipe existe deja")
+        }
       }
     })
   }

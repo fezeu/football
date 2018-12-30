@@ -10,11 +10,13 @@
                         </div>
                     </div>
                     <div class="score">
-                        {{(isjouer)?equip?.but1:'|'}}
+                        {{(isjouer)?equip?.but1:''}}
+                        <b *ngIf="!isjouer">|</b>
                     </div>
                     <div class="vs">VS</div>
                     <div class="score">
-                        {{(isjouer)?equip?.but2:'|'}}
+                        {{(isjouer)?equip?.but2:''}}
+                        <b *ngIf="!isjouer">|</b>
                     </div>
                     <div class="box2">
                         <div class="nomequipe2"><h3>{{equip?.equipe2?.nom}}</h3></div>

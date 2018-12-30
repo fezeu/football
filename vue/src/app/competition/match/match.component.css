@@ -45,8 +45,10 @@
     border-radius: 4px;
     height: 120px;
 }
-.buttonCe{
-    margin-left: 40%;
+.buttonCo {
+    margin-top: 0; 
+     margin-left: 0; 
+     padding-bottom: 5px;
 }
 
 @media(max-width:480px){

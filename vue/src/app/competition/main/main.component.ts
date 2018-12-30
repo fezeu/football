@@ -17,9 +17,7 @@ export class MainComponent implements OnInit {
     private mes: MessageToHeadService,
     private route : Router
   ) {
-    if(!sessionStorage.getItem('user')['tournois']){
-      this.route.navigate(['/resultat'])
-    }
+   
     this.mes.message.emit({
       object:'script',
       de:'head',

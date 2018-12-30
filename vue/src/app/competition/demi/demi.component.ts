@@ -42,7 +42,7 @@ export class DemiComponent implements OnInit {
         
       })
     }else{
-      this.id= JSON.parse( sessionStorage.getItem('default'));
+      this.id= JSON.parse( sessionStorage.getItem('default'))['tournois'];
       this.comp.get_poul(this.id,3).subscribe((rep)=>{
         
       })
