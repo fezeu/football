@@ -8,4 +8,4 @@ etape pour lancer le systeme:
      >npm install
      >node server.js
     -le vue est deja compilter
-le code souce complet est disponible a l'address:
+le code souce complet est disponible a l'address: https://github.com/fezeu/football
