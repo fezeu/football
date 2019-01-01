@@ -167,10 +167,10 @@ creermatch = function(equipes, id,event){
 
     }else {
         if(equipes.length==4){
+            creermatch([equipes[1],equipes[0]],id,event);
             creermatch([equipes[1],equipes[2]],id,event);
-            creermatch([equipes[0],equipes[1]],id,event);
             creermatch([equipes[1],equipes[3]],id,event);
-            creermatch([equipes[0],equipes[2]],id,event);
+            creermatch([equipes[2],equipes[0]],id,event);
             creermatch([equipes[2],equipes[3]],id,event);
             creermatch([equipes[0],equipes[3]],id,event);
            

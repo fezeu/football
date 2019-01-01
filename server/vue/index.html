@@ -10,23 +10,41 @@
  
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1976d2">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1976d2">
+ 
 <link rel="stylesheet" href="styles.b332e0a8d113352afeef.css"></head>
 <body>
   <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
- 
-<script>
-  if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('ngsw-worker.js', { scope: '/' }).then(function(reg) {
+  <script type="text/javascript">
+
+    if ('serviceWorker' in navigator) {
+
+      navigator.serviceWorker.register('ngsw-worker.js', { scope: '/' }).then(function(reg) {
     // registration worked
-    console.log('Registration succeeded. Scope is ' + reg.scope,reg.active,reg);
-  }).catch(function(error) {
-    // registration failed
-    console.log('Registration failed with ' + error);
-  });
+  
+    /*reg.installing
+    reg.active
+    this.addEventListener('install', function(event) {
+  event.waitUntil(
+     caches.open('v1').then(function(cache) {
+      return cache.addAll([
+        
+      ].concat(['/images/**']));
+    })
+     
+  );
+});
+
+      console.log('Registration succeeded. Scope is ' + reg.scope);
+    }).catch(function(error) {
+      // registration failed
+      console.log('Registration failed with ' + error);
+    */});
+      
+     
 };
-</script>
-<script type="text/javascript" src="runtime.06daa30a2963fa413676.js"></script><script type="text/javascript" src="polyfills.f6ae3e8b63939c618130.js"></script><script type="text/javascript" src="scripts.806effac119676237f10.js"></script><script type="text/javascript" src="main.74327430805d8a8368f1.js"></script></body>
+  
+    
+  </script>
+<script type="text/javascript" src="runtime.06daa30a2963fa413676.js"></script><script type="text/javascript" src="polyfills.f6ae3e8b63939c618130.js"></script><script type="text/javascript" src="scripts.806effac119676237f10.js"></script><script type="text/javascript" src="main.80c4ae1b09cfd74d7e37.js"></script></body>
 </html>

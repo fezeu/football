@@ -48,7 +48,7 @@ export class AppComponent implements OnInit{
         }
       }
     });
-    if(!sessionStorage.getItem('user')){
+    if(!JSON.parse(sessionStorage.getItem('user'))){
       sessionStorage.removeItem('user')
     }
     this.compt.get_default().subscribe((e)=>{

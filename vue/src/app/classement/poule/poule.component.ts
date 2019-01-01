@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CreateCompService } from 'src/app/competition/create-comp.service';
 import { Subject } from 'rxjs';
 import { isArray } from 'util';
+import { CompteService } from 'src/app/client/compte.service';
 
 @Component({
   selector: 'app-poule',
@@ -15,7 +16,8 @@ export class PouleComponent implements OnInit {
   id;
   constructor(
 
-    private comp:CreateCompService
+    private comp:CreateCompService,
+    private compt : CompteService
   ) { }
 
   ngOnInit() {
@@ -47,12 +49,21 @@ export class PouleComponent implements OnInit {
     if(sessionStorage.getItem('user')){
       this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];
     }else{
-      this.id = JSON.parse(sessionStorage.getItem('default'))['tournois']
+      if(sessionStorage.getItem('default')){
+        this.id= JSON.parse( sessionStorage.getItem('default'))['tournois'];
+        this.comp.get_poul(this.id,1)
+        }else{
+          this.compt.get_default().subscribe((e)=>{
+            if(e){
+              sessionStorage.setItem('default',JSON.stringify({tournois:[e[0].id]}));
+              this.id= JSON.parse( sessionStorage.getItem('default'))['tournois'];
+              this.comp.get_poul(this.id,1)
+            }
+          })
+        }
     }
 
-    this.comp.get_poul(this.id).subscribe((e)=>{
-      console.log(e)
-    })
+    this.comp.get_poul(this.id)
   }
 
 }

@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from  '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
+
+import { InMemoryDataService }  from './in-memory-data.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,8 +36,10 @@ import { environment } from '../environments/environment';
     ResultatModule,
     AppRoutingModule,
     HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false,passThruUnknownUrl:true,put404:true, caseSensitiveSearch:true }
+    ),
+    ServiceWorkerModule.register('ngsw-worker.js', {scope:'/', enabled: environment.production }),
   ],
   providers: [MessageToHeadService],
   bootstrap: [AppComponent]

@@ -20,9 +20,9 @@
         "files": [
           "/assets/**"
         ],
-        "urls":["http:localhost:3000/images/**"]
+        "urls":["localhost:3000/images/**","127.0.0.1:3000/images/**"]
       }
     }
   ],
-  "navigationUrls":["http:localhost:3000/resultat"]
+  "navigationUrls":["http://localhost:3000/resultat/**","http://localhost:3000/competition/**","http://localhost:3000/classement/**","localhost:3000/resultat/**","localhost:3000/competition/**","localhost:3000/classement/**"]
 }

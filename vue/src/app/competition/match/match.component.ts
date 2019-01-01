@@ -18,7 +18,9 @@ export class MatchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.comp.get_equipes_match(this.idmacht).subscribe((e)=>{
+    this.comp.matchEquipesProvide.subscribe((e)=>{
+      if(e['id']!=this.idmacht)return false;
+      e= e ['matchEquipes']
       if(e['status']){
         let t =[]
         t = e['message']
@@ -34,6 +36,7 @@ export class MatchComponent implements OnInit {
         
       }
     })
+    this.comp.get_equipes_match(this.idmacht)
   }
   save(){
     if(sessionStorage.getItem('user')){

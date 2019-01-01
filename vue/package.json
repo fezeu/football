@@ -22,6 +22,7 @@
     "@angular/pwa": "^0.8.8",
     "@angular/router": "^6.1.0",
     "@angular/service-worker": "^6.1.0",
+    "angular-in-memory-web-api": "^0.8.0",
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",
     "rxjs": "~6.2.0",

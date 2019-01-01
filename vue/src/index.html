@@ -10,23 +10,41 @@
  
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1976d2">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1976d2">
+ 
 </head>
 <body>
   <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
- 
-<script>
-  if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('ngsw-worker.js', { scope: '/' }).then(function(reg) {
+  <script type="text/javascript">
+
+    if ('serviceWorker' in navigator) {
+
+      navigator.serviceWorker.register('ngsw-worker.js', { scope: '/' }).then(function(reg) {
     // registration worked
-    console.log('Registration succeeded. Scope is ' + reg.scope,reg.active,reg);
-  }).catch(function(error) {
-    // registration failed
-    console.log('Registration failed with ' + error);
-  });
+  
+    /*reg.installing
+    reg.active
+    this.addEventListener('install', function(event) {
+  event.waitUntil(
+     caches.open('v1').then(function(cache) {
+      return cache.addAll([
+        
+      ].concat(['/images/**']));
+    })
+     
+  );
+});
+
+      console.log('Registration succeeded. Scope is ' + reg.scope);
+    }).catch(function(error) {
+      // registration failed
+      console.log('Registration failed with ' + error);
+    */});
+      
+     
 };
-</script>
+  
+    
+  </script>
 </body>
 </html>

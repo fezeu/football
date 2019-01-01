@@ -40,27 +40,38 @@ db.on('error', function () {
 var app = express()
 
 // create api router
-var api = createApiRouter()
+
 
 // mount api before csrf is appended to the app stack
 
-app.use('/api', api)
-.use(morgan('combined'))
-.use(express.static(__dirname + '/vue'))
-.use(express.static(__dirname + '/images',{
-  maxAge: '1d',
-  
-}))
-.use(favicon(__dirname + '/vue/favicon.ico'))
+app.use(morgan('combined'))
+
 
 // now add csrf and other middlewares, after the "/api" was mounted
 //pour lire le json 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
- app.use(session({secret: 'dsgghjh'}))
+ app.use(session({secret: 'dsgghjh@kFGFG087656jk<'}))
+ .use(express.static(__dirname + '/vue'))
+.use(express.static(__dirname + '/images',{
+  maxAge: '1d',
+}))
+.use(favicon(__dirname + '/vue/favicon.ico'))
  //app.use(cookieParser())
  //app.use(csrf({ cookie: true }))
-
+ app.use((req, res, next) => {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE')
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  // Pass to next layer of middleware
+  next()
+})
 require('./models/default')
 require('./models/arbitre')
 require('./models/tournois')
@@ -90,7 +101,8 @@ app.get('/images/:name', function (req, res, next) {
     dotfiles: 'deny',
     headers: {
         'x-timestamp': Date.now(),
-        'x-sent': true
+        'x-sent': true,
+        'maxAge':'1d'
     }
   };
 
@@ -104,17 +116,22 @@ app.get('/images/:name', function (req, res, next) {
   });
 
 });
+app.get('/resultat',function(req,res){
+  res.redirect('/')
+})
+app.get('/competition',function(req,res){
+  res.redirect('/')
+})
+app.get('/classement',function(req,res){
+  res.redirect('/')
+})
+app.get('/connexion',function(req,res){
+  res.redirect('/')
+})
 require('./routes')(app);
 
 app.listen(3000);
 console.log('Listening on port 3000...');
 
-function createApiRouter () {
-    var router = new express.Router()
+
   
-    router.post('/getProfile', function (req, res) {
-      res.send('no csrf to get here')
-    })
-  
-    return router
-  }

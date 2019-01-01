@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateCompService } from 'src/app/competition/create-comp.service';
 import { Observable, Subject } from 'rxjs';
+import { CompteService } from '../../client/compte.service';
 
 @Component({
   selector: 'app-phase-poule',
@@ -22,7 +23,8 @@ export class PhasePouleComponent implements OnInit {
   gp4_j2:Subject<any[]> = new Subject();
   gp4_j3:Subject<any[]> = new Subject();
   constructor(
-    private comp: CreateCompService
+    private comp: CreateCompService,
+    private compt : CompteService
   ) {
     
     comp.poule1.subscribe((e)=>{
@@ -64,16 +66,23 @@ export class PhasePouleComponent implements OnInit {
       }
       
     })
-    if(sessionStorage.getItem('user')){
+    if(JSON.parse(sessionStorage.getItem('user'))){
       this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];
-      this.comp.get_poul(this.id,1).subscribe((rep)=>{
-        
-      })
+      this.comp.get_poul(this.id,1)
     }else{
+      if(sessionStorage.getItem('default')){
       this.id= JSON.parse( sessionStorage.getItem('default'))['tournois'];
-      this.comp.get_poul(this.id,1).subscribe((rep)=>{
-        
-      })
+      this.comp.get_poul(this.id,1)
+      }else{
+        this.compt.get_default().subscribe((e)=>{
+          if(e){
+            sessionStorage.setItem('default',JSON.stringify({tournois:[e[0].id]}));
+            this.id= JSON.parse( sessionStorage.getItem('default'))['tournois'];
+            this.comp.get_poul(this.id,1)
+          }
+        })
+      }
+      
     }
    }
 

@@ -63,14 +63,10 @@ export class PhasePouleComponent implements OnInit {
     })
     if(sessionStorage.getItem('user')){
       this.id= JSON.parse( sessionStorage.getItem('user'))['tournois'][0];
-      this.comp.get_poul(this.id,1).subscribe((rep)=>{
-        
-      })
+      this.comp.get_poul(this.id,1)
     }else{
       this.id= JSON.parse( sessionStorage.getItem('default'))['tournois'];
-      this.comp.get_poul(this.id,1).subscribe((rep)=>{
-        
-      })
+      this.comp.get_poul(this.id,1)
     }
   }
 
