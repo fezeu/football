@@ -51,18 +51,18 @@ export class PhasePouleComponent implements OnInit {
         
       }
       if(t1&&t2&&t3&&t4){
-        this.gp1_j1.next([t1.matchs[0],t1.matchs[4]]);
-        this.gp1_j2.next([t1.matchs[1],t1.matchs[3]]);
-        this.gp1_j3.next([t1.matchs[2],t1.matchs[5]]);
-        this.gp2_j1.next([t2.matchs[0],t2.matchs[1]]);
-        this.gp2_j2.next([t2.matchs[2],t2.matchs[5]]);
-        this.gp2_j3.next([t2.matchs[3],t2.matchs[4]]);
-        this.gp3_j1.next([t3.matchs[0],t3.matchs[5]]);
-        this.gp3_j2.next([t3.matchs[1],t3.matchs[2]]);
-        this.gp3_j3.next([t3.matchs[3],t3.matchs[4]]);
-        this.gp4_j1.next([t4.matchs[0],t4.matchs[3]]);
-        this.gp4_j2.next([t4.matchs[1],t4.matchs[5]]);
-        this.gp4_j3.next([t4.matchs[2],t4.matchs[4]]);
+      this.gp1_j1.next([t1.matchs[0],t1.matchs[1]]);
+      this.gp1_j2.next([t1.matchs[2],t1.matchs[3]]);
+      this.gp1_j3.next([t1.matchs[4],t1.matchs[5]]);
+      this.gp2_j1.next([t2.matchs[0],t2.matchs[5]]);
+      this.gp2_j2.next([t2.matchs[1],t2.matchs[2]]);
+      this.gp2_j3.next([t2.matchs[3],t2.matchs[4]]);
+      this.gp3_j1.next([t3.matchs[0],t3.matchs[4]]);
+      this.gp3_j2.next([t3.matchs[1],t3.matchs[3]]);
+      this.gp3_j3.next([t3.matchs[2],t3.matchs[5]]);
+      this.gp4_j1.next([t4.matchs[0],t4.matchs[5]]);
+      this.gp4_j2.next([t4.matchs[1],t4.matchs[3]]);
+      this.gp4_j3.next([t4.matchs[4],t4.matchs[2]]);
       }
       
     })
